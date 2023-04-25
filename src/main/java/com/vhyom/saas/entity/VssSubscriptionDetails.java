@@ -2,28 +2,30 @@ package com.vhyom.saas.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+
 
 /**
  *
  * @author Narendra
  */
 @Entity
-@Table(name = "vss_subscription_details", catalog = "VS10000-VHYOM_SaaS", schema = "dbo", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"uuid"})})
+@Table(name = "vss_subscription_details")
 @NamedQueries({
     @NamedQuery(name = "VssSubscriptionDetails.findAll", query = "SELECT v FROM VssSubscriptionDetails v"),
     @NamedQuery(name = "VssSubscriptionDetails.findById", query = "SELECT v FROM VssSubscriptionDetails v WHERE v.id = :id"),

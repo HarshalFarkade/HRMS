@@ -11,7 +11,7 @@
     <groupId>com.vhyom</groupId>
     <artifactId>vs.10000.saas</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>VS10000SaaS</name>
+    <name>VS10000SaaS-M1</name>
     <description>VHYOM - Account Setup for SaaS Tenant</description>
     <properties>
         <java.version>19</java.version>
@@ -54,11 +54,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>jakarta.persistence</artifactId>
-            <version>2.2.3</version>
         </dependency>
     </dependencies>
 
