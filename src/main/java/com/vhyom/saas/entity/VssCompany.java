@@ -247,5 +247,8 @@ public class VssCompany implements Serializable {
     public String toString() {
         return "com.vhyom.saas.entity.VssCompany[ id=" + id + " ]";
     }
-    
+
+
+    public void setActive(boolean b) {
+    }
 }
