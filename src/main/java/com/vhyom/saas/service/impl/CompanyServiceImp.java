@@ -7,10 +7,10 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class CompanyServiceImp implements CompanyService {
-    Date date = new Date();
     @Autowired
-    private CompanyRepository companyRepository ;
+    private CompanyRepository companyRepository;
+
     @Override
     public String createCompany(VssCompany vssCompany, Integer superAdminId, MultipartFile file, String path) {
 
@@ -45,7 +45,6 @@ public class CompanyServiceImp implements CompanyService {
             if (existingCompany != null) {
                 throw new RuntimeException("A company with this name already exist");
             }
-            
 
             vssCompany.setWebsiteUrl(vssCompany.getWebsiteUrl());
 
@@ -68,9 +67,7 @@ public class CompanyServiceImp implements CompanyService {
             vssCompany.setLastName(vssCompany.getLastName());
             vssCompany.setPhoneNumber(vssCompany.getPhoneNumber());
             vssCompany.setActive(true);
-
             vssCompany.setCreatedBy(superAdminId);
-
             vssCompany.setCreatedOn(LocalDateTime.now());
 
             UUID uuid = UUID.randomUUID();
