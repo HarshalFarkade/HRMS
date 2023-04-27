@@ -1,11 +1,14 @@
 package com.vhyom.saas.repository;
 
 import com.vhyom.saas.entity.VssCompany;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +32,14 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
     List<Object[]>findAllcompany(Boolean aTrue);
     @Query("select com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdOn,com.createdBy,com.lastModifiedOn,com.lastModifiedBy From VssCompany com Where com.uuid=?1")
     List<Object[]> getCompanyByUuid(String uuid);
+    @Transactional
+    @Modifying
+    @Query(value="UPDATE VssCompany com SET com.lastModifiedBy=:lastModifiedBy, com.lastModifiedOn=:lastModifiedOn, com.isActive=:isActive where com.uuid=:uuid")
+    void deleteCompanyByUuid(
+            @Param("lastModifiedBy") Integer lastModifiedBy,
+            @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+            @Param("isActive") boolean isActive,
+            @Param("uuid") String uuid);
 
 
 

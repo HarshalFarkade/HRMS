@@ -98,6 +98,12 @@ public class CompanyServiceImp implements CompanyService {
         return available;
     }
 
+    @Override
+    public String deletCompanyByUuid(String uuid, VssCompany vssCompany) {
+        this.companyRepository.deleteCompanyByUuid(vssCompany.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
+        return " Company Delete Successfully";
+    }
+
 
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");

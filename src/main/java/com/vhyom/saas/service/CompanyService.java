@@ -15,6 +15,8 @@ public interface CompanyService {
 
     List<Object[]>getCompanyByUuid(String uuid);
 
+    String deletCompanyByUuid(String uuid ,VssCompany vssCompany);
+
 
 
 }

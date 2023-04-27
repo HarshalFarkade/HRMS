@@ -37,12 +37,19 @@ public class CompanyController {
 
     @GetMapping("/allCompany") /* This API will give all company*/
     public ResponseEntity<List<Object[]>> getAllCompany() {
-        LOGGER.info(" CompanyController | alldocument is started");
+        LOGGER.info(" CompanyController | allCompany is started");
         return new ResponseEntity<>(companyService.getAllcompany(), HttpStatus.OK);
     }
     @GetMapping("/getCompanyByuuid/{uuid}") /*This API Will give company by uuid*/
     public ResponseEntity<List<Object[]>>getCompanyByUuid(@PathVariable String uuid){
-        LOGGER.info(" CompanyController | alldocument is started");
+        LOGGER.info(" CompanyController | allCompany is started");
         return new ResponseEntity<>(companyService.getCompanyByUuid(uuid),HttpStatus.OK);
+    }
+
+    @PutMapping("/deleteCompanyByUuid/{uuid}")/*This api will delet the company*/
+    public String deleteCompanyByUuid(@PathVariable String uuid, @RequestBody VssCompany vssCompany){
+        LOGGER.info(" CompanyController | allCompany is started");
+        return companyService.deletCompanyByUuid(uuid, vssCompany);
+
     }
 }
