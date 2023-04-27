@@ -89,6 +89,14 @@ public class CompanyServiceImp implements CompanyService {
         return companyRepository.findAllcompany(Boolean.TRUE);
     }
 
+    @Override
+    public List<Object[]> getCompanyByUuid(String uuid) {
+        List<Object[]>available=companyRepository.getCompanyByUuid(uuid);
+        if(available==null){
+            System.out.print("Company Not Found");
+        }
+        return available;
+    }
 
 
     public String getCurrentTime() {

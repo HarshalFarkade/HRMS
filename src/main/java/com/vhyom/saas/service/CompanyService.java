@@ -13,6 +13,8 @@ public interface CompanyService {
 
     List<Object[]>getAllcompany();
 
+    List<Object[]>getCompanyByUuid(String uuid);
+
 
 
 }

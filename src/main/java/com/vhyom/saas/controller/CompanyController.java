@@ -40,4 +40,9 @@ public class CompanyController {
         LOGGER.info(" CompanyController | alldocument is started");
         return new ResponseEntity<>(companyService.getAllcompany(), HttpStatus.OK);
     }
+    @GetMapping("/getCompanyByuuid/{uuid}") /*This API Will give company by uuid*/
+    public ResponseEntity<List<Object[]>>getCompanyByUuid(@PathVariable String uuid){
+        LOGGER.info(" CompanyController | alldocument is started");
+        return new ResponseEntity<>(companyService.getCompanyByUuid(uuid),HttpStatus.OK);
+    }
 }

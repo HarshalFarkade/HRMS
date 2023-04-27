@@ -27,6 +27,9 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
 
     @Query("select com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdOn,com.createdBy,com.lastModifiedOn,com.lastModifiedBy From VssCompany com Where com.isActive = true")
     List<Object[]>findAllcompany(Boolean aTrue);
+    @Query("select com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdOn,com.createdBy,com.lastModifiedOn,com.lastModifiedBy From VssCompany com Where com.uuid=?1")
+    List<Object[]> getCompanyByUuid(String uuid);
+
 
 
 
