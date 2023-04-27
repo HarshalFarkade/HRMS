@@ -1,19 +1,19 @@
-package com.vhyom.saas.Controller;
+package com.vhyom.saas.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vhyom.saas.Service.CompanyService;
 import com.vhyom.saas.entity.VssCompany;
+import com.vhyom.saas.service.CompanyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/company")
@@ -33,5 +33,11 @@ public class CompanyController {
         VssCompany vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
         this.companyService.createCompany(vssCompany, superAdminId, file, path);
         return "Company registered Successfully";
+    }
+
+    @GetMapping("/allCompany") /* This API will give all company*/
+    public ResponseEntity<List<Object[]>> getAllCompany() {
+        LOGGER.info(" CompanyController | alldocument is started");
+        return new ResponseEntity<>(companyService.getAllcompany(), HttpStatus.OK);
     }
 }

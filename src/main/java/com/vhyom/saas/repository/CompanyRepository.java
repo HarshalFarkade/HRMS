@@ -1,4 +1,4 @@
-package com.vhyom.saas.Repository;
+package com.vhyom.saas.repository;
 
 import com.vhyom.saas.entity.VssCompany;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
@@ -23,6 +24,9 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
                          @Param("createdOn")Date createdOn,
                          @Param("createdBy") int createdBy);
     VssCompany findByName(String name);
+
+    @Query("select com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdOn,com.createdBy,com.lastModifiedOn,com.lastModifiedBy From VssCompany com Where com.isActive = true")
+    List<Object[]>findAllcompany(Boolean aTrue);
 
 
 
