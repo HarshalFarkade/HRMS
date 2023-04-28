@@ -122,7 +122,7 @@ public class CompanyServiceImp implements CompanyService {
             f.mkdir();
         }
         Files.copy(file.getInputStream(), Paths.get(filePath));
-        return "Company Update Successfully";
+        return " Update Successfully";
     }
 
 
