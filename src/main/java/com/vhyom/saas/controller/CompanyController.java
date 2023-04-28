@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -46,10 +47,16 @@ public class CompanyController {
         return new ResponseEntity<>(companyService.getCompanyByUuid(uuid),HttpStatus.OK);
     }
 
-    @PutMapping("/deleteCompanyByUuid/{uuid}")/*This api will delet the company*/
+    @PutMapping("/deleteCompanyByUuid/{uuid}")/*This api will delete the company*/
     public String deleteCompanyByUuid(@PathVariable String uuid, @RequestBody VssCompany vssCompany){
         LOGGER.info(" CompanyController | allCompany is started");
         return companyService.deletCompanyByUuid(uuid, vssCompany);
+    }
 
+    @PutMapping("/update/{uuid}")/* This API will Update the Company*/
+    public String updateCompanyByUuid(@PathVariable String uuid,@RequestPart("company") String company,@RequestPart("logo") MultipartFile file) throws IOException {
+        LOGGER.info(" CompanyController | allCompany is started"+ file.getOriginalFilename());
+        VssCompany vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+        return companyService.updateCompanyByUuid(uuid, vssCompany,path,file);
     }
 }

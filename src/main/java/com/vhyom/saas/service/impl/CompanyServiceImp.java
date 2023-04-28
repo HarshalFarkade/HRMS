@@ -2,6 +2,7 @@ package com.vhyom.saas.service.impl;
 
 import com.vhyom.saas.entity.VssCompany;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -102,6 +103,26 @@ public class CompanyServiceImp implements CompanyService {
     public String deletCompanyByUuid(String uuid, VssCompany vssCompany) {
         this.companyRepository.deleteCompanyByUuid(vssCompany.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
         return " Company Delete Successfully";
+    }
+
+    @Override
+    public String updateCompanyByUuid(String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException {
+        this.companyRepository.updateCompanyByUuid( vssCompany.getName(),vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), LocalDateTime.now(), vssCompany.getLastModifiedBy(),uuid);
+
+        String fileName = file.getOriginalFilename();
+
+        if (!fileName.equalsIgnoreCase("")) {
+            fileName = getCurrentTime() + "_" + fileName;
+        }
+
+        String filePath = path + File.separator + fileName;
+
+        File f = new File(path);
+        if (!f.exists()) {
+            f.mkdir();
+        }
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        return "Company Update Successfully";
     }
 
 
