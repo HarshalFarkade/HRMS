@@ -15,4 +15,6 @@ public interface SuperAdminService {
     List<Object[]>getAllsuperAdminByUuid(String uuid,String firstName);
 
     String deletesuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin);
+
+    String updateSuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin,MultipartFile file, String path) throws IOException;
 }

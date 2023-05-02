@@ -49,4 +49,13 @@ public class SuperAdminController {
         return superAdminServiceImp.deletesuperAdminByuuid(uuid, vssSuperAdmin);
     }
 
+    @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details*/
+    public String updateSuperAdminByuuid(@PathVariable String uuid,@RequestPart("superAdmin")String superAdmin,@RequestPart("profilePhoto") MultipartFile file) throws IOException {
+        LOGGER.info("SuperAdminController: createSuperAdmin is started"+ file.getOriginalFilename());
+        VssSuperAdmin vssSuperAdmin =new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+        return superAdminServiceImp.updateSuperAdminByuuid(uuid,vssSuperAdmin, file, path);
+
+
+    }
+
 }

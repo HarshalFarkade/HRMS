@@ -65,6 +65,23 @@ public class SuperAdminServiceImp implements SuperAdminService {
         return "Delete superAdmin Successfully";
     }
 
+    @Override
+    public String updateSuperAdminByuuid(String uuid, VssSuperAdmin vssSuperAdmin, MultipartFile file, String path) throws IOException {
+        this.superAdminRepository.updateSuperAdminByuuid(vssSuperAdmin.getPassword(), path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), LocalDateTime.now(), vssSuperAdmin.getLastModifiedBy(), uuid);
+
+        String fileName = file.getOriginalFilename();
+        if (!fileName.equalsIgnoreCase("")) {
+            fileName = getCurrentTime() + "_" + fileName;
+        }
+        String filePath = path + File.separator + fileName;
+        File f = new File(path);
+        if (!f.exists()) {
+            f.mkdir();
+        }
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        return "superAdmin Update Successfully";
+    }
+
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date dateobj = new Date();

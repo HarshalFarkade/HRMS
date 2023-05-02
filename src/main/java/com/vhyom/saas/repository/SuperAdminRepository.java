@@ -28,5 +28,17 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
                               @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
                               @Param("lastModifiedBy") Integer lastModifiedBy,
                               @Param("uuid")String uuid);
+  @Transactional
+  @Modifying
+  @Query(value = "UPDATE VssSuperAdmin sup SET sup.password=:password,sup.profilePhoto=:profilePhoto,sup.firstName=:firstName,sup.lastName=:lastName,sup.mobileNumber=:mobileNumber,sup.phoneNumber=:phoneNumber,sup.lastModifiedOn=:lastModifiedOn,sup.lastModifiedBy=:lastModifiedBy Where sup.uuid=:uuid")
+  void updateSuperAdminByuuid(@Param("password") String password,
+                              @Param("profilePhoto") String profilePhoto,
+                              @Param("firstName")String firstName,
+                              @Param("lastName") String lastName,
+                              @Param("mobileNumber") String mobileNumber,
+                              @Param("phoneNumber")String phoneNumber,
+                              @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                              @Param("lastModifiedBy")Integer lastModifiedBy,
+                              @Param("uuid") String uuid);
 
 }
