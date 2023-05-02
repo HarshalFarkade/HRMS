@@ -31,11 +31,10 @@ public class SuperAdminController {
         this.superAdminServiceImp.createSuperAdmin(vssSuperAdmin,file,path);
         return "SuperAdin Created Successfully";
     }
-
-  //  @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by first name */
-  //  public ResponseEntity<List<Object[]>>getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName ){
-  //      LOGGER.info("SuperAdminController: createSuperAdmin is started");
-   //     return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName), HttpStatus.OK);
-   // }
+    @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by first name */
+    public ResponseEntity<List<Object[]>>getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName ){
+        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName), HttpStatus.OK);
+    }
 
 }

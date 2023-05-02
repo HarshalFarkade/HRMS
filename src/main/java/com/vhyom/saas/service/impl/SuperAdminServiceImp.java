@@ -49,10 +49,10 @@ public class SuperAdminServiceImp implements SuperAdminService {
         return "Create Successfully";
     }
 
-   // @Override
-  //  public List<Object[]> getAllsuperAdminBySortedFirstNameAsc(String firstName) {
-   //     return superAdminRepository.getAllsuperAdminBySortedFirstNameAsc(Sort.by(Sort.Direction.ASC,firstName));
-   // }
+    @Override
+   public List<Object[]> getAllsuperAdminBySortedFirstNameAsc(String firstName) {
+        return superAdminRepository.getAllsuperAdminBySortedFirstNameAsc(Sort.by(Sort.Direction.ASC,firstName));
+    }
 
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
