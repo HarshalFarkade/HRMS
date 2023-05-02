@@ -13,4 +13,6 @@ public interface SuperAdminService {
     List<Object[]> getAllsuperAdminBySortedFirstNameAsc(String firstName);
 
     List<Object[]>getAllsuperAdminByUuid(String uuid,String firstName);
+
+    String deletesuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin);
 }

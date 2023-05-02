@@ -59,6 +59,12 @@ public class SuperAdminServiceImp implements SuperAdminService {
         return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
     }
 
+    @Override
+    public String deletesuperAdminByuuid(String uuid, VssSuperAdmin vssSuperAdmin) {
+        this.superAdminRepository.deletesuperAdminByuuid(false,LocalDateTime.now(),vssSuperAdmin.getLastModifiedBy(),uuid);
+        return "Delete superAdmin Successfully";
+    }
+
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date dateobj = new Date();

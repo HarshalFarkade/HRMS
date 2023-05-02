@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,17 @@ public class SuperAdminController {
     public ResponseEntity<List<Object[]>>getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName ){
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
         return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName), HttpStatus.OK);
+    }
+    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils as per uuid*/
+    public ResponseEntity<List<Object[]>>getAllsuperAdminByUuid(@PathVariable String uuid,@PathVariable String firstName){
+        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminByUuid(uuid,firstName) ,HttpStatus.OK);
+    }
+
+    @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */
+    public String deletesuperAdminByuuid(@PathVariable String uuid, @RequestBody VssSuperAdmin vssSuperAdmin){
+        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        return superAdminServiceImp.deletesuperAdminByuuid(uuid, vssSuperAdmin);
     }
 
 }
