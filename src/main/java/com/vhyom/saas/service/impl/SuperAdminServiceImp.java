@@ -82,6 +82,33 @@ public class SuperAdminServiceImp implements SuperAdminService {
         return "superAdmin Update Successfully";
     }
 
+
+
+    @Override/*Login SuperAdmin*/
+    public VssSuperAdmin getUserByEmailAndPassword(String emailId, String password) throws Exception {
+
+        if (!validateEmail(emailId) || !validatePassword(password)) {
+            throw new Exception("Invalid email or password format.");
+        }
+// Check if the email and password match the stored user credentials
+        VssSuperAdmin user = superAdminRepository.getSuperAdminByEmailId(emailId);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        } else {
+            throw new Exception("You entered an incorrect username or password.");
+        }
+    }
+
+    private boolean validateEmail(String emailId) {
+// Check if the email is a valid email address format
+        return emailId.matches("[^@]+@[^@]+\\.[^@]+");
+    }
+
+    private boolean validatePassword(String password) {
+// Check if the password meets the password requirements
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$");
+    }
+
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date dateobj = new Date();

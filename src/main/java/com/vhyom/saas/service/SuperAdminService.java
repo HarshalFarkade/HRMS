@@ -17,4 +17,6 @@ public interface SuperAdminService {
     String deletesuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin);
 
     String updateSuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin,MultipartFile file, String path) throws IOException;
+
+    public VssSuperAdmin getUserByEmailAndPassword(String emailId,String password) throws Exception;
 }

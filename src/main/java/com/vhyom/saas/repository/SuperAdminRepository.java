@@ -41,4 +41,6 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
                               @Param("lastModifiedBy")Integer lastModifiedBy,
                               @Param("uuid") String uuid);
 
+  VssSuperAdmin getSuperAdminByEmailId(String emailID);
+
 }
