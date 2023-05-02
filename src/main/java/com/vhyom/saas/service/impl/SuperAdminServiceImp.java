@@ -54,6 +54,11 @@ public class SuperAdminServiceImp implements SuperAdminService {
         return superAdminRepository.getAllsuperAdminBySortedFirstNameAsc(Sort.by(Sort.Direction.ASC,firstName));
     }
 
+    @Override
+    public List<Object[]> getAllsuperAdminByUuid(String uuid,String firstName) {
+        return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
+    }
+
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         Date dateobj = new Date();

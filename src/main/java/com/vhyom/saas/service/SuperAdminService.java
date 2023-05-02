@@ -11,4 +11,6 @@ public interface SuperAdminService {
     String createSuperAdmin(VssSuperAdmin vssSuperAdmin, MultipartFile file,String  path) throws IOException;
 
     List<Object[]> getAllsuperAdminBySortedFirstNameAsc(String firstName);
+
+    List<Object[]>getAllsuperAdminByUuid(String uuid,String firstName);
 }

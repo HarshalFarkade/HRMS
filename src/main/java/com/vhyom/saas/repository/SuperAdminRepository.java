@@ -13,4 +13,7 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
   @Query("Select sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy From VssSuperAdmin sup")
   List<Object[]>getAllsuperAdminBySortedFirstNameAsc(Sort by);
 
+  @Query("Select sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy From VssSuperAdmin sup where sup.uuid=?1")
+  List<Object[]>getAllsuperAdminByUuid(Sort by,String uuid);
+
 }
