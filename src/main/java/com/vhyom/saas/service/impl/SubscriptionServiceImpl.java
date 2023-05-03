@@ -24,4 +24,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public List<Object[]> getAllSubscription() {
         return subscriptionRepository.getAllSubscription();
    }
+
+    @Override
+    public List<Object[]> getSubscriptionByUuid(String uuid) {
+        return subscriptionRepository.getSubscriptionByUuid(uuid);
+    }
+
+
 }

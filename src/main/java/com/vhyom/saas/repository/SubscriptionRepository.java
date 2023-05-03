@@ -32,6 +32,9 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
    @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub")
    List<Object[]>getAllSubscription();
 
+    @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub WHERE sub.uuid=?1")
+    List<Object[]>getSubscriptionByUuid(String uuid);
+
 }
 
 

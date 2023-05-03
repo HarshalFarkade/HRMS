@@ -26,10 +26,15 @@ public class SubscriptionController {
         return subscriptionServiceimpl.createSubsciption(vssSubscription);
     }
 
-
     @GetMapping("subscription/AllSubscription")/* THis Api is for getting allSubscription Details*/
     public ResponseEntity<List<Object[]>>getAllSubscription(){
         LOGGER.info("SubScriptionController: getAllSubscription is started");
         return new ResponseEntity<>(subscriptionServiceimpl.getAllSubscription() , HttpStatus.OK);
+    }
+
+    @GetMapping("subscription/getSubscription/{uuid}")/* This API is for Getting Deatils of Subscription by uuid */
+    public ResponseEntity<List<Object[]>>getSubscriptionByUuid(@PathVariable String uuid){
+        LOGGER.info("SubScriptionController: getSubscription is started");
+        return new ResponseEntity<>(subscriptionServiceimpl.getSubscriptionByUuid(uuid),HttpStatus.OK);
     }
 }

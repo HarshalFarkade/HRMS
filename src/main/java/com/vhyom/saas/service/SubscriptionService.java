@@ -9,4 +9,6 @@ public interface SubscriptionService {
     String createSubsciption(VssSubscription vssSubscription);
 
     List<Object[]>getAllSubscription();
+
+    List<Object[]>getSubscriptionByUuid(String uuid);
 }
