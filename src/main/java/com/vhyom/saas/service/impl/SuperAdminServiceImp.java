@@ -36,6 +36,7 @@ public class SuperAdminServiceImp implements SuperAdminService {
             f.mkdir();
         }
         Files.copy(file.getInputStream(), Paths.get(filePath));
+        vssSuperAdmin.setProfilePhoto(filePath);
         vssSuperAdmin.setFirstName(vssSuperAdmin.getFirstName());
         vssSuperAdmin.setLastName(vssSuperAdmin.getLastName());
         vssSuperAdmin.setMobileNumber(vssSuperAdmin.getMobileNumber());

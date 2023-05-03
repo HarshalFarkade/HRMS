@@ -27,7 +27,7 @@ public class SuperAdminController {
     private String path;
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    @PostMapping("/create/superAdmin")/* This API is for creating superAdmin */
+    @PostMapping("/create/superAdmin")/* This API is for creating New superAdmin */
     public String createSuperAdmin(@RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
         VssSuperAdmin vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
@@ -35,13 +35,13 @@ public class SuperAdminController {
         return "SuperAdin Created Successfully";
     }
 
-    @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by first name */
+    @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by firstName */
     public ResponseEntity<List<Object[]>> getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
         return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName), HttpStatus.OK);
     }
 
-    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils as per uuid*/
+    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
     public ResponseEntity<List<Object[]>> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
         return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminByUuid(uuid, firstName), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class SuperAdminController {
         return superAdminServiceImp.deletesuperAdminByuuid(uuid, vssSuperAdmin);
     }
 
-    @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details*/
+    @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details by uuid*/
     public String updateSuperAdminByuuid(@PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
         VssSuperAdmin vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
