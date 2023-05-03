@@ -20,8 +20,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return "Created Successfully";
     }
 
-  //  @Override
-  //  public List<Object[]> getAllSubscription() {
-  //      return subscriptionRepository.getAllSubscription();
-  //  }
+    @Override
+    public List<Object[]> getAllSubscription() {
+        return subscriptionRepository.getAllSubscription();
+   }
 }

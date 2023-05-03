@@ -24,16 +24,13 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
                               @Param("description")String description,
                               @Param("createdBy")Integer createdBy);
 
-    //boolean existByPlanName(String value);
-   // @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscription s WHERE s.planName = :planName")
     boolean existsByPlanName(@Param("planName") String planName);
 
     //@Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscription s WHERE s.planType = :planType")
     //boolean existsByPlanType(@Param("planType") String planType);
 
-
-   // @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub")
-   // List<Object[]>getAllSubscription();
+   @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub")
+   List<Object[]>getAllSubscription();
 
 }
 

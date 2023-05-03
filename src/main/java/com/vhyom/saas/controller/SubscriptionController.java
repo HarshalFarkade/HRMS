@@ -27,9 +27,9 @@ public class SubscriptionController {
     }
 
 
-   // @GetMapping("subscription/AllSubscription")/* THis Api is for getting allSubscription Details*/
-  //  public ResponseEntity<List<Object[]>>getAllSubscription(){
-  //      LOGGER.info("SubScriptionController: getAllSubscription is started");
-  //      return new ResponseEntity<>(subscriptionServiceimpl.getAllSubscription() , HttpStatus.OK);
-  //  }
+    @GetMapping("subscription/AllSubscription")/* THis Api is for getting allSubscription Details*/
+    public ResponseEntity<List<Object[]>>getAllSubscription(){
+        LOGGER.info("SubScriptionController: getAllSubscription is started");
+        return new ResponseEntity<>(subscriptionServiceimpl.getAllSubscription() , HttpStatus.OK);
+    }
 }
