@@ -37,4 +37,16 @@ public class SubscriptionController {
         LOGGER.info("SubScriptionController: getSubscription is started");
         return new ResponseEntity<>(subscriptionServiceimpl.getSubscriptionByUuid(uuid),HttpStatus.OK);
     }
+
+//    @PutMapping("subscription/deleteSubscription/{uuid}") /* This API is for Delete Subscription by uuid */
+//    public  String deleteSubscription(@PathVariable String uuid ,@RequestBody VssSubscription vssSubscription){
+//        LOGGER.info("SubScriptionController: deleteSubscription is started");
+//        return subscriptionServiceimpl.deleteSubscription(uuid,vssSubscription);
+//    }
+
+    @PutMapping("subscription/updateSubscription/{uuid}")/*This APi is for Update Subscription by uuid */
+    public String updateSubscriptionByUuid(@PathVariable String uuid ,  @Valid @RequestBody VssSubscription vssSubscription){
+        LOGGER.info("SubScriptionController: UpdateSubscription is started");
+        return subscriptionServiceimpl.updateSubscriptionByUuid(uuid,vssSubscription);
+    }
 }

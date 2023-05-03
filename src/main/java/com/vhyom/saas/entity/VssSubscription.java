@@ -2,6 +2,8 @@ package com.vhyom.saas.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+
+import com.vhyom.saas.utils.UniqueName;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -63,11 +65,13 @@ public class VssSubscription implements Serializable {
     private String uuid;
     @Basic(optional = false)
     @Column(name = "plan_name", nullable = false, length = 50)
+    @UniqueName(message = " planName must be different")
     private String planName;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "plan_price", precision = 18, scale = 2)
     private BigDecimal planPrice;
     @Column(name = "plan_type")
+    //@UniqueName(message = " plan type must be different")
     private Integer planType;
     @Column(name = "total_users")
     private Integer totalUsers;

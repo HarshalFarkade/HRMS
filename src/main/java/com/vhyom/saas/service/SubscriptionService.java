@@ -11,4 +11,8 @@ public interface SubscriptionService {
     List<Object[]>getAllSubscription();
 
     List<Object[]>getSubscriptionByUuid(String uuid);
+
+  //  String deleteSubscription(String uuid , VssSubscription vssSubscription);
+
+    String updateSubscriptionByUuid(String uuid,VssSubscription vssSubscription);
 }
