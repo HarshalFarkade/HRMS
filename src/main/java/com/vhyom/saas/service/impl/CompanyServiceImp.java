@@ -27,22 +27,8 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public VssCompany createCompany(String name,VssCompany vssCompany, MultipartFile file, String path) throws IOException {
-
-            // this is for logo image insertion
-//        String fileName = file.getOriginalFilename();
-//            if (!fileName.equalsIgnoreCase("")) {
-//                fileName = getCurrentTime() + "_" + fileName;
-//            }
-//            String filePath = path + File.separator + fileName;
-//            File f = new File(path);
-//            if (!f.exists()) {
-//                f.mkdir();
-//          }
-//            Files.copy(file.getInputStream(), Paths.get(filePath));
-//            vssCompany.setLogo(fileName);
             this.companyRepository.createCompany(name, vssCompany.getWebsiteUrl(),path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getEmailId(), vssCompany.getPhoneNumber(), vssCompany.getCreatedBy());
             return vssCompany;
-
     }
 
     @Override
