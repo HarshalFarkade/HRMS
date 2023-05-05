@@ -2,6 +2,8 @@ package com.vhyom.saas.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+
+import com.vhyom.saas.utils.UniqueName;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,6 +18,9 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import java.time.LocalDateTime;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -65,6 +70,7 @@ public class VssCompany implements Serializable {
     private String uuid;
     @Basic(optional = false)
     @Column(nullable = false, length = 150)
+    @UniqueName(message = "Name Already Taken")
     private String name;
     @Column(name = "website_url", length = 100)
     private String websiteUrl;

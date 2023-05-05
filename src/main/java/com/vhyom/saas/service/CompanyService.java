@@ -1,5 +1,6 @@
 package com.vhyom.saas.service;
 
+import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.entity.VssCompany;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,11 +10,11 @@ import java.util.List;
 
 public interface CompanyService {
 
-    String createCompany(VssCompany vssCompany, Integer superAdminId, MultipartFile file, String path);
+    VssCompany createCompany(String name ,VssCompany vssCompany, MultipartFile file, String path) throws IOException;
 
-    List<Object[]>getAllcompany();
+    List<VssCompanydto> getAllcompany();
 
-    List<Object[]>getCompanyByUuid(String uuid);
+    VssCompanydto getCompanyByUuid(String uuid);
 
     String deletCompanyByUuid(String uuid ,VssCompany vssCompany);
 

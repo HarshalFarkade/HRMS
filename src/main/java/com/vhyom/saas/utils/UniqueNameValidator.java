@@ -15,9 +15,9 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName,Strin
     
     @Override
     public boolean isValid( String value, ConstraintValidatorContext context) {
-        if (companyRepository.existsByName(String.valueOf(value))){
+        if (companyRepository.existsByName(value)){
             return false;
-        } else if (subscriptionRepository.existsByPlanName(String.valueOf(value))) {
+        } else if (subscriptionRepository.existsByPlanName(value)) {
             return false;
         } //else if (subscriptionRepository.existsByPlanType(String.valueOf(value))){
            // return false;

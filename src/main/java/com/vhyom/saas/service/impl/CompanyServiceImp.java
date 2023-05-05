@@ -1,5 +1,6 @@
 package com.vhyom.saas.service.impl;
 
+import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.entity.VssCompany;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.vhyom.saas.repository.CompanyRepository;
 import com.vhyom.saas.service.CompanyService;
+import jakarta.validation.Valid;
 import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,75 +26,34 @@ public class CompanyServiceImp implements CompanyService {
     private CompanyRepository companyRepository;
 
     @Override
-    public String createCompany(VssCompany vssCompany, Integer superAdminId, MultipartFile file, String path) {
+    public VssCompany createCompany(String name,VssCompany vssCompany, MultipartFile file, String path) throws IOException {
 
-        try {
-            String name = vssCompany.getName();
-            String emailId = vssCompany.getEmailId();
-            if (name == null || name.trim().isEmpty()) {
-                throw new RuntimeException("Name is required.");
-            } else if (name.length() > 50) {
+            // this is for logo image insertion
+//        String fileName = file.getOriginalFilename();
+//            if (!fileName.equalsIgnoreCase("")) {
+//                fileName = getCurrentTime() + "_" + fileName;
+//            }
+//            String filePath = path + File.separator + fileName;
+//            File f = new File(path);
+//            if (!f.exists()) {
+//                f.mkdir();
+//          }
+//            Files.copy(file.getInputStream(), Paths.get(filePath));
+//            vssCompany.setLogo(fileName);
+            this.companyRepository.createCompany(name, vssCompany.getWebsiteUrl(),path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getEmailId(), vssCompany.getPhoneNumber(), vssCompany.getCreatedBy());
+            return vssCompany;
 
-                throw new RuntimeException("Name must be 50 characters or less.");
-            }
-            if (emailId == null || emailId.trim().isEmpty()) {
-                throw new RuntimeException("Email is required.");
-
-            } else if (!emailId.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-
-                throw new RuntimeException("Invalid email format.");
-
-            }
-            VssCompany existingCompany = companyRepository.findByName(vssCompany.getName());
-            if (existingCompany != null) {
-                throw new RuntimeException("A company with this name already exist");
-            }
-
-            vssCompany.setWebsiteUrl(vssCompany.getWebsiteUrl());
-
-            String fileName = file.getOriginalFilename();
-
-            if (!fileName.equalsIgnoreCase("")) {
-                fileName = getCurrentTime() + "_" + fileName;
-            }
-
-            String filePath = path + File.separator + fileName;
-
-            File f = new File(path);
-            if (!f.exists()) {
-                f.mkdir();
-            }
-
-            Files.copy(file.getInputStream(), Paths.get(filePath));
-
-            vssCompany.setFirstName(vssCompany.getFirstName());
-            vssCompany.setLastName(vssCompany.getLastName());
-            vssCompany.setPhoneNumber(vssCompany.getPhoneNumber());
-            vssCompany.setActive(true);
-            vssCompany.setCreatedBy(superAdminId);
-            vssCompany.setCreatedOn(LocalDateTime.now());
-
-            UUID uuid = UUID.randomUUID();
-            vssCompany.setUuid(uuid.toString());
-            this.companyRepository.save(vssCompany);
-            return "Company registered successfully";
-
-        } catch (NonUniqueResultException e) {
-            return "Multiple Companies found";
-        } catch (Exception e) {
-            System.out.println("Error" + e.toString());
-            return e.toString();
-        }
     }
 
     @Override
-    public List<Object[]> getAllcompany() {
-        return companyRepository.findAllcompany(Boolean.TRUE);
+    public List<VssCompanydto> getAllcompany() {
+        return companyRepository.findAllcompany();
+
     }
 
     @Override
-    public List<Object[]> getCompanyByUuid(String uuid) {
-        List<Object[]>available=companyRepository.getCompanyByUuid(uuid);
+    public VssCompanydto getCompanyByUuid(String uuid) {
+        VssCompanydto available =companyRepository.getCompanyByUuid(uuid);
         if(available==null){
             System.out.print("Company Not Found");
         }
@@ -110,13 +71,10 @@ public class CompanyServiceImp implements CompanyService {
         this.companyRepository.updateCompanyByUuid( vssCompany.getName(),vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), LocalDateTime.now(), vssCompany.getLastModifiedBy(),uuid);
 
         String fileName = file.getOriginalFilename();
-
         if (!fileName.equalsIgnoreCase("")) {
             fileName = getCurrentTime() + "_" + fileName;
         }
-
         String filePath = path + File.separator + fileName;
-
         File f = new File(path);
         if (!f.exists()) {
             f.mkdir();
@@ -124,7 +82,6 @@ public class CompanyServiceImp implements CompanyService {
         Files.copy(file.getInputStream(), Paths.get(filePath));
         return " Update Successfully";
     }
-
 
     public String getCurrentTime() {
         DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");

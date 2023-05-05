@@ -1,5 +1,6 @@
 package com.vhyom.saas.repository;
 
+import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.entity.VssCompany;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,14 +14,25 @@ import java.util.Date;
 import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO VssCompany (name,websiteUrl,logo,firstName,lastName,emailId,phoneNumber,createdBy) VALUES(:name,:websiteUrl,:logo,:firstName,:lastName,:emailId,:phoneNumber,:createdBy)")
+    void createCompany(@Param("name")String name,
+                       @Param("websiteUrl")String websiteUrl,
+                       @Param("logo")String logo,
+                       @Param("firstName")String firstName,
+                       @Param("lastName")String lastName,
+                       @Param("emailId")String emailId,
+                       @Param("phoneNumber") String phoneNumber,
+                       @Param("createdBy")Integer createdBy);
 
     boolean existsByName(String value);
 
-    @Query("select com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdOn,com.createdBy,com.lastModifiedOn,com.lastModifiedBy From VssCompany com Where com.isActive = true")
-    List<Object[]>findAllcompany(Boolean aTrue);
+    @Query("select  new com.vhyom.saas.dto.VssCompanydto(com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdBy,com.createdOn,com.lastModifiedBy,com.lastModifiedOn,com.isActive) From VssCompany  com ")
+    List<VssCompanydto> findAllcompany();
 
-    @Query("select com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdOn,com.createdBy,com.lastModifiedOn,com.lastModifiedBy From VssCompany com Where com.uuid=?1")
-    List<Object[]> getCompanyByUuid(String uuid);
+    @Query("select  new com.vhyom.saas.dto.VssCompanydto(com.id,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdBy,com.createdOn,com.lastModifiedBy,com.lastModifiedOn,com.isActive) From VssCompany  com Where com.uuid=?1")
+    VssCompanydto getCompanyByUuid(String uuid);
 
     @Transactional
     @Modifying
@@ -30,6 +42,7 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
             @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
             @Param("isActive") boolean isActive,
             @Param("uuid") String uuid);
+
 
     @Transactional
     @Modifying
