@@ -1,6 +1,7 @@
 package com.vhyom.saas.utils;
 
 import com.vhyom.saas.repository.CompanyRepository;
+import com.vhyom.saas.repository.EmployeeRepository;
 import com.vhyom.saas.repository.SubscriptionRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -12,16 +13,20 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName,Strin
     
     @Autowired
     private SubscriptionRepository subscriptionRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
     
     @Override
     public boolean isValid( String value, ConstraintValidatorContext context) {
+
         if (companyRepository.existsByName(value)){
             return false;
         } else if (subscriptionRepository.existsByPlanName(value)) {
             return false;
-        } //else if (subscriptionRepository.existsByPlanType(String.valueOf(value))){
-           // return false;
-       // }
+        } else if(employeeRepository.existsByEmailId(value)){
+            return false;
+        }
         else {
             return true;
         }
