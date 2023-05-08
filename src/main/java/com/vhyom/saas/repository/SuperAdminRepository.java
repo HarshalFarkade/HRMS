@@ -20,13 +20,12 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
   @Query("Select sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy From VssSuperAdmin sup where sup.uuid=?1")
   List<Object[]>getAllsuperAdminByUuid(Sort by,String uuid);
 
-  @Transactional
-  @Modifying
+ @Transactional
+ @Modifying
   @Query(value ="UPDATE VssSuperAdmin sup SET sup.isActive=:isActive,sup.lastModifiedOn=:lastModifiedOn,sup.lastModifiedBy=:lastModifiedBy Where sup.uuid=:uuid")
-  void deletesuperAdminByuuid(@Param("isActive") boolean isActive,
-                              @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
-                              @Param("lastModifiedBy") Integer lastModifiedBy,
-                              @Param("uuid")String uuid);
+   void deletesuperAdminByuuid(@Param("isActive") boolean isActive,
+                             @Param("lastModifiedOn")LocalDateTime lastModifiedOn,                             @Param("lastModifiedBy") Integer lastModifiedBy,
+                             @Param("uuid")String uuid);
   @Transactional
   @Modifying
   @Query(value = "UPDATE VssSuperAdmin sup SET sup.password=:password,sup.profilePhoto=:profilePhoto,sup.firstName=:firstName,sup.lastName=:lastName,sup.mobileNumber=:mobileNumber,sup.phoneNumber=:phoneNumber,sup.lastModifiedOn=:lastModifiedOn,sup.lastModifiedBy=:lastModifiedBy Where sup.uuid=:uuid")
