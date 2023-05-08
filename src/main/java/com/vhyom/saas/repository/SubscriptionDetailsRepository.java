@@ -1,5 +1,7 @@
 package com.vhyom.saas.repository;
 import com.vhyom.saas.dto.SubscriptionDetailsDto;
+import com.vhyom.saas.entity.VssCompany;
+import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.entity.VssSubscriptionDetails;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,8 +41,9 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
                                 @Param("uuid")String uuid);
 
 
+    boolean existsByCompanyId(VssCompany value);
 
-
+    boolean existsBySubscriptionId(VssSubscription value);
 }
 
 
