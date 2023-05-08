@@ -9,5 +9,5 @@ public interface SubscriptionDetailsService {
 
     List<SubscriptionDetailsDto> getAllSubscriptionDetails();
 
-
+    List<SubscriptionDetailsDto> getSubscriptionDetailsByUuid(String uuid);
 }

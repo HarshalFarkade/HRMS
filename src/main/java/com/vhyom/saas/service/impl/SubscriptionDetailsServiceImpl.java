@@ -21,4 +21,8 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
     }
 
 
+    @Override
+    public List<SubscriptionDetailsDto> getSubscriptionDetailsByUuid(String uuid) {
+        return subscriptionDetailsRepository.getSubscriptionDetailsByUuid(uuid);
+    }
 }

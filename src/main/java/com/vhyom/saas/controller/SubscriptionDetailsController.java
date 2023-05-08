@@ -23,5 +23,9 @@ public class SubscriptionDetailsController {
         return subscriptionDetailsService.getAllSubscriptionDetails();
     }
 
+    @GetMapping("subscriptionDetails/getSubscriptionDetails/{uuid}") /* THia API is FOr getting Details of SubscriptionDetails By uuid */
+    public  List<SubscriptionDetailsDto>getSubscriptionDetailsByUuid(@PathVariable String uuid){
+        return subscriptionDetailsService.getSubscriptionDetailsByUuid(uuid);
+    }
 
 }
