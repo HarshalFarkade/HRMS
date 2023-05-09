@@ -6,15 +6,17 @@ import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.entity.VssSubscriptionDetails;
 
 import java.util.List;
-import java.util.Objects;
 
 public interface SubscriptionDetailsService {
 
-//    String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails, VssCompany vssCompany, VssSubscription vssSubscription);
+
+    String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription);
 
     List<SubscriptionDetailsDto> getAllSubscriptionDetails();
 
     List<SubscriptionDetailsDto> getSubscriptionDetailsByUuid(String uuid);
 
     String deleteSubscriptionDetailsBYUuid(String uuid, VssSubscriptionDetails vssSubscriptionDetails);
+
+
 }

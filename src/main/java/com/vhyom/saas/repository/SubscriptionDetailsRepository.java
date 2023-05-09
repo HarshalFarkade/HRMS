@@ -11,11 +11,32 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Repository
 public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscriptionDetails ,Integer> {
+
+
+    @Transactional
+    @Modifying
+    @Query("INSERT INTO VssSubscriptionDetails (companyId, subscriptionId, startDate, endDate, status, createdBy, isActive) " +
+            "SELECT com, sub, :startDate, :endDate, :status, :createdBy, :isActive " +
+            "FROM VssCompany com, VssSubscription sub " +
+            "WHERE com.id = :companyIdId AND sub.id = :subscriptionIdId")
+    void createSubscriptionDetails(@Param("companyIdId") Integer companyIdId,
+                                   @Param("subscriptionIdId") Integer subscriptionIdId,
+                                   @Param("startDate") Date startDate,
+                                   @Param("endDate") Date endDate,
+                                   @Param("status") int status,
+                                   @Param("createdBy") int createdBy,
+                                   @Param("isActive") boolean isActive);
+
+    boolean existsByCompanyId(VssCompany value);
+    boolean existsBySubscriptionId(VssSubscription subscription);
+
+
 
 
     @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto (subD.companyId.uuid, subD.companyId.name, subD.companyId.websiteUrl, subD.companyId.logo, subD.companyId.firstName, subD.companyId.lastName, subD.companyId.emailId, subD.companyId.phoneNumber, "
@@ -41,9 +62,12 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
                                 @Param("uuid")String uuid);
 
 
-    boolean existsByCompanyId(VssCompany value);
+    @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscriptionDetails s WHERE s.companyId.id = :value")
+    boolean existsByCompanyId(Integer value);
 
-    boolean existsBySubscriptionId(VssSubscription value);
+
+
+
 }
 
 
