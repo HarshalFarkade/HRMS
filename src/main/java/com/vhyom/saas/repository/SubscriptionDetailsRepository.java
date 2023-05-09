@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscriptionDetails ,Integer> {
@@ -21,17 +20,16 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
 
     @Transactional
     @Modifying
-    @Query("INSERT INTO VssSubscriptionDetails (companyId, subscriptionId, startDate, endDate, status, createdBy, isActive) " +
-            "SELECT com, sub, :startDate, :endDate, :status, :createdBy, :isActive " +
+    @Query("INSERT INTO VssSubscriptionDetails (companyId, subscriptionId, startDate, endDate, status, createdBy) " +
+            "SELECT com, sub, :startDate, :endDate, :status, :createdBy " +
             "FROM VssCompany com, VssSubscription sub " +
-            "WHERE com.id = :companyIdId AND sub.id = :subscriptionIdId")
-    void createSubscriptionDetails(@Param("companyIdId") Integer companyIdId,
-                                   @Param("subscriptionIdId") Integer subscriptionIdId,
+            "WHERE com.id = :companyId AND sub.id = :subscriptionId")
+    void createSubscriptionDetails(@Param("companyId") Integer companyIdId,
+                                   @Param("subscriptionId") Integer subscriptionIdId,
                                    @Param("startDate") Date startDate,
                                    @Param("endDate") Date endDate,
                                    @Param("status") int status,
-                                   @Param("createdBy") int createdBy,
-                                   @Param("isActive") boolean isActive);
+                                   @Param("createdBy") int createdBy);
 
     boolean existsByCompanyId(VssCompany value);
     boolean existsBySubscriptionId(VssSubscription subscription);
@@ -60,6 +58,21 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
                                 @Param("lastModifiedBy") Integer lastModifiedBy,
                                 @Param("isActive") boolean isActive,
                                 @Param("uuid")String uuid);
+
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VssSubscriptionDetails subD SET subD.companyId=:companyId,subD.subscriptionId=:subscriptionId,subD.startDate=:startDate,subD.endDate=:endDate,subD.status=:status,subD.lastModifiedBy=:lastModifiedBy,subD.lastModifiedOn=:lastModifiedOn Where subD.uuid=:uuid")
+    void updateSubscriptionDetails(@Param("companyId") VssCompany companyId,
+                                   @Param("subscriptionId") VssSubscription subscriptionId,
+                                   @Param("startDate") Date startDate,
+                                   @Param("endDate") Date endDate,
+                                   @Param("status") int status,
+                                   @Param("lastModifiedBy") Integer lastModifiedBy,
+                                   @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                                   @Param("uuid") String uuid);
+
+
 
 
     @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscriptionDetails s WHERE s.companyId.id = :value")

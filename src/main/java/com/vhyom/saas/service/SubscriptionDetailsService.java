@@ -18,5 +18,7 @@ public interface SubscriptionDetailsService {
 
     String deleteSubscriptionDetailsBYUuid(String uuid, VssSubscriptionDetails vssSubscriptionDetails);
 
+    String updateSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails,VssCompany vssCompany,VssSubscription vssSubscription,String uuid);
+
 
 }

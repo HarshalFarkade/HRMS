@@ -8,7 +8,6 @@ import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.service.SubscriptionDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
     @Override
     public String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription) {
         this.subscriptionDetailsRepository.createSubscriptionDetails(company.getId(), subscription.getId(), vssSubscriptionDetails.getStartDate(), vssSubscriptionDetails.getEndDate(), vssSubscriptionDetails.getStatus(),
-                vssSubscriptionDetails.getCreatedBy(), vssSubscriptionDetails.isActive());
+                vssSubscriptionDetails.getCreatedBy());
         return "Created Successfully";
     }
 
@@ -40,6 +39,12 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
     @Override
     public String deleteSubscriptionDetailsBYUuid(String uuid, VssSubscriptionDetails vssSubscriptionDetails) {
         this.subscriptionDetailsRepository.deleteSubscriptionDetailsBYUuid(LocalDateTime.now(),vssSubscriptionDetails.getLastModifiedBy(),false,uuid);
+        return "SubscriptionDetails Deleted Successfully";
+    }
+
+    @Override
+    public String updateSubscriptionDetails( VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription,String uuid) {
+        this.subscriptionDetailsRepository.updateSubscriptionDetails(company,subscription,vssSubscriptionDetails.getStartDate(),vssSubscriptionDetails.getEndDate(), vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getLastModifiedBy(),LocalDateTime.now(),uuid);
         return "SubscriptionDetails Updated Successfully";
     }
 
