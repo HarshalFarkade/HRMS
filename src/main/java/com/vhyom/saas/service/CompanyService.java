@@ -18,7 +18,7 @@ public interface CompanyService {
 
     String deletCompanyByUuid(String uuid ,VssCompany vssCompany);
 
-    String updateCompanyByUuid(String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException;
+    String updateCompanyByUuid(String name,String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException;
 
 
 

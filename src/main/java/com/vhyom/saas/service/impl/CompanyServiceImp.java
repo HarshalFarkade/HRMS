@@ -53,8 +53,8 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
-    public String updateCompanyByUuid(String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException {
-        this.companyRepository.updateCompanyByUuid( vssCompany.getName(),vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), LocalDateTime.now(), vssCompany.getLastModifiedBy(),uuid);
+    public String updateCompanyByUuid(String name,String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException {
+        this.companyRepository.updateCompanyByUuid( name,vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), LocalDateTime.now(), vssCompany.getLastModifiedBy(),uuid);
 
         String fileName = file.getOriginalFilename();
         if (!fileName.equalsIgnoreCase("")) {
