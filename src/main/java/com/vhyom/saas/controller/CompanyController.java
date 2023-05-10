@@ -83,7 +83,24 @@ public class CompanyController {
     @PutMapping("/update/{uuid}")/* This API will Update the Company*/
     public String updateCompanyByUuid(@Valid VssCompany vssCompany,@RequestPart("name")String name,@PathVariable String uuid,@RequestPart("company") String company,@RequestPart("logo") MultipartFile file) throws IOException {
         LOGGER.info(" CompanyController | allCompany is started"+ file.getOriginalFilename());
+
+        if (file.isEmpty()){
+            path=null;
+            vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
+            return companyService.updateCompanyByUuid(name,uuid,vssCompany,path,file);
+        }
+
          vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+        String fileName = file.getOriginalFilename();
+        if (!fileName.equalsIgnoreCase("")) {
+            fileName = getCurrentTime() + "_" + fileName;
+        }
+        String filePath = path + File.separator + fileName;
+        File f = new File(path);
+        if (!f.exists()) {
+            f.mkdir();
+        }
+        Files.copy(file.getInputStream(), Paths.get(filePath));
         return companyService.updateCompanyByUuid(name,uuid, vssCompany,path,file);
     }
 

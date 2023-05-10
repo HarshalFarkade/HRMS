@@ -55,17 +55,6 @@ public class CompanyServiceImp implements CompanyService {
     @Override
     public String updateCompanyByUuid(String name,String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException {
         this.companyRepository.updateCompanyByUuid( name,vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), LocalDateTime.now(), vssCompany.getLastModifiedBy(),uuid);
-
-        String fileName = file.getOriginalFilename();
-        if (!fileName.equalsIgnoreCase("")) {
-            fileName = getCurrentTime() + "_" + fileName;
-        }
-        String filePath = path + File.separator + fileName;
-        File f = new File(path);
-        if (!f.exists()) {
-            f.mkdir();
-        }
-        Files.copy(file.getInputStream(), Paths.get(filePath));
         return " Update Successfully";
     }
 
