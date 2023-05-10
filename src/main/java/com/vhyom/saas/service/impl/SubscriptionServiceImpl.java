@@ -27,7 +27,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public List<Object[]> getAllSubscription() {
-
         return subscriptionRepository.getAllSubscription();
    }
 
@@ -36,12 +35,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionRepository.getSubscriptionByUuid(uuid);
     }
 
-//    @Override
-//    public String deleteSubscription(String uuid,VssSubscription vssSubscription) {
-//            this.subscriptionRepository.deleteSubscription(false, LocalDateTime.now(),vssSubscription.getLastModifiedBy(),uuid);
-//            return "Subscription Delete Successfully";
-//
-//    }
+    @Override
+    public String deleteSubscription(String uuid,VssSubscription vssSubscription) {
+            this.subscriptionRepository.deleteSubscription(false, LocalDateTime.now(),vssSubscription.getLastModifiedBy(),uuid);
+            return "Subscription Delete Successfully";
+
+    }
 
     @Override
     public String updateSubscriptionByUuid(String uuid, VssSubscription vssSubscription) {

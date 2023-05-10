@@ -79,7 +79,10 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
     boolean existsByCompanyId(Integer value);
 
 
+    VssSubscription findByUuid(String uuid);
 
+    @Query("SELECT sd FROM VssSubscriptionDetails sd WHERE sd.subscriptionId = :subscriptionId")
+    List<VssSubscriptionDetails> findBySubscriptionId(@Param("subscriptionId") Integer subscriptionId);
 
 }
 

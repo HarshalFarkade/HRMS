@@ -12,7 +12,7 @@ public interface SubscriptionService {
 
     List<Object[]>getSubscriptionByUuid(String uuid);
 
-  //  String deleteSubscription(String uuid , VssSubscription vssSubscription);
+   String deleteSubscription(String uuid , VssSubscription vssSubscription);
 
     String updateSubscriptionByUuid(String uuid,VssSubscription vssSubscription);
 }

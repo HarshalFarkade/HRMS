@@ -35,13 +35,13 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
     @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub WHERE sub.uuid=?1")
     List<Object[]>getSubscriptionByUuid(String uuid);
 
-//    @Transactional
-//    @Modifying
-//    @Query(value ="UPDATE VssSubscription sub SET sub.isActive=:isActive,sub.lastModifiedOn=:lastModifiedOn,sub.lastModifiedBy=:lastModifiedBy Where sub.uuid=:uuid")
-//    void deleteSubscription(@Param("isActive") boolean isActive,
-//                            @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
-//                            @Param("lastModifiedBy") Integer lastModifiedBy,
-//                            @Param("uuid")String uuid);
+    @Transactional
+    @Modifying
+    @Query(value ="UPDATE VssSubscription sub SET sub.isActive=:isActive,sub.lastModifiedOn=:lastModifiedOn,sub.lastModifiedBy=:lastModifiedBy Where sub.uuid=:uuid")
+    void deleteSubscription(@Param("isActive") boolean isActive,
+                            @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                            @Param("lastModifiedBy") Integer lastModifiedBy,
+                            @Param("uuid")String uuid);
     @Transactional
     @Modifying
     @Query(value = "UPDATE VssSubscription sub SET sub.planName=:planName, sub.planPrice=:planPrice,sub.planType=:planType,sub.totalUsers=:totalUsers,sub.description=:description,sub.lastModifiedBy=:lastModifiedBy,sub.lastModifiedOn=:lastModifiedOn WHERE sub.uuid=:uuid")
@@ -53,6 +53,8 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
                                   @Param("lastModifiedBy") Integer lastModifiedBy,
                                   @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
                                   @Param("uuid")String uuid);
+
+    VssSubscription findByUuid(String uuid);
 }
 
 
