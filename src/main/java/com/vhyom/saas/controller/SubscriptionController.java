@@ -47,7 +47,6 @@ public class SubscriptionController {
         return new ResponseEntity<>(subscriptionServiceimpl.getSubscriptionByUuid(uuid),HttpStatus.OK);
     }
 
-
     @PutMapping("subscription/deleteSubscription/{uuid}") /* This API is for Delete Subscription by uuid */
     public String deleteSubscription(@PathVariable String uuid ,@RequestBody VssSubscription vssSubscription){
         LOGGER.info("SubScriptionController: deleteSubscription is started");
@@ -65,26 +64,6 @@ public class SubscriptionController {
 
         return subscriptionServiceimpl.deleteSubscription(uuid,vssSubscription);
     }
-
-//    @PutMapping("subscription/deleteSubscription/{uuid}") /* This API is for Delete Subscription by uuid */
-//    public String deleteSubscription(@PathVariable String uuid ,@RequestBody VssSubscription vssSubscription){
-//        LOGGER.info("SubScriptionController: deleteSubscription is started");
-//        VssSubscription subscription = subscriptionRepository.findByUuid(uuid);
-//        Integer subscriptionId = subscription.getId();
-//
-//        // Check if the subscription ID exists in the VssSubscriptionDetails table
-//        List<VssSubscriptionDetails> subscriptionDetails = subscriptionDetailRepository.findBySubscriptionId(subscriptionId);
-//
-//        if (!subscriptionDetails.isEmpty()) {
-//            return "Subscription related to company can't delete";
-//        }
-//
-//        // If the subscription is not associated with any company, then delete it
-//        return subscriptionServiceimpl.deleteSubscription(uuid, vssSubscription);
-//    }
-
-
-
 
     @PutMapping("subscription/updateSubscription/{uuid}")/*This APi is for Update Subscription by uuid */
     public String updateSubscriptionByUuid(@PathVariable String uuid ,  @Valid @RequestBody VssSubscription vssSubscription){
