@@ -51,9 +51,16 @@ public class SubscriptionController {
     public String deleteSubscription(@PathVariable String uuid ,@RequestBody VssSubscription vssSubscription){
         LOGGER.info("SubScriptionController: deleteSubscription is started");
       VssSubscription subscription =subscriptionRepository.findByUuid(uuid);
+      // we just store id with help of uuid from VssSubscription
         Integer subscriptionId=subscription.getId();
+
+        // this will get all details from Subscription-details
         List<VssSubscriptionDetails> subscriptionDetails= subscriptionDetailRepository.findAll();
+
+        // in this line of code we store all VssSubscription data from vssSubscription details
         List<VssSubscription> subscriptionDetailsIds = subscriptionDetails.stream().map(VssSubscriptionDetails::getSubscriptionId).collect(Collectors.toList());
+
+        //this will store the all subscription_id from VssSubscription
         List<Integer> Id =subscriptionDetailsIds.stream().map(VssSubscription::getId).collect(Collectors.toList());
 
         for (Integer subscriptionDetailsId : Id) {
