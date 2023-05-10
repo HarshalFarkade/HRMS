@@ -40,6 +40,13 @@ public class CompanyController {
     public ResponseEntity<VssCompany> creatCompany(@Valid VssCompany vssCompany,@RequestPart("name")String name, @RequestPart ("company") String company, @RequestPart("logo") MultipartFile file) throws IOException {
         LOGGER.info("CompanyController | createCompany is started" + file.getOriginalFilename());
         //Convert the String to Json using ObjectMapper
+
+        if (file.isEmpty()){
+            path=null;
+            vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
+            return new ResponseEntity<>(companyService.createCompany(name,vssCompany, file, path),HttpStatus.CREATED);
+        }
+
         vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
         String fileName = file.getOriginalFilename();
         if (!fileName.equalsIgnoreCase("")) {
