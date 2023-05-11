@@ -2,6 +2,9 @@ package com.vhyom.saas.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.vhyom.saas.utils.UniqueId;
+import com.vhyom.saas.utils.UniqueName;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
