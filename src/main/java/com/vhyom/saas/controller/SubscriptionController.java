@@ -5,6 +5,7 @@ import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.entity.VssSubscriptionDetails;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.repository.SubscriptionRepository;
+import com.vhyom.saas.service.SubscriptionService;
 import com.vhyom.saas.service.impl.SubscriptionServiceImpl;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 public class SubscriptionController {
     @Autowired
-    private SubscriptionServiceImpl subscriptionServiceimpl;
+    private SubscriptionService subscriptionServiceimpl;
 
     @Autowired
     private SubscriptionRepository subscriptionRepository;
