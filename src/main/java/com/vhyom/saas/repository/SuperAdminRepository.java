@@ -1,5 +1,6 @@
 package com.vhyom.saas.repository;
 
+import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
@@ -43,6 +44,19 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
                               @Param("uuid") String uuid);
 
   VssSuperAdmin getSuperAdminByEmailId(String emailID);
+
+
+    @Query("SELECT new com.vhyom.saas.dto.DashboardDto(" +
+            "COUNT(c.uuid), " +
+            "COUNT(CASE WHEN c.isActive = true THEN 1 ELSE NULL END), " +
+            "(SELECT COUNT(s) FROM VssSubscription s ), " +
+            "(SELECT COUNT(s) FROM VssSubscription s Where s.isActive = true), " +
+            "(SELECT SUM( s.totalUsers) FROM VssSubscription s), " +
+            "(SELECT SUM( s.totalUsers) FROM VssSubscription s  WHERE s.isActive = true) " +
+            ")FROM VssCompany c " )
+
+    List<DashboardDto> getDashboardData();
+
 
 
 }

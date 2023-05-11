@@ -1,5 +1,6 @@
 package com.vhyom.saas.service;
 
+import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,8 @@ public interface SuperAdminService {
     String updateSuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin,MultipartFile file, String path) throws IOException;
 
     public VssSuperAdmin getUserByEmailAndPassword(String emailId,String password) throws Exception;
+
+    List<DashboardDto> getDashboardData();
 
 
 }

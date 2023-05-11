@@ -1,8 +1,10 @@
 package com.vhyom.saas.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
+import com.vhyom.saas.service.SuperAdminService;
 import com.vhyom.saas.service.impl.SuperAdminServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/superAdmin")
 public class SuperAdminController {
     @Autowired
-    private SuperAdminServiceImp superAdminServiceImp;
+    private SuperAdminService superAdminService ;
 
     @Value("${custom-properites.profilePhoto.directory}")
     private String path;
@@ -32,33 +34,33 @@ public class SuperAdminController {
     public String createSuperAdmin(@RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
         VssSuperAdmin vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-        this.superAdminServiceImp.createSuperAdmin(vssSuperAdmin, file, path);
+        this.superAdminService.createSuperAdmin(vssSuperAdmin, file, path);
         return "SuperAdin Created Successfully";
     }
 
     @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by firstName */
     public  List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName);
+        return superAdminService.getAllsuperAdminBySortedFirstNameAsc(firstName);
     }
 
     @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
     public List<VssSuperAdmindto> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return superAdminServiceImp.getAllsuperAdminByUuid(uuid, firstName);
+        return superAdminService.getAllsuperAdminByUuid(uuid, firstName);
     }
 
     @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */
     public String deletesuperAdminByuuid(@PathVariable String uuid, @RequestBody VssSuperAdmin vssSuperAdmin) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return superAdminServiceImp.deletesuperAdminByuuid(uuid, vssSuperAdmin);
+        return superAdminService.deletesuperAdminByuuid(uuid, vssSuperAdmin);
     }
 
     @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details by uuid*/
     public String updateSuperAdminByuuid(@PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
         VssSuperAdmin vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-        return superAdminServiceImp.updateSuperAdminByuuid(uuid, vssSuperAdmin, file, path);
+        return superAdminService.updateSuperAdminByuuid(uuid, vssSuperAdmin, file, path);
 
     }
 
@@ -67,7 +69,7 @@ public class SuperAdminController {
         try {
             String emailId = request.get("emailId");
             String password = request.get("password");
-            VssSuperAdmin vssSuperAdmin = superAdminServiceImp.getUserByEmailAndPassword(emailId, password);
+            VssSuperAdmin vssSuperAdmin = superAdminService.getUserByEmailAndPassword(emailId, password);
             Map<String, Object> response = new HashMap<>();
             response.put("uuid", vssSuperAdmin.getUuid());
             response.put("emailId", vssSuperAdmin.getEmailId());
@@ -79,5 +81,10 @@ public class SuperAdminController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 
+    }
+
+    @GetMapping("/dashboard/graph-data")
+    public List<DashboardDto> getDashboardData(){
+        return superAdminService.getDashboardData();
     }
 }

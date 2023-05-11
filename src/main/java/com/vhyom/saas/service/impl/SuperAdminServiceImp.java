@@ -1,5 +1,6 @@
 package com.vhyom.saas.service.impl;
 
+import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.repository.SuperAdminRepository;
@@ -99,6 +100,11 @@ public class SuperAdminServiceImp implements SuperAdminService {
         } else {
             throw new Exception("You entered an incorrect username or password.");
         }
+    }
+
+    @Override
+    public List<DashboardDto> getDashboardData() {
+        return superAdminRepository.getDashboardData();
     }
 
     private boolean validateEmail(String emailId) {
