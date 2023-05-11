@@ -1,5 +1,6 @@
 package com.vhyom.saas.service.impl;
 
+import com.vhyom.saas.dto.VssSubscriptiondto;
 import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.repository.SubscriptionRepository;
@@ -26,7 +27,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public List<Object[]> getAllSubscription() {
+    public List<VssSubscriptiondto> getAllSubscription() {
         return subscriptionRepository.getAllSubscription();
    }
 

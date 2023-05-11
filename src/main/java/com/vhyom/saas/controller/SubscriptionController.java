@@ -1,5 +1,6 @@
 package com.vhyom.saas.controller;
 
+import com.vhyom.saas.dto.VssSubscriptiondto;
 import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.entity.VssSubscriptionDetails;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
@@ -36,9 +37,9 @@ public class SubscriptionController {
     }
 
     @GetMapping("subscription/AllSubscription")/* THis Api is for getting allSubscription Details*/
-    public ResponseEntity<List<Object[]>>getAllSubscription(){
+    public List<VssSubscriptiondto>getAllSubscription(){
         LOGGER.info("SubScriptionController: getAllSubscription is started");
-        return new ResponseEntity<>(subscriptionServiceimpl.getAllSubscription() , HttpStatus.OK);
+        return subscriptionServiceimpl.getAllSubscription();
     }
 
     @GetMapping("subscription/getSubscription/{uuid}")/* This API is for Getting Deatils of Subscription by uuid */

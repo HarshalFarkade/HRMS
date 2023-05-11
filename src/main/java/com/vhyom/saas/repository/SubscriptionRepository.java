@@ -1,5 +1,6 @@
 package com.vhyom.saas.repository;
 
+import com.vhyom.saas.dto.VssSubscriptiondto;
 import com.vhyom.saas.entity.VssSubscription;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,8 +30,8 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
     //@Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscription s WHERE s.planType = :planType")
     //boolean existsByPlanType(@Param("planType") String planType);
 
-   @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub")
-   List<Object[]>getAllSubscription();
+   @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub")
+   List<VssSubscriptiondto>getAllSubscription();
 
     @Query("SELECT sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive FROM VssSubscription sub WHERE sub.uuid=?1")
     List<Object[]>getSubscriptionByUuid(String uuid);
