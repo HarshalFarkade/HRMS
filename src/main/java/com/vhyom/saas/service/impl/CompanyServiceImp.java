@@ -2,23 +2,17 @@ package com.vhyom.saas.service.impl;
 
 import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.entity.VssCompany;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import com.vhyom.saas.repository.CompanyRepository;
 import com.vhyom.saas.service.CompanyService;
-import jakarta.validation.Valid;
-import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class CompanyServiceImp implements CompanyService {
