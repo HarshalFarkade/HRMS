@@ -1,6 +1,7 @@
 package com.vhyom.saas.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.service.impl.SuperAdminServiceImp;
 import org.slf4j.Logger;
@@ -36,16 +37,16 @@ public class SuperAdminController {
     }
 
     @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by firstName */
-    public ResponseEntity<List<Object[]>> getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName) {
+    public  List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName), HttpStatus.OK);
+        return superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName);
     }
 
-    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
-    public ResponseEntity<List<Object[]>> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
-        LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return new ResponseEntity<>(superAdminServiceImp.getAllsuperAdminByUuid(uuid, firstName), HttpStatus.OK);
-    }
+//    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
+//    public List<VssSuperAdmindto> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
+//        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+//        return superAdminServiceImp.getAllsuperAdminByUuid(uuid, firstName);
+//    }
 
     @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */
     public String deletesuperAdminByuuid(@PathVariable String uuid, @RequestBody VssSuperAdmin vssSuperAdmin) {

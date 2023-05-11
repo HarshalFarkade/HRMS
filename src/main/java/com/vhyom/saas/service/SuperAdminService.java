@@ -1,5 +1,6 @@
 package com.vhyom.saas.service;
 
+import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,9 +11,9 @@ public interface SuperAdminService {
 
     String createSuperAdmin(VssSuperAdmin vssSuperAdmin, MultipartFile file,String  path) throws IOException;
 
-    List<Object[]> getAllsuperAdminBySortedFirstNameAsc(String firstName);
+    List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(String firstName);
 
-    List<Object[]>getAllsuperAdminByUuid(String uuid,String firstName);
+//    List<VssSuperAdmindto>getAllsuperAdminByUuid(String uuid,String firstName);
 
     String deletesuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin);
 

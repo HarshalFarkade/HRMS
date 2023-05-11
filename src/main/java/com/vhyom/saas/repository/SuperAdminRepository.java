@@ -1,5 +1,7 @@
 package com.vhyom.saas.repository;
 
+import com.vhyom.saas.dto.VssCompanydto;
+import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,11 +16,11 @@ import java.util.List;
 
 @Repository
 public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integer> {
-  @Query("Select sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy From VssSuperAdmin sup")
-  List<Object[]>getAllsuperAdminBySortedFirstNameAsc(Sort by);
+  @Query("Select  new com.vhyom.saas.dto.VssSuperAdmindto (sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy) From VssSuperAdmin sup")
+  List<VssSuperAdmindto>getAllsuperAdminBySortedFirstNameAsc(Sort by);
 
-  @Query("Select sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy From VssSuperAdmin sup where sup.uuid=?1")
-  List<Object[]>getAllsuperAdminByUuid(Sort by,String uuid);
+  @Query("Select new com.vhyom.saas.dto.VssSuperAdmindto (sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy) From VssSuperAdmin sup where sup.uuid=?1")
+  List<VssSuperAdmindto>getAllsuperAdminByUuid(Sort by,String uuid);
 
  @Transactional
  @Modifying

@@ -1,5 +1,6 @@
 package com.vhyom.saas.service.impl;
 
+import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.repository.SuperAdminRepository;
 import com.vhyom.saas.service.SuperAdminService;
@@ -51,14 +52,14 @@ public class SuperAdminServiceImp implements SuperAdminService {
     }
 
     @Override
-   public List<Object[]> getAllsuperAdminBySortedFirstNameAsc(String firstName) {
+   public List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(String firstName) {
         return superAdminRepository.getAllsuperAdminBySortedFirstNameAsc(Sort.by(Sort.Direction.ASC,firstName));
     }
 
-    @Override
-    public List<Object[]> getAllsuperAdminByUuid(String uuid,String firstName) {
-        return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
-    }
+//    @Override
+//    public List<VssSuperAdmindto> getAllsuperAdminByUuid(String uuid,String firstName) {
+//        return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
+//    }
 
     @Override
     public String deletesuperAdminByuuid(String uuid, VssSuperAdmin vssSuperAdmin) {
