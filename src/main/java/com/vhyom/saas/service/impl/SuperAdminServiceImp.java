@@ -56,10 +56,10 @@ public class SuperAdminServiceImp implements SuperAdminService {
         return superAdminRepository.getAllsuperAdminBySortedFirstNameAsc(Sort.by(Sort.Direction.ASC,firstName));
     }
 
-//    @Override
-//    public List<VssSuperAdmindto> getAllsuperAdminByUuid(String uuid,String firstName) {
-//        return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
-//    }
+    @Override
+    public List<VssSuperAdmindto> getAllsuperAdminByUuid(String uuid,String firstName) {
+        return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
+    }
 
     @Override
     public String deletesuperAdminByuuid(String uuid, VssSuperAdmin vssSuperAdmin) {

@@ -42,11 +42,11 @@ public class SuperAdminController {
         return superAdminServiceImp.getAllsuperAdminBySortedFirstNameAsc(firstName);
     }
 
-//    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
-//    public List<VssSuperAdmindto> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
-//        LOGGER.info("SuperAdminController: createSuperAdmin is started");
-//        return superAdminServiceImp.getAllsuperAdminByUuid(uuid, firstName);
-//    }
+    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
+    public List<VssSuperAdmindto> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
+        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        return superAdminServiceImp.getAllsuperAdminByUuid(uuid, firstName);
+    }
 
     @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */
     public String deletesuperAdminByuuid(@PathVariable String uuid, @RequestBody VssSuperAdmin vssSuperAdmin) {

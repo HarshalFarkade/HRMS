@@ -13,7 +13,7 @@ public interface SuperAdminService {
 
     List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(String firstName);
 
-//    List<VssSuperAdmindto>getAllsuperAdminByUuid(String uuid,String firstName);
+    List<VssSuperAdmindto>getAllsuperAdminByUuid(String uuid,String firstName);
 
     String deletesuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin);
 
