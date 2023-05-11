@@ -5,6 +5,7 @@ import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.entity.VssSubscriptionDetails;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
+import com.vhyom.saas.service.SubscriptionDetailsService;
 import com.vhyom.saas.service.impl.SubscriptionDetailsServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.Objects;
 public class SubscriptionDetailsController {
 
     @Autowired
-    private SubscriptionDetailsServiceImpl subscriptionDetailsService;
+    private SubscriptionDetailsService subscriptionDetailsService;
 
     @Autowired
     private SubscriptionDetailsRepository subscriptionDetailsRepository;
