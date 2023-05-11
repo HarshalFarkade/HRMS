@@ -3,6 +3,7 @@ package com.vhyom.saas.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vhyom.saas.entity.VshEmployee;
 import com.vhyom.saas.entity.VssSuperAdmin;
+import com.vhyom.saas.service.EmployeeService;
 import com.vhyom.saas.service.impl.EmployeeServiceImpl;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ import java.util.Date;
 @CrossOrigin(origins = "http://localhost:5173")
 public class EmployeeController {
     @Autowired
-    private EmployeeServiceImpl employeeService;
+    private EmployeeService employeeService;
 
     @Value("${custom-properites.profilePhotoemp.directory}")
     private String path;
