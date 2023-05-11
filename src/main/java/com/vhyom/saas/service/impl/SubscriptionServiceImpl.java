@@ -32,7 +32,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
    }
 
     @Override
-    public List<Object[]> getSubscriptionByUuid(String uuid ) {
+    public List<VssSubscriptiondto> getSubscriptionByUuid(String uuid ) {
         return subscriptionRepository.getSubscriptionByUuid(uuid);
     }
 

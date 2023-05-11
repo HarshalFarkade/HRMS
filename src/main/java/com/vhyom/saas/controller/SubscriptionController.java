@@ -43,9 +43,9 @@ public class SubscriptionController {
     }
 
     @GetMapping("subscription/getSubscription/{uuid}")/* This API is for Getting Deatils of Subscription by uuid */
-    public ResponseEntity<List<Object[]>>getSubscriptionByUuid(@PathVariable String uuid){
+    public List<VssSubscriptiondto>getSubscriptionByUuid(@PathVariable String uuid){
         LOGGER.info("SubScriptionController: getSubscription is started");
-        return new ResponseEntity<>(subscriptionServiceimpl.getSubscriptionByUuid(uuid),HttpStatus.OK);
+        return subscriptionServiceimpl.getSubscriptionByUuid(uuid);
     }
 
     @PutMapping("subscription/deleteSubscription/{uuid}") /* This API is for Delete Subscription by uuid */
