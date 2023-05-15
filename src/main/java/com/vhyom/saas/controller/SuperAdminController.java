@@ -82,10 +82,28 @@ public class SuperAdminController {
     }
 
     @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details by uuid*/
-    public String updateSuperAdminByuuid(@PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
+    public String updateSuperAdminByuuid(VssSuperAdmin vssSuperAdmin,@PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
-        VssSuperAdmin vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-        return superAdminService.updateSuperAdminByuuid(uuid, vssSuperAdmin, file, path);
+        if (file.isEmpty()){
+            path=null;
+            vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+            this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin, file, path);
+            return "Update SuperAdmin Successfully";
+        }
+        vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+        String fileName = file.getOriginalFilename();
+        if (!fileName.equalsIgnoreCase("")) {
+            fileName = getCurrentTime() + "_" + fileName;
+        }
+        String filePath = path + File.separator + fileName;
+        File f = new File(path);
+        if (!f.exists()) {
+            f.mkdir();
+        }
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        vssSuperAdmin.setProfilePhoto(fileName);
+        this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin, file, path);
+        return "Update SuperAdmin Successfully";
 
     }
 
