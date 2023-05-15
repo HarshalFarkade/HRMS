@@ -3,6 +3,7 @@ package com.vhyom.saas.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
+import com.vhyom.saas.entity.VshEmployee;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.service.SuperAdminService;
 import com.vhyom.saas.service.impl.SuperAdminServiceImp;
@@ -15,7 +16,14 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,9 +39,26 @@ public class SuperAdminController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @PostMapping("/create/superAdmin")/* This API is for creating New superAdmin */
-    public String createSuperAdmin(@RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
+    public String createSuperAdmin(VssSuperAdmin vssSuperAdmin,@RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
-        VssSuperAdmin vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+        if (file.isEmpty()){
+            path=null;
+            vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+            this.superAdminService.createSuperAdmin(vssSuperAdmin, file, path);
+            return "SuperAdin Created Successfully";
+        }
+        vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+        String fileName = file.getOriginalFilename();
+        if (!fileName.equalsIgnoreCase("")) {
+            fileName = getCurrentTime() + "_" + fileName;
+        }
+        String filePath = path + File.separator + fileName;
+        File f = new File(path);
+        if (!f.exists()) {
+            f.mkdir();
+        }
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        vssSuperAdmin.setProfilePhoto(fileName);
         this.superAdminService.createSuperAdmin(vssSuperAdmin, file, path);
         return "SuperAdin Created Successfully";
     }
@@ -86,5 +111,11 @@ public class SuperAdminController {
     @GetMapping("/dashboard/graph-data")
     public List<DashboardDto> getDashboardData(){
         return superAdminService.getDashboardData();
+    }
+
+    public String getCurrentTime() {
+        DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date dateobj = new Date();
+        return df.format(dateobj);
     }
 }

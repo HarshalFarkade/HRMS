@@ -1,7 +1,9 @@
 package com.vhyom.saas.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
+import com.vhyom.saas.entity.VshEmployee;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.repository.SuperAdminRepository;
 import com.vhyom.saas.service.SuperAdminService;
@@ -26,30 +28,8 @@ public class SuperAdminServiceImp implements SuperAdminService {
     private SuperAdminRepository superAdminRepository;
     @Override
     public String createSuperAdmin(VssSuperAdmin vssSuperAdmin, MultipartFile file, String path) throws IOException {
-        vssSuperAdmin.setEmailId(vssSuperAdmin.getEmailId());
-        vssSuperAdmin.setPassword(vssSuperAdmin.getPassword());
-        String fileName = file.getOriginalFilename();
-        if (!fileName.equalsIgnoreCase("")) {
-            fileName = getCurrentTime() + "_" + fileName;
-        }
-        String filePath = path + File.separator + fileName;
-        File f = new File(path);
-        if (!f.exists()) {
-            f.mkdir();
-        }
-        Files.copy(file.getInputStream(), Paths.get(filePath));
-        vssSuperAdmin.setProfilePhoto(filePath);
-        vssSuperAdmin.setFirstName(vssSuperAdmin.getFirstName());
-        vssSuperAdmin.setLastName(vssSuperAdmin.getLastName());
-        vssSuperAdmin.setMobileNumber(vssSuperAdmin.getMobileNumber());
-        vssSuperAdmin.setPhoneNumber(vssSuperAdmin.getPhoneNumber());
-        vssSuperAdmin.setActive(true);
-        vssSuperAdmin.setCreatedOn(LocalDateTime.now());
-        vssSuperAdmin.setCreatedBy(vssSuperAdmin.getCreatedBy());
-        UUID uuid = UUID.randomUUID();
-        vssSuperAdmin.setUuid(uuid.toString());
-        this.superAdminRepository.save(vssSuperAdmin);
-        return "Create Successfully";
+       this.superAdminRepository.createSuperAdmin(vssSuperAdmin.getEmailId(), vssSuperAdmin.getPassword(), path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), vssSuperAdmin.getCreatedBy());
+       return "SuperAdmin Created";
     }
 
     @Override

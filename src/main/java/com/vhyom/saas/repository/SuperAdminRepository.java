@@ -12,11 +12,28 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integer> {
+
+
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO VssSuperAdmin(emailId,password,profilePhoto,firstName,lastName,mobileNumber,phoneNumber,createdBy)VALUES(:emailId,:password,:profilePhoto,:firstName,:lastName,:mobileNumber,:phoneNumber,:createdBy)")
+    void createSuperAdmin(@Param("emailId")String emailID,
+                          @Param("password")String password,
+                          @Param("profilePhoto")String profilePhoto,
+                          @Param("firstName")String firstName,
+                          @Param("lastName")String lastName,
+                          @Param("mobileNumber")String mobileNumber,
+                          @Param("phoneNumber")String phoneNumber,
+                          @Param("createdBy")Integer createdBy);
+
   @Query("Select  new com.vhyom.saas.dto.VssSuperAdmindto (sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy) From VssSuperAdmin sup")
   List<VssSuperAdmindto>getAllsuperAdminBySortedFirstNameAsc(Sort by);
 
