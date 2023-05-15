@@ -14,6 +14,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
+
         registry.addConverter(multipartFileToStringConverter);
     }
 }

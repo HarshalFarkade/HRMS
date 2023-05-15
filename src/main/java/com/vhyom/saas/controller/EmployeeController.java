@@ -2,6 +2,7 @@ package com.vhyom.saas.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vhyom.saas.entity.VshEmployee;
+import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.service.EmployeeService;
 import com.vhyom.saas.service.impl.EmployeeServiceImpl;
@@ -37,6 +38,13 @@ public class EmployeeController {
     @PostMapping("/employee/createEmployee") /* This API is for creating New Employee */
     public String createEmployee(@Valid VshEmployee vshEmployee,@RequestPart("emailId")String emailId,@RequestPart("employee") String employee, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("EmployeeController: createEmployee is started" + file.getOriginalFilename());
+
+        if (file.isEmpty()){
+            path=null;
+            vshEmployee= new ObjectMapper().readValue(employee, VshEmployee.class);
+            this.employeeService.createEmployee(emailId,vshEmployee, file, path);
+            return "Employee Created Successfully";
+        }
         vshEmployee = new ObjectMapper().readValue(employee, VshEmployee.class);
         String fileName = file.getOriginalFilename();
         if (!fileName.equalsIgnoreCase("")) {
