@@ -26,6 +26,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/superAdmin")
+@CrossOrigin(origins = "http://localhost:5173")
 public class SuperAdminController {
     @Autowired
     private SuperAdminService superAdminService ;
@@ -65,10 +66,10 @@ public class SuperAdminController {
         return superAdminService.getAllsuperAdminBySortedFirstNameAsc(firstName);
     }
 
-    @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
-    public VssSuperAdmindto getSuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
+    @GetMapping("/superAdmin/allsuperAdminByUuid/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
+    public VssSuperAdmindto getSuperAdminByUuid(@PathVariable String uuid) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return superAdminService.getSuperAdminByUuid(uuid, firstName);
+        return superAdminService.getSuperAdminByUuid(uuid);
     }
 
     @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */
