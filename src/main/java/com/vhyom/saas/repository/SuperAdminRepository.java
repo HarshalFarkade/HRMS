@@ -38,7 +38,7 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
   List<VssSuperAdmindto>getAllsuperAdminBySortedFirstNameAsc(Sort by);
 
   @Query("Select new com.vhyom.saas.dto.VssSuperAdmindto (sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy) From VssSuperAdmin sup where sup.uuid=?1")
-  List<VssSuperAdmindto>getAllsuperAdminByUuid(Sort by,String uuid);
+  VssSuperAdmindto getSuperAdminByUuid(Sort by,String uuid);
 
  @Transactional
  @Modifying

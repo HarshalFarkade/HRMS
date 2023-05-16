@@ -66,9 +66,9 @@ public class SuperAdminController {
     }
 
     @GetMapping("/superAdmin/allsuperAdminByUuid/{firstName}/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
-    public List<VssSuperAdmindto> getAllsuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
+    public VssSuperAdmindto getSuperAdminByUuid(@PathVariable String uuid, @PathVariable String firstName) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return superAdminService.getAllsuperAdminByUuid(uuid, firstName);
+        return superAdminService.getSuperAdminByUuid(uuid, firstName);
     }
 
     @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */

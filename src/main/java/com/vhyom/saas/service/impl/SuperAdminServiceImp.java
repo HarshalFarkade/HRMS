@@ -38,8 +38,8 @@ public class SuperAdminServiceImp implements SuperAdminService {
     }
 
     @Override
-    public List<VssSuperAdmindto> getAllsuperAdminByUuid(String uuid,String firstName) {
-        return superAdminRepository.getAllsuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
+    public VssSuperAdmindto getSuperAdminByUuid(String uuid,String firstName) {
+        return superAdminRepository.getSuperAdminByUuid(Sort.by(Sort.Direction.ASC,firstName),uuid);
     }
 
     @Override
