@@ -14,7 +14,7 @@ public interface SubscriptionDetailsService {
 
     List<SubscriptionDetailsDto> getAllSubscriptionDetails();
 
-    List<SubscriptionDetailsDto> getSubscriptionDetailsByUuid(String uuid);
+    SubscriptionDetailsDto getSubscriptionDetailsByUuid(String uuid);
 
     String deleteSubscriptionDetailsBYUuid(String uuid, VssSubscriptionDetails vssSubscriptionDetails);
 

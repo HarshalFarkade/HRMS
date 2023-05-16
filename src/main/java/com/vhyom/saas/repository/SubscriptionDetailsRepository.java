@@ -47,7 +47,7 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
             + "subD.companyId.createdBy, subD.companyId.createdOn, subD.companyId.lastModifiedBy, subD.companyId.lastModifiedOn, subD.companyId.isActive, "
             + "subD.subscriptionId.planName, subD.subscriptionId.description, subD.subscriptionId.totalUsers,"
             + "subD.startDate, subD.endDate, subD.status) FROM VssSubscriptionDetails subD WHERE subD.uuid=?1")
-    List<SubscriptionDetailsDto>getSubscriptionDetailsByUuid(String uuid);
+    SubscriptionDetailsDto getSubscriptionDetailsByUuid(String uuid);
 
 
     @Transactional
