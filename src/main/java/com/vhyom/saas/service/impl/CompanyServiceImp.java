@@ -33,11 +33,11 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public VssCompanydto getCompanyByUuid(String uuid) {
-        VssCompanydto available =companyRepository.getCompanyByUuid(uuid);
+        VssCompanydto available =  companyRepository.getCompanyByUuid(uuid);
         if(available==null){
             System.out.print("Company Not Found");
         }
-        return available;
+        return  available;
     }
 
     @Override

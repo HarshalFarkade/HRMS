@@ -13,6 +13,7 @@ import java.util.Date;
 public class VssCompanydto {
 
     private Integer id;
+    private String uuid;
     private String name;
     private String websiteUrl;
     private String logo;
