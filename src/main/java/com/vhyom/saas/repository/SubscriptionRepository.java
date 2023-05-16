@@ -30,11 +30,11 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
     //@Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscription s WHERE s.planType = :planType")
     //boolean existsByPlanType(@Param("planType") String planType);
 
-   @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub")
+   @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub")
    List<VssSubscriptiondto>getAllSubscription();
 
-    @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub WHERE sub.uuid=?1")
-    List<VssSubscriptiondto>getSubscriptionByUuid(String uuid);
+    @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub WHERE sub.uuid=?1")
+    VssSubscriptiondto getSubscriptionByUuid(String uuid);
 
     @Transactional
     @Modifying

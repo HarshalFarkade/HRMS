@@ -44,7 +44,7 @@ public class SubscriptionController {
     }
 
     @GetMapping("subscription/getSubscription/{uuid}")/* This API is for Getting Deatils of Subscription by uuid */
-    public List<VssSubscriptiondto>getSubscriptionByUuid(@PathVariable String uuid){
+    public VssSubscriptiondto getSubscriptionByUuid(@PathVariable String uuid){
         LOGGER.info("SubScriptionController: getSubscription is started");
         return subscriptionServiceimpl.getSubscriptionByUuid(uuid);
     }

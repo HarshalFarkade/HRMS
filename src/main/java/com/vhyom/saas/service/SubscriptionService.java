@@ -11,7 +11,7 @@ public interface SubscriptionService {
 
     List<VssSubscriptiondto>getAllSubscription();
 
-    List<VssSubscriptiondto>getSubscriptionByUuid(String uuid);
+    VssSubscriptiondto getSubscriptionByUuid(String uuid);
 
    String deleteSubscription(String uuid , VssSubscription vssSubscription);
 

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VssSubscriptiondto {
+    private String uuid;
     private String planName;
     private BigDecimal planPrice;
     private Integer planType;
