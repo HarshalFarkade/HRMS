@@ -3,6 +3,7 @@ package com.vhyom.saas;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class SaaSApplication {
 
@@ -10,4 +11,6 @@ public class SaaSApplication {
 
         SpringApplication.run(SaaSApplication.class, args);
     }
+
+
 }

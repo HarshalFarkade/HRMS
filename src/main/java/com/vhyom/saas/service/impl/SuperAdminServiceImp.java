@@ -27,14 +27,14 @@ public class SuperAdminServiceImp implements SuperAdminService {
     @Autowired
     private SuperAdminRepository superAdminRepository;
     @Override
-    public String createSuperAdmin(VssSuperAdmin vssSuperAdmin, MultipartFile file, String path) throws IOException {
-       this.superAdminRepository.createSuperAdmin(vssSuperAdmin.getEmailId(), vssSuperAdmin.getPassword(), path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), vssSuperAdmin.getCreatedBy());
+    public String createSuperAdmin( VssSuperAdmin vssSuperAdmin,String password, MultipartFile file, String path) throws IOException {
+       this.superAdminRepository.createSuperAdmin(vssSuperAdmin.getEmailId(),password, path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), vssSuperAdmin.getCreatedBy());
        return "SuperAdmin Created";
     }
 
     @Override
-   public List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(String firstName) {
-        return superAdminRepository.getAllsuperAdminBySortedFirstNameAsc(Sort.by(Sort.Direction.ASC,firstName));
+   public List<VssSuperAdmindto> getAllsuperAdmin() {
+        return superAdminRepository.getAllsuperAdmin();
     }
 
     @Override
@@ -49,8 +49,8 @@ public class SuperAdminServiceImp implements SuperAdminService {
     }
 
     @Override
-    public String updateSuperAdminByuuid(String uuid, VssSuperAdmin vssSuperAdmin, MultipartFile file, String path) throws IOException {
-        this.superAdminRepository.updateSuperAdminByuuid( vssSuperAdmin.getPassword(), path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), LocalDateTime.now(), vssSuperAdmin.getLastModifiedBy(), uuid);
+    public String updateSuperAdminByuuid(String uuid, VssSuperAdmin vssSuperAdmin, String password,MultipartFile file, String path) throws IOException {
+        this.superAdminRepository.updateSuperAdminByuuid( password, path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), LocalDateTime.now(), vssSuperAdmin.getLastModifiedBy(), uuid);
         return "superAdmin Update Successfully";
     }
 
@@ -71,10 +71,6 @@ public class SuperAdminServiceImp implements SuperAdminService {
         }
     }
 
-    @Override
-    public List<DashboardDto> getDashboardData() {
-        return superAdminRepository.getDashboardData();
-    }
 
     private boolean validateEmail(String emailId) {
 // Check if the email is a valid email address format
@@ -84,6 +80,11 @@ public class SuperAdminServiceImp implements SuperAdminService {
     private boolean validatePassword(String password) {
 // Check if the password meets the password requirements
         return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$");
+    }
+
+    @Override
+    public List<DashboardDto> getDashboardData() {
+        return superAdminRepository.getDashboardData();
     }
 
     public String getCurrentTime() {

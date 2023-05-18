@@ -5,6 +5,7 @@ import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import com.vhyom.saas.service.SuperAdminService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/superAdmin")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = {"http://localhost:5173"}, allowCredentials = "true")
 public class SuperAdminController {
     @Autowired
     private SuperAdminService superAdminService ;
@@ -36,12 +37,12 @@ public class SuperAdminController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @PostMapping("/create/superAdmin")/* This API is for creating New superAdmin */
-    public String createSuperAdmin(VssSuperAdmin vssSuperAdmin,@RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
+    public String createSuperAdmin(@Valid VssSuperAdmin vssSuperAdmin,@RequestPart("password")String password,@RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
         if (file.isEmpty()){
             path=null;
             vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-            this.superAdminService.createSuperAdmin(vssSuperAdmin, file, path);
+            this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
             return "SuperAdin Created Successfully";
         }
         vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
@@ -56,17 +57,17 @@ public class SuperAdminController {
         }
         Files.copy(file.getInputStream(), Paths.get(filePath));
         vssSuperAdmin.setProfilePhoto(fileName);
-        this.superAdminService.createSuperAdmin(vssSuperAdmin, file, path);
+        this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
         return "SuperAdin Created Successfully";
     }
 
-    @GetMapping("/superAdmin/allsuperAdmin/{firstName}")/* This API is for getting all superAdmin sort by firstName */
-    public  List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(@PathVariable String firstName) {
+    @GetMapping("/superAdmin/allsuperAdmin")/* This API is for getting all superAdmin sort by firstName */
+    public  List<VssSuperAdmindto> getAllsuperAdmin() {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
-        return superAdminService.getAllsuperAdminBySortedFirstNameAsc(firstName);
+        return superAdminService.getAllsuperAdmin();
     }
 
-    @GetMapping("/superAdmin/allsuperAdminByUuid/{uuid}")/* This API is for Getting deatils of SuperAdmin as per uuid*/
+    @GetMapping("/superAdmin/allsuperAdminByUuid/{uuid}")/* This API is for Getting details of SuperAdmin as per uuid*/
     public VssSuperAdmindto getSuperAdminByUuid(@PathVariable String uuid) {
         LOGGER.info("SuperAdminController: createSuperAdmin is started");
         return superAdminService.getSuperAdminByUuid(uuid);
@@ -79,12 +80,12 @@ public class SuperAdminController {
     }
 
     @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details by uuid*/
-    public String updateSuperAdminByuuid(VssSuperAdmin vssSuperAdmin,@PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
+    public String updateSuperAdminByuuid(@Valid VssSuperAdmin vssSuperAdmin,@RequestPart("password")String password, @PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
         LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
         if (file.isEmpty()){
             path=null;
             vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-            this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin, file, path);
+            this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin,password, file, path);
             return "Update SuperAdmin Successfully";
         }
         vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
@@ -99,7 +100,7 @@ public class SuperAdminController {
         }
         Files.copy(file.getInputStream(), Paths.get(filePath));
         vssSuperAdmin.setProfilePhoto(fileName);
-        this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin, file, path);
+        this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin, password,file, path);
         return "Update SuperAdmin Successfully";
 
     }

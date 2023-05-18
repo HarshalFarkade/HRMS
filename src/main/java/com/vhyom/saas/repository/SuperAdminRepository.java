@@ -1,20 +1,16 @@
 package com.vhyom.saas.repository;
 
 import com.vhyom.saas.dto.DashboardDto;
-import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -35,7 +31,7 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
                           @Param("createdBy")Integer createdBy);
 
   @Query("Select  new com.vhyom.saas.dto.VssSuperAdmindto (sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy) From VssSuperAdmin sup")
-  List<VssSuperAdmindto>getAllsuperAdminBySortedFirstNameAsc(Sort by);
+  List<VssSuperAdmindto>getAllsuperAdmin();
 
   @Query("Select new com.vhyom.saas.dto.VssSuperAdmindto (sup.uuid,sup.emailId,sup.profilePhoto,sup.firstName,sup.lastName,sup.mobileNumber,sup.phoneNumber,sup.isActive,sup.createdOn,sup.createdBy,sup.lastModifiedOn,sup.lastModifiedBy) From VssSuperAdmin sup where sup.uuid=?1")
   VssSuperAdmindto getSuperAdminByUuid(String uuid);

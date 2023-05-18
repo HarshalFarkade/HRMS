@@ -10,15 +10,15 @@ import java.util.List;
 
 public interface SuperAdminService {
 
-    String createSuperAdmin(VssSuperAdmin vssSuperAdmin, MultipartFile file,String  path) throws IOException;
+    String createSuperAdmin(VssSuperAdmin vssSuperAdmin, String password,MultipartFile file,String  path) throws IOException;
 
-    List<VssSuperAdmindto> getAllsuperAdminBySortedFirstNameAsc(String firstName);
+    List<VssSuperAdmindto> getAllsuperAdmin();
 
     VssSuperAdmindto getSuperAdminByUuid(String uuid);
 
     String deletesuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin);
 
-    String updateSuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin,MultipartFile file, String path) throws IOException;
+    String updateSuperAdminByuuid(String uuid,VssSuperAdmin vssSuperAdmin,String password ,MultipartFile file, String path) throws IOException;
 
     public VssSuperAdmin getUserByEmailAndPassword(String emailId,String password) throws Exception;
 

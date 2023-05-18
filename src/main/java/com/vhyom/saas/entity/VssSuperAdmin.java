@@ -13,6 +13,9 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import java.time.LocalDateTime;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -63,8 +66,10 @@ public class VssSuperAdmin implements Serializable {
     private String uuid;
     @Basic(optional = false)
     @Column(name = "email_id", nullable = false, length = 100)
+    //@Email(message = "")
     private String emailId;
     @Column(length = 255)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",message = "Password must be in format Ex(Abcd1234)")
     private String password;
     @Column(length = 255)
     private String salt;
