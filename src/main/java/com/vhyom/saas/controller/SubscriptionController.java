@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequestMapping("/api/v1/subScription")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = {"http://localhost:5173"}, allowCredentials = "true")
 @RestController
 public class SubscriptionController {
     @Autowired
