@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RequestMapping("api/v1/subscriptionDetails")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = {"http://localhost:5173"}, allowCredentials = "true")
 @RestController
 public class SubscriptionDetailsController {
 
