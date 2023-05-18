@@ -20,9 +20,9 @@ public class CompanyServiceImp implements CompanyService {
     private CompanyRepository companyRepository;
 
     @Override
-    public VssCompany createCompany(String name,VssCompany vssCompany, MultipartFile file, String path) throws IOException {
+    public String createCompany(String name,VssCompany vssCompany, MultipartFile file, String path) throws IOException {
             this.companyRepository.createCompany(name, vssCompany.getWebsiteUrl(),path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getEmailId(), vssCompany.getPhoneNumber(), vssCompany.getCreatedBy());
-            return vssCompany;
+            return "Company Created Successfully";
     }
 
     @Override

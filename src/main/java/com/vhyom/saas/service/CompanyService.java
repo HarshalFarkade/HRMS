@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CompanyService {
 
-    VssCompany createCompany(String name ,VssCompany vssCompany, MultipartFile file, String path) throws IOException;
+    String createCompany(String name ,VssCompany vssCompany, MultipartFile file, String path) throws IOException;
 
     List<VssCompanydto> getAllcompany();
 

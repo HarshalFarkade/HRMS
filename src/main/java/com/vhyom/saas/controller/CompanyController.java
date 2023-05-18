@@ -35,14 +35,15 @@ public class CompanyController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @PostMapping("/create/company")
-    public ResponseEntity<VssCompany> creatCompany(@Valid VssCompany vssCompany,@RequestPart("name")String name, @RequestPart ("company") String company, @RequestPart("logo") MultipartFile file) throws IOException {
+    public String creatCompany(@Valid VssCompany vssCompany,@RequestPart("name")String name, @RequestPart ("company") String company, @RequestPart("logo") MultipartFile file) throws IOException {
         LOGGER.info("CompanyController | createCompany is started" + file.getOriginalFilename());
         //Convert the String to Json using ObjectMapper
 
         if (file.isEmpty()){
             path=null;
             vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
-            return new ResponseEntity<>(companyService.createCompany(name,vssCompany, file, path),HttpStatus.CREATED);
+            this.companyService.createCompany(name,vssCompany, file, path);
+            return "Company Created Successfully";
         }
 
         vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
@@ -57,7 +58,9 @@ public class CompanyController {
         }
         Files.copy(file.getInputStream(), Paths.get(filePath));
         vssCompany.setLogo(fileName);
-        return new ResponseEntity<>(companyService.createCompany(name,vssCompany, file, path),HttpStatus.CREATED);
+        this.companyService.createCompany(name,vssCompany, file, path);
+        return "Company Created Successfully";
+
 
     }
     @GetMapping("/allCompany") /* This API will give all company*/
@@ -85,7 +88,8 @@ public class CompanyController {
         if (file.isEmpty()){
             path=null;
             vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
-            return companyService.updateCompanyByUuid(name,uuid,vssCompany,path,file);
+            this.companyService.updateCompanyByUuid(name,uuid,vssCompany,path,file);
+            return "Company Updated Successfully";
         }
 
          vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
@@ -99,7 +103,8 @@ public class CompanyController {
             f.mkdir();
         }
         Files.copy(file.getInputStream(), Paths.get(filePath));
-        return companyService.updateCompanyByUuid(name,uuid, vssCompany,path,file);
+        this.companyService.updateCompanyByUuid(name,uuid, vssCompany,path,file);
+        return "Company Updated Successfully";
     }
 
     public String getCurrentTime() {
