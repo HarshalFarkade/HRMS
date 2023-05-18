@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/company")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = {"http://localhost:5173"}, allowCredentials = "true")
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
