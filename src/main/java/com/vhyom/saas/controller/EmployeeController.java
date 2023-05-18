@@ -25,7 +25,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1/Employee")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = {"http://localhost:5173"}, allowCredentials = "true")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
