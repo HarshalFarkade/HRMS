@@ -90,21 +90,22 @@ public class CompanyController {
             vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
             this.companyService.updateCompanyByUuid(name,uuid,vssCompany,path,file);
             return "Company Updated Successfully";
+        } else  {vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+            String fileName = file.getOriginalFilename();
+            if (!fileName.equalsIgnoreCase("")) {
+                fileName = getCurrentTime() + "_" + fileName;
+            }
+            String filePath = path + File.separator + fileName;
+            File f = new File(path);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            this.companyService.updateCompanyByUuid(name,uuid, vssCompany,path,file);
+            return "Company Updated Successfully";
+
         }
 
-         vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
-        String fileName = file.getOriginalFilename();
-        if (!fileName.equalsIgnoreCase("")) {
-            fileName = getCurrentTime() + "_" + fileName;
-        }
-        String filePath = path + File.separator + fileName;
-        File f = new File(path);
-        if (!f.exists()) {
-            f.mkdir();
-        }
-        Files.copy(file.getInputStream(), Paths.get(filePath));
-        this.companyService.updateCompanyByUuid(name,uuid, vssCompany,path,file);
-        return "Company Updated Successfully";
     }
 
     public String getCurrentTime() {
