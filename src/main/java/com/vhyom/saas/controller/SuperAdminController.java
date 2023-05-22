@@ -43,7 +43,7 @@ public class SuperAdminController {
             path=null;
             vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
             this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
-            return "SuperAdin Created Successfully";
+            return "SuperAdmin Created Successfully";
         }
         vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
         String fileName = file.getOriginalFilename();
@@ -58,7 +58,7 @@ public class SuperAdminController {
         Files.copy(file.getInputStream(), Paths.get(filePath));
         vssSuperAdmin.setProfilePhoto(fileName);
         this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
-        return "SuperAdin Created Successfully";
+        return "SuperAdmin Created Successfully";
     }
 
     @GetMapping("/superAdmin/allsuperAdmin")/* This API is for getting all superAdmin sort by firstName */
