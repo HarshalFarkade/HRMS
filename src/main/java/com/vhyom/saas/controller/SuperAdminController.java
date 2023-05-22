@@ -44,21 +44,22 @@ public class SuperAdminController {
             vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
             this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
             return "SuperAdmin Created Successfully";
+        }else {
+            vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+            String fileName = file.getOriginalFilename();
+            if (!fileName.equalsIgnoreCase("")) {
+                fileName = getCurrentTime() + "_" + fileName;
+            }
+            String filePath = path + File.separator + fileName;
+            File f = new File(path);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            vssSuperAdmin.setProfilePhoto(fileName);
+            this.superAdminService.createSuperAdmin(vssSuperAdmin, password, file, path);
+            return "SuperAdmin Created Successfully";
         }
-        vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-        String fileName = file.getOriginalFilename();
-        if (!fileName.equalsIgnoreCase("")) {
-            fileName = getCurrentTime() + "_" + fileName;
-        }
-        String filePath = path + File.separator + fileName;
-        File f = new File(path);
-        if (!f.exists()) {
-            f.mkdir();
-        }
-        Files.copy(file.getInputStream(), Paths.get(filePath));
-        vssSuperAdmin.setProfilePhoto(fileName);
-        this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
-        return "SuperAdmin Created Successfully";
     }
 
     @GetMapping("/superAdmin/allsuperAdmin")/* This API is for getting all superAdmin sort by firstName */
