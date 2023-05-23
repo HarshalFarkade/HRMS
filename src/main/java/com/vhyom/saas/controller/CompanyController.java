@@ -44,24 +44,24 @@ public class CompanyController {
             vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
             this.companyService.createCompany(name,vssCompany, file, path);
             return "Company Created Successfully";
-        }
+        }else {
 
-        vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
-        String fileName = file.getOriginalFilename();
-        if (!fileName.equalsIgnoreCase("")) {
-            fileName = getCurrentTime() + "_" + fileName;
-        }
-        String filePath = path + File.separator + fileName;
-        File f = new File(path);
-        if (!f.exists()) {
-            f.mkdir();
-        }
-        Files.copy(file.getInputStream(), Paths.get(filePath));
-        vssCompany.setLogo(fileName);
-        this.companyService.createCompany(name,vssCompany, file, path);
-        return "Company Created Successfully";
+            vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+            String fileName = file.getOriginalFilename();
+            if (!fileName.equalsIgnoreCase("")) {
+                fileName = getCurrentTime() + "_" + fileName;
+            }
+            String filePath = path + File.separator + fileName;
+            File f = new File(path);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            vssCompany.setLogo(fileName);
+            this.companyService.createCompany(name, vssCompany, file, path);
+            return "Company Created Successfully";
 
-
+        }
     }
     @GetMapping("/allCompany") /* This API will give all company*/
     public List<VssCompanydto>  getAllCompany() {
