@@ -36,7 +36,7 @@ public class IdentityDetailsController {
         return identityDetailsService.getAllIdentityDetails();
     }
 
-    @GetMapping("/getIdentityDetailsByuuid/{uuid}")
+    @GetMapping("/getIdentityDetailsByuuid/{uuid}")/*This API is for Get Identity Details By uuid*/
     public IdentityDetailsDto getIdentityDetailsByuuid(@PathVariable String uuid){
         LOGGER.info("IdentityDetailsController | getIdentityDetailsByuuid Started ");
         return identityDetailsService.getIdentityDetailsByuuid(uuid);
