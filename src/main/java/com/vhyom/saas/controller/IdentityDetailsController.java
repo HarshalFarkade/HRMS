@@ -30,7 +30,7 @@ public class IdentityDetailsController {
         return identityDetailsService.createIdentityDetails(vseIdentityDetail ,user);
     }
 
-    @GetMapping("/getAllIdentityDetails")
+    @GetMapping("/getAllIdentityDetails")/*This API is for Getting All  Identity Details*/
      public List<IdentityDetailsDto>getAllIdentityDetails(){
         LOGGER.info("IdentityDetailsController | getAllIdentityDetails Started ");
         return identityDetailsService.getAllIdentityDetails();
