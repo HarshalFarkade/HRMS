@@ -48,7 +48,7 @@ public class IdentityDetailsController {
         return identityDetailsService.deleteIdentityDetailsByuuid(uuid,vseIdentityDetail);
     }
 
-    @PutMapping("/updateIdentityDetails/{uuid}")
+    @PutMapping("/updateIdentityDetails/{uuid}")/*This API is for Update Identity Details By uuid*/
     public String updateIdentityDetailsByuuid(@PathVariable String uuid, @Valid @RequestBody VseIdentityDetail vseIdentityDetail){
         LOGGER.info("IdentityDetailsController | updateIdentityDetailsByuuid Started ");
         return identityDetailsService.updateIdentityDetailsByuuid(uuid, vseIdentityDetail);
