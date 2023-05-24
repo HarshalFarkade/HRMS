@@ -42,7 +42,7 @@ public class IdentityDetailsController {
         return identityDetailsService.getIdentityDetailsByuuid(uuid);
     }
 
-    @PutMapping("/deleteIdentityDetails/{uuid}")
+    @PutMapping("/deleteIdentityDetails/{uuid}")/*This API is for Delete Identity Details by uuid*/
     public String deleteIdentityDetailsByuuid(@PathVariable String uuid, @RequestBody VseIdentityDetail vseIdentityDetail){
         LOGGER.info("IdentityDetailsController | deleteIdentityDetailsByuuid Started ");
         return identityDetailsService.deleteIdentityDetailsByuuid(uuid,vseIdentityDetail);
