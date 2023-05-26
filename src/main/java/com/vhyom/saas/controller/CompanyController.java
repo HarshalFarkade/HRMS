@@ -1,6 +1,7 @@
 package com.vhyom.saas.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.service.CompanyService;
@@ -90,7 +91,10 @@ public class CompanyController {
             vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
             this.companyService.updateCompanyByUuid(name,uuid,vssCompany,path,file);
             return "Company Updated Successfully";
-        } else  {vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+        } else  {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+            vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
             String fileName = file.getOriginalFilename();
             if (!fileName.equalsIgnoreCase("")) {
                 fileName = getCurrentTime() + "_" + fileName;

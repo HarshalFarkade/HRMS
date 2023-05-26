@@ -42,13 +42,13 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public String deletCompanyByUuid(String uuid, VssCompany vssCompany) {
-        this.companyRepository.deleteCompanyByUuid(vssCompany.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
+        this.companyRepository.deleteCompanyByUuid(vssCompany.getLastModifiedBy(), new Date(),false,uuid);
         return " Company Delete Successfully";
     }
 
     @Override
     public String updateCompanyByUuid(String name,String uuid, VssCompany vssCompany, String path, MultipartFile file) throws IOException {
-        this.companyRepository.updateCompanyByUuid( name,vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), LocalDateTime.now(), vssCompany.getLastModifiedBy(),uuid);
+        this.companyRepository.updateCompanyByUuid( name,vssCompany.getWebsiteUrl(), path, vssCompany.getFirstName(), vssCompany.getLastName(), vssCompany.getPhoneNumber(), new Date(), vssCompany.getLastModifiedBy(),uuid);
         return " Update Successfully";
     }
 

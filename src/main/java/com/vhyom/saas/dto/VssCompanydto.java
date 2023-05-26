@@ -21,8 +21,8 @@ public class VssCompanydto {
     private String lastName;
     private String phoneNumber;
     private int createdBy;
-    private LocalDateTime createdOn;
+    private Date createdOn;
     private Integer lastModifiedBy;
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     private boolean isActive;
 }

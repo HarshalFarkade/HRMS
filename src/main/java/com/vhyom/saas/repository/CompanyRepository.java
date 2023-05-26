@@ -39,7 +39,7 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
     @Query(value="UPDATE VssCompany com SET com.lastModifiedBy=:lastModifiedBy, com.lastModifiedOn=:lastModifiedOn, com.isActive=:isActive where com.uuid=:uuid")
     void deleteCompanyByUuid(
             @Param("lastModifiedBy") Integer lastModifiedBy,
-            @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+            @Param("lastModifiedOn") Date lastModifiedOn,
             @Param("isActive") boolean isActive,
             @Param("uuid") String uuid);
 
@@ -53,7 +53,7 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
                              @Param("firstName")String firstName,
                              @Param("lastName")String lastName,
                              @Param("phoneNumber")String phoneNumber,
-                             @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                             @Param("lastModifiedOn") Date lastModifiedOn,
                              @Param("lastModifiedBy") Integer lastModifiedBy,
                              @Param("uuid") String uuid);
 

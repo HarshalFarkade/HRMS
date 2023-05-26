@@ -7,6 +7,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 
 /**
@@ -71,12 +72,12 @@ public class VssCompany implements Serializable {
     @Basic(optional = false)
     @Column(name = "created_on", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdOn;
+    private Date createdOn;
     @Column(name = "last_modified_by")
     private Integer lastModifiedBy;
     @Column(name = "last_modified_on")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     @Basic(optional = false)
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
