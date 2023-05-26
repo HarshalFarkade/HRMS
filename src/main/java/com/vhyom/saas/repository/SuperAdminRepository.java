@@ -11,7 +11,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -40,20 +43,20 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
  @Modifying
   @Query(value ="UPDATE VssSuperAdmin sup SET sup.isActive=:isActive,sup.lastModifiedOn=:lastModifiedOn,sup.lastModifiedBy=:lastModifiedBy Where sup.uuid=:uuid")
    void deletesuperAdminByuuid(@Param("isActive") boolean isActive,
-                               @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
+                               @Param("lastModifiedOn")Date lastModifiedOn,
                                @Param("lastModifiedBy") Integer lastModifiedBy,
                                @Param("uuid")String uuid);
   @Transactional
   @Modifying
-  @Query(value = "UPDATE VssSuperAdmin sup SET sup.password=:password,sup.profilePhoto=:profilePhoto,sup.firstName=:firstName,sup.lastName=:lastName,sup.mobileNumber=:mobileNumber,sup.phoneNumber=:phoneNumber,sup.lastModifiedOn=:lastModifiedOn,sup.lastModifiedBy=:lastModifiedBy Where sup.uuid=:uuid")
+  @Query(value = "UPDATE VssSuperAdmin sup SET sup.password=:password,sup.profilePhoto=:profilePhoto,sup.firstName=:firstName,sup.lastName=:lastName,sup.mobileNumber=:mobileNumber,sup.phoneNumber=:phoneNumber,sup.lastModifiedBy=:lastModifiedBy ,sup.lastModifiedOn=:lastModifiedOn Where sup.uuid=:uuid")
   void updateSuperAdminByuuid(@Param("password") String password,
                               @Param("profilePhoto") String profilePhoto,
                               @Param("firstName")String firstName,
                               @Param("lastName") String lastName,
                               @Param("mobileNumber") String mobileNumber,
                               @Param("phoneNumber")String phoneNumber,
-                              @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
                               @Param("lastModifiedBy")Integer lastModifiedBy,
+                              @Param("lastModifiedOn") Date lastModifiedOn,
                               @Param("uuid") String uuid);
 
   VssSuperAdmin getSuperAdminByEmailId(String emailID);

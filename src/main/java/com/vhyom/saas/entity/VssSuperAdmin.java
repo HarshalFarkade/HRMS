@@ -1,6 +1,8 @@
 package com.vhyom.saas.entity;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +14,11 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -88,12 +94,13 @@ public class VssSuperAdmin implements Serializable {
     @Basic(optional = false)
     @Column(name = "created_on", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdOn;
+    private Date createdOn;
     @Column(name = "last_modified_by")
     private Integer lastModifiedBy;
     @Column(name = "last_modified_on")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastModifiedOn;
+   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Date lastModifiedOn;
     @Basic(optional = false)
     @Column(name = "is_active", nullable = false)
     private boolean isActive;

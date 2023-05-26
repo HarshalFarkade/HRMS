@@ -2,7 +2,10 @@ package com.vhyom.saas.dto;
 
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @Setter
 @ToString
@@ -18,8 +21,8 @@ public class VssSuperAdmindto {
     private String mobileNumber;
     private String phoneNumber;
     private boolean isActive;
-    private LocalDateTime createdOn;
+    private Date createdOn;
     private Integer createdBy;
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     private Integer lastModifiedBy;
 }

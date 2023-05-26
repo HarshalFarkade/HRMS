@@ -1,6 +1,8 @@
 package com.vhyom.saas.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.vhyom.saas.dto.DashboardDto;
 import com.vhyom.saas.dto.VssSuperAdmindto;
 import com.vhyom.saas.entity.VssSuperAdmin;
@@ -45,6 +47,7 @@ public class SuperAdminController {
             this.superAdminService.createSuperAdmin(vssSuperAdmin, password,file, path);
             return "SuperAdmin Created Successfully";
         }else {
+
             vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
             String fileName = file.getOriginalFilename();
             if (!fileName.equalsIgnoreCase("")) {
@@ -64,46 +67,47 @@ public class SuperAdminController {
 
     @GetMapping("/superAdmin/allsuperAdmin")/* This API is for getting all superAdmin sort by firstName */
     public  List<VssSuperAdmindto> getAllsuperAdmin() {
-        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        LOGGER.info("SuperAdminController: GetAllSuperAdmin is started");
         return superAdminService.getAllsuperAdmin();
     }
 
     @GetMapping("/superAdmin/allsuperAdminByUuid/{uuid}")/* This API is for Getting details of SuperAdmin as per uuid*/
     public VssSuperAdmindto getSuperAdminByUuid(@PathVariable String uuid) {
-        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        LOGGER.info("SuperAdminController: GetSuperAdmin is started");
         return superAdminService.getSuperAdminByUuid(uuid);
     }
 
     @PutMapping("/superAdmin/deletesuperAdmin/{uuid}")/* This API is for deleting SuperAdmin */
     public String deletesuperAdminByuuid(@PathVariable String uuid, @RequestBody VssSuperAdmin vssSuperAdmin) {
-        LOGGER.info("SuperAdminController: createSuperAdmin is started");
+        LOGGER.info("SuperAdminController: DeleteSuperAdmin is started");
         return superAdminService.deletesuperAdminByuuid(uuid, vssSuperAdmin);
     }
 
     @PutMapping("/superAdmin/updateByUuid/{uuid}")/*This API is for Update SuperAdmin Details by uuid*/
     public String updateSuperAdminByuuid(@Valid VssSuperAdmin vssSuperAdmin,@RequestPart("password")String password, @PathVariable String uuid, @RequestPart("superAdmin") String superAdmin, @RequestPart("profilePhoto") MultipartFile file) throws IOException {
-        LOGGER.info("SuperAdminController: createSuperAdmin is started" + file.getOriginalFilename());
+        LOGGER.info("SuperAdminController: UpdateSuperadmin is started" + file.getOriginalFilename());
         if (file.isEmpty()){
             path=null;
             vssSuperAdmin= new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
             this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin,password, file, path);
             return "Update SuperAdmin Successfully";
-        }
-        vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
-        String fileName = file.getOriginalFilename();
-        if (!fileName.equalsIgnoreCase("")) {
-            fileName = getCurrentTime() + "_" + fileName;
-        }
-        String filePath = path + File.separator + fileName;
-        File f = new File(path);
-        if (!f.exists()) {
-            f.mkdir();
-        }
-        Files.copy(file.getInputStream(), Paths.get(filePath));
-        vssSuperAdmin.setProfilePhoto(fileName);
-        this.superAdminService.updateSuperAdminByuuid(uuid,vssSuperAdmin, password,file, path);
-        return "Update SuperAdmin Successfully";
+        }else {
 
+            vssSuperAdmin = new ObjectMapper().readValue(superAdmin, VssSuperAdmin.class);
+            String fileName = file.getOriginalFilename();
+            if (!fileName.equalsIgnoreCase("")) {
+                fileName = getCurrentTime() + "_" + fileName;
+            }
+            String filePath = path + File.separator + fileName;
+            File f = new File(path);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            vssSuperAdmin.setProfilePhoto(fileName);
+            return superAdminService.updateSuperAdminByuuid(uuid, vssSuperAdmin, password, file, path);
+           // return "Update SuperAdmin Successfully";
+        }
     }
 
     @GetMapping("/superAdmin/login")/* This API is for  Login superAdmin */
