@@ -26,11 +26,11 @@ public class VseProjectController {
         return vseProjectService.createVseProject(vseProject, client, projectManager, teamLeader);
     }
 
-//    @GetMapping("/getAllProject") /*This API is For Getting All project details*/
-//    public List<ProjectDto>getAllProject(){
-//        LOGGER.info("VseProjectController :GetAllProject is Started");
-//        return vseProjectService.getAllProject();
-//    }
+    @GetMapping("/getAllProject") /*This API is For Getting All project details*/
+    public List<ProjectDto>getAllProject(){
+        LOGGER.info("VseProjectController :GetAllProject is Started");
+        return vseProjectService.getAllProject();
+    }
 //
 //    @GetMapping("/getProject/{uuid}") /* This API is For Getting Details of Project by uuid */
 //    public ProjectDto getProjectByUuid(@PathVariable String uuid){

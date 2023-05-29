@@ -11,7 +11,7 @@ public interface VseProjectService {
 
     String createVseProject(VseProject vseProject, Integer client, Integer projectManager,Integer teamLeader);
 
-//    List<ProjectDto> getAllProject();
+    List<ProjectDto> getAllProject();
 //
 //    ProjectDto getProjectByUuid(String uuid);
 //

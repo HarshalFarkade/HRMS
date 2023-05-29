@@ -21,11 +21,11 @@ public class VseProjectServiceImpl implements VseProjectService {
         return "Create VseProject Successfully";
     }
 
-//    @Override
-//    public List<ProjectDto> getAllProject() {
-//        return vseProjectRepository.getAllProject();
-//    }
-//
+    @Override
+    public List<ProjectDto> getAllProject() {
+        return vseProjectRepository.getAllProject();
+    }
+
 //    @Override
 //    public ProjectDto getProjectByUuid(String uuid) {
 //        ProjectDto project =vseProjectRepository.getProjectByUuid(uuid);
