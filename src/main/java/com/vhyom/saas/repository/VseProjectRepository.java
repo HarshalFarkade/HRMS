@@ -37,8 +37,8 @@ public interface VseProjectRepository extends JpaRepository<VseProject ,Integer>
     List<ProjectDto> getAllProject();
 
 
-//    @Query("SELECT new com.vhyom.saas.dto.ProjectDto(pro.uuid,pro.client.id,pro.name,pro.description,pro.startDate,pro.endDate,pro.rate,pro.rateType,pro.projectManager.id,pro.teamLeader.id,pro.createdBy,pro.createdOn,pro.lastModifiedBy,pro.lastModifiedOn,pro.isActive) FROM VseProject pro Where pro.uuid=?1")
-//    ProjectDto getProjectByUuid(String uuid);
+    @Query("SELECT new com.vhyom.saas.dto.ProjectDto(pro.uuid,pro.client.id,pro.name,pro.description,pro.startDate,pro.endDate,pro.rate,pro.rateType,pro.projectManager.id,pro.teamLeader.id,pro.createdBy,pro.createdOn,pro.lastModifiedBy,pro.lastModifiedOn,pro.isActive) FROM VseProject pro Where pro.uuid=?1")
+    ProjectDto getProjectByUuid(String uuid);
 
 //    @Transactional
 //    @Modifying

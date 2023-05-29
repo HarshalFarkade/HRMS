@@ -31,12 +31,12 @@ public class VseProjectController {
         LOGGER.info("VseProjectController :GetAllProject is Started");
         return vseProjectService.getAllProject();
     }
-//
-//    @GetMapping("/getProject/{uuid}") /* This API is For Getting Details of Project by uuid */
-//    public ProjectDto getProjectByUuid(@PathVariable String uuid){
-//        LOGGER.info("VseProjectController :GetProject is Started");
-//        return vseProjectService.getProjectByUuid(uuid);
-//    }
+
+    @GetMapping("/getProject/{uuid}") /* This API is For Getting Details of Project by uuid */
+    public ProjectDto getProjectByUuid(@PathVariable String uuid){
+        LOGGER.info("VseProjectController :GetProject is Started");
+        return vseProjectService.getProjectByUuid(uuid);
+    }
 //
 //    @PutMapping("/deleteProject/{uuid}") /*This API is for deleting the project */
 //    public String deleteProjectByUuid(@PathVariable String uuid,@RequestBody VseProject vseProject){

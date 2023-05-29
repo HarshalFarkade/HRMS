@@ -26,14 +26,14 @@ public class VseProjectServiceImpl implements VseProjectService {
         return vseProjectRepository.getAllProject();
     }
 
-//    @Override
-//    public ProjectDto getProjectByUuid(String uuid) {
-//        ProjectDto project =vseProjectRepository.getProjectByUuid(uuid);
-//        if (project==null){
-//            System.out.println("Project not found");
-//        }
-//        return project;
-//    }
+    @Override
+    public ProjectDto getProjectByUuid(String uuid) {
+        ProjectDto project =vseProjectRepository.getProjectByUuid(uuid);
+        if (project==null){
+            System.out.println("Project not found");
+        }
+        return project;
+    }
 //
 //    @Override
 //    public String deleteProjectByUuid(String uuid, VseProject vseProject) {
