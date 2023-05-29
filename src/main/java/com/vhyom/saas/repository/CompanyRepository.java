@@ -28,10 +28,10 @@ public interface CompanyRepository extends JpaRepository<VssCompany , Integer>{
 
     boolean existsByName(String value);
 
-    @Query("select  new com.vhyom.saas.dto.VssCompanydto(com.id,com.uuid,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdBy,com.createdOn,com.lastModifiedBy,com.lastModifiedOn,com.isActive) From VssCompany  com ")
+    @Query("select  new com.vhyom.saas.dto.VssCompanydto(com.id,com.uuid,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.emailId,com.phoneNumber,com.createdBy,com.createdOn,com.lastModifiedBy,com.lastModifiedOn,com.isActive) From VssCompany  com ")
     List<VssCompanydto> findAllcompany();
 
-    @Query("select  new com.vhyom.saas.dto.VssCompanydto(com.id,com.uuid,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.phoneNumber,com.createdBy,com.createdOn,com.lastModifiedBy,com.lastModifiedOn,com.isActive) From VssCompany  com Where com.uuid=?1")
+    @Query("select  new com.vhyom.saas.dto.VssCompanydto(com.id,com.uuid,com.name,com.websiteUrl,com.logo,com.firstName,com.lastName,com.emailId,com.phoneNumber,com.createdBy,com.createdOn,com.lastModifiedBy,com.lastModifiedOn,com.isActive) From VssCompany  com Where com.uuid=?1")
     VssCompanydto getCompanyByUuid(String uuid);
 
     @Transactional

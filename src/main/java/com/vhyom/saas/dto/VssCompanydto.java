@@ -19,6 +19,7 @@ public class VssCompanydto {
     private String logo;
     private String firstName;
     private String lastName;
+    private String emailId;
     private String phoneNumber;
     private int createdBy;
     private Date createdOn;
