@@ -40,13 +40,13 @@ public interface VseProjectRepository extends JpaRepository<VseProject ,Integer>
     @Query("SELECT new com.vhyom.saas.dto.ProjectDto(pro.uuid,pro.client.id,pro.name,pro.description,pro.startDate,pro.endDate,pro.rate,pro.rateType,pro.projectManager.id,pro.teamLeader.id,pro.createdBy,pro.createdOn,pro.lastModifiedBy,pro.lastModifiedOn,pro.isActive) FROM VseProject pro Where pro.uuid=?1")
     ProjectDto getProjectByUuid(String uuid);
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE VseProject pro SET pro.lastModifiedBy=:lastModifiedBy,pro.lastModifiedOn=:lastModifiedOn,pro.isActive=:isActive Where pro.uuid =:uuid")
-//    void deleteProjectByUuid(@Param("lastModifiedBy")Integer lastModifiedBy,
-//                             @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
-//                             @Param("isActive")boolean isActive,
-//                             @Param("uuid")String uuid);
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VseProject pro SET pro.lastModifiedBy=:lastModifiedBy,pro.lastModifiedOn=:lastModifiedOn,pro.isActive=:isActive Where pro.uuid =:uuid")
+    void deleteProjectByUuid(@Param("lastModifiedBy")Integer lastModifiedBy,
+                             @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
+                             @Param("isActive")boolean isActive,
+                             @Param("uuid")String uuid);
 
 
 //    @Transactional

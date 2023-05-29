@@ -14,8 +14,8 @@ public interface VseProjectService {
     List<ProjectDto> getAllProject();
 
     ProjectDto getProjectByUuid(String uuid);
-//
-//    String deleteProjectByUuid(String uuid,VseProject vseProject);
+
+    String deleteProjectByUuid(String uuid,VseProject vseProject);
 //
 //    String updateProjectByUuid(String uuid,Integer projectManager,Integer teamLeader,VseProject vseProject);
 

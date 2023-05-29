@@ -34,12 +34,12 @@ public class VseProjectServiceImpl implements VseProjectService {
         }
         return project;
     }
-//
-//    @Override
-//    public String deleteProjectByUuid(String uuid, VseProject vseProject) {
-//        this.vseProjectRepository.deleteProjectByUuid(vseProject.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
-//        return "Delete VseProject Successfully";
-//    }
+
+    @Override
+    public String deleteProjectByUuid(String uuid, VseProject vseProject) {
+        this.vseProjectRepository.deleteProjectByUuid(vseProject.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
+        return "Delete VseProject Successfully";
+    }
 //
 //    @Override
 //    public String updateProjectByUuid(String uuid, Integer projectManager, Integer teamLeader, VseProject vseProject) {
