@@ -31,10 +31,10 @@ void createOvertimeRequest(@Param("user") Integer user,
 
     @Query("SELECT new com.vhyom.saas.dto.OvertimeRequestDto  (over.uuid,over.user.id,over.category.id,over.fromDate,over.toDate,over.notes,over.createdBy,over.createdOn,over.lastModifiedBy,over.lastModifiedOn,over.isActive) FROM VseOvertimeRequest over")
     List<OvertimeRequestDto> getAllOvertimeRequest();
-//
-//    @Query("SELECT new com.vhyom.saas.dto.OvertimeRequestDto  (over.uuid,over.user.id,over.category.id,over.fromDate,over.toDate,over.notes,over.createdBy,over.createdOn,over.lastModifiedBy,over.lastModifiedOn,over.isActive) FROM VseOvertimeRequest over Where over.uuid=?1")
-//    OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid);
-//
+
+    @Query("SELECT new com.vhyom.saas.dto.OvertimeRequestDto  (over.uuid,over.user.id,over.category.id,over.fromDate,over.toDate,over.notes,over.createdBy,over.createdOn,over.lastModifiedBy,over.lastModifiedOn,over.isActive) FROM VseOvertimeRequest over Where over.uuid=?1")
+    OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid);
+
 //    @Transactional
 //    @Modifying
 //    @Query(value = "UPDATE VseOvertimeRequest over SET over.lastModifiedBy=:lastModifiedBy, over.lastModifiedOn=:lastModifiedOn, over.isActive=:isActive Where over.uuid=:uuid ")

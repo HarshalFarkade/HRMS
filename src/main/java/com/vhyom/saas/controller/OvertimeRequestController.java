@@ -35,12 +35,12 @@ public class OvertimeRequestController {
         LOGGER.info("OvertimeRequestController: getAllOvertimeRequest is started");
         return overtimeRequestService.getAllOvertimeRequest();
     }
-//
-//    @GetMapping("/getOvertimeRequest/{uuid}")
-//    public OvertimeRequestDto getAllOvertimeRequestByUuid(@PathVariable String uuid){
-//        LOGGER.info("OvertimeRequestController: getOvertimeRequest is started");
-//        return overtimeRequestService.getAllOvertimeRequestByUuid(uuid);
-//    }
+
+    @GetMapping("/getOvertimeRequest/{uuid}")
+    public OvertimeRequestDto getAllOvertimeRequestByUuid(@PathVariable String uuid){
+        LOGGER.info("OvertimeRequestController: getOvertimeRequest is started");
+        return overtimeRequestService.getAllOvertimeRequestByUuid(uuid);
+    }
 //
 //    @PutMapping("/deleteOvertimeRequest/{uuid}")
 //    public String deleteOvertimeRequestByUuid(@PathVariable String uuid,@RequestBody VseOvertimeRequest vseOvertimeRequest){

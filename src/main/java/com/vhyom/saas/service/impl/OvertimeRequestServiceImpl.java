@@ -21,19 +21,19 @@ public class OvertimeRequestServiceImpl  implements OvertimeRequestService {
         return "Create Overtime Request Successfully";
     }
 
-//    @Override
-//    public List<OvertimeRequestDto> getAllOvertimeRequest() {
-//        return overtimeRequestRepository.getAllOvertimeRequest();
-//    }
-//
-//    @Override
-//    public OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid) {
-//        OvertimeRequestDto overtime =overtimeRequestRepository.getAllOvertimeRequestByUuid(uuid);
-//        if (overtime==null){
-//            System.out.println("OverTimeRequest not found");
-//        }
-//        return overtime;
-//    }
+    @Override
+    public List<OvertimeRequestDto> getAllOvertimeRequest() {
+        return overtimeRequestRepository.getAllOvertimeRequest();
+    }
+
+    @Override
+    public OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid) {
+        OvertimeRequestDto overtime =overtimeRequestRepository.getAllOvertimeRequestByUuid(uuid);
+        if (overtime==null){
+            System.out.println("OverTimeRequest not found");
+        }
+        return overtime;
+    }
 //
 //    @Override
 //    public String deleteOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest) {

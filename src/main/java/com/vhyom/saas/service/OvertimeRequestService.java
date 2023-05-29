@@ -13,8 +13,8 @@ public interface OvertimeRequestService {
 
     List<OvertimeRequestDto> getAllOvertimeRequest();
 
-//    OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid);
-//
+    OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid);
+
 //    String deleteOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest);
 //
 //    String updateOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest,Integer category);
