@@ -19,5 +19,5 @@ public interface ClientService {
 
     String deleteClientByUuid(String uuid,VseClient vseClient);
 
-//    String updateClientByUuid(String uuid,VseClient vseClient,String path,MultipartFile file)throws  IOException ;
+    String updateClientByUuid(String uuid,VseClient vseClient,String path,MultipartFile file)throws  IOException ;
 }

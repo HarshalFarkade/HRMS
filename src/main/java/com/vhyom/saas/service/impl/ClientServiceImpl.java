@@ -45,10 +45,10 @@ public class ClientServiceImpl implements ClientService {
         this.clientRepository.deleteClientByUuid(vseClient.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
         return "Client Delete Successfully";
     }
-//
-//    @Override
-//    public String updateClientByUuid(String uuid, VseClient vseClient, String path, MultipartFile file) throws IOException {
-//        this.clientRepository.updateClientByUuid(vseClient.getCompany(), vseClient.getShortCode(), vseClient.getWebsiteUrl(), path, vseClient.getFirstName(), vseClient.getLastName(), vseClient.getEmailId(), vseClient.getMobileNumber(), vseClient.getPhoneNumber(), vseClient.getLastModifiedBy(), LocalDateTime.now(),uuid);
-//        return "Client Update Successfully";
-//    }
+
+    @Override
+    public String updateClientByUuid(String uuid, VseClient vseClient, String path, MultipartFile file) throws IOException {
+        this.clientRepository.updateClientByUuid(vseClient.getCompany(), vseClient.getShortCode(), vseClient.getWebsiteUrl(), path, vseClient.getFirstName(), vseClient.getLastName(), vseClient.getEmailId(), vseClient.getMobileNumber(), vseClient.getPhoneNumber(), vseClient.getLastModifiedBy(), LocalDateTime.now(),uuid);
+        return "Client Update Successfully";
+    }
 }

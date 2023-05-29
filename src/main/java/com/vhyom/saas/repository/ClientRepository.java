@@ -48,21 +48,21 @@ public interface ClientRepository extends JpaRepository<VseClient,Integer> {
                             @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
                             @Param("isActive")boolean isActive,
                             @Param("uuid")String uuid);
-//
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE VseClient cli SET cli.company=:company, cli.shortCode=:shortCode, cli.websiteUrl=:websiteUrl, cli.logo=:logo, cli.firstName=:firstName, cli.lastName=:lastName, cli.emailId=:emailId,cli.mobileNumber=:mobileNumber,cli.phoneNumber=:phoneNumber,cli.lastModifiedBy=:lastModifiedBy,cli.lastModifiedOn=:lastModifiedOn Where cli.uuid=:uuid")
-//    void updateClientByUuid(@Param("company")String company,
-//                      @Param("shortCode")String shortCode,
-//                      @Param("websiteUrl")String websiteUrl,
-//                      @Param("logo")String logo,
-//                      @Param("firstName")String firstName,
-//                      @Param("lastName")String lastName ,
-//                      @Param("emailId")String emailId,
-//                      @Param("mobileNumber")String mobileNumber,
-//                      @Param("phoneNumber") String phoneNumber,
-//                      @Param("lastModifiedBy")Integer lastModifiedBy,
-//                      @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
-//                      @Param("uuid")String uuid);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VseClient cli SET cli.company=:company, cli.shortCode=:shortCode, cli.websiteUrl=:websiteUrl, cli.logo=:logo, cli.firstName=:firstName, cli.lastName=:lastName, cli.emailId=:emailId,cli.mobileNumber=:mobileNumber,cli.phoneNumber=:phoneNumber,cli.lastModifiedBy=:lastModifiedBy,cli.lastModifiedOn=:lastModifiedOn Where cli.uuid=:uuid")
+    void updateClientByUuid(@Param("company")String company,
+                      @Param("shortCode")String shortCode,
+                      @Param("websiteUrl")String websiteUrl,
+                      @Param("logo")String logo,
+                      @Param("firstName")String firstName,
+                      @Param("lastName")String lastName ,
+                      @Param("emailId")String emailId,
+                      @Param("mobileNumber")String mobileNumber,
+                      @Param("phoneNumber") String phoneNumber,
+                      @Param("lastModifiedBy")Integer lastModifiedBy,
+                      @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                      @Param("uuid")String uuid);
 
 }

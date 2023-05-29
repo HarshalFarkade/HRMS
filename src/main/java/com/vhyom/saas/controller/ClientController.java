@@ -78,34 +78,34 @@ public class ClientController {
         LOGGER.info(" ClientController | DeleteClient is started");
         return clientService.deleteClientByUuid(uuid, vseClient);
     }
-//
-//    @PutMapping("/updateClient/{uuid}")
-//    public String updateClientByUuid( VseClient  vseClient,@PathVariable String uuid,@RequestPart("client")String client,@RequestPart ("logo")MultipartFile file) throws IOException {
-//        LOGGER.info(" ClientController | UpdateClient is started" + file.getOriginalFilename());
-//
-//        if (file.isEmpty()) {
-//            path = null;
-//            vseClient = new ObjectMapper().readValue(client, VseClient.class);
-//            this.clientService.updateClientByUuid(uuid,vseClient, path, file);
-//            return "Client Created Successfully";
-//        } else {
-//
-//            vseClient = new ObjectMapper().readValue(client, VseClient.class);
-//            String fileName = file.getOriginalFilename();
-//            if (!fileName.equalsIgnoreCase("")) {
-//                fileName = getCurrentTime() + "_" + fileName;
-//            }
-//            String filePath = path + File.separator + fileName;
-//            File f = new File(path);
-//            if (!f.exists()) {
-//                f.mkdir();
-//            }
-//            Files.copy(file.getInputStream(), Paths.get(filePath));
-//            vseClient.setLogo(fileName);
-//            this.clientService.updateClientByUuid(uuid,vseClient, path, file);
-//            return "Client Update Successfully";
-//        }
-//    }
+
+    @PutMapping("/updateClient/{uuid}")
+    public String updateClientByUuid( VseClient  vseClient,@PathVariable String uuid,@RequestPart("client")String client,@RequestPart ("logo")MultipartFile file) throws IOException {
+        LOGGER.info(" ClientController | UpdateClient is started" + file.getOriginalFilename());
+
+        if (file.isEmpty()) {
+            path = null;
+            vseClient = new ObjectMapper().readValue(client, VseClient.class);
+            this.clientService.updateClientByUuid(uuid,vseClient, path, file);
+            return "Client Created Successfully";
+        } else {
+
+            vseClient = new ObjectMapper().readValue(client, VseClient.class);
+            String fileName = file.getOriginalFilename();
+            if (!fileName.equalsIgnoreCase("")) {
+                fileName = getCurrentTime() + "_" + fileName;
+            }
+            String filePath = path + File.separator + fileName;
+            File f = new File(path);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            Files.copy(file.getInputStream(), Paths.get(filePath));
+            vseClient.setLogo(fileName);
+            this.clientService.updateClientByUuid(uuid,vseClient, path, file);
+            return "Client Update Successfully";
+        }
+    }
 
 
     public String getCurrentTime() {
