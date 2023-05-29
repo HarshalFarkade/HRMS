@@ -65,13 +65,13 @@ public class ClientController {
         LOGGER.info(" ClientController | getClient is started");
         return clientService.getAllClient();
     }
-//
-//    @GetMapping("/getClient/{uuid}")
-//    public ClientDto getClientByUuid(@PathVariable String uuid){
-//        LOGGER.info(" ClientController | getClient is started");
-//        return clientService.getClientByUuid(uuid);
-//
-//    }
+
+    @GetMapping("/getClient/{uuid}")
+    public ClientDto getClientByUuid(@PathVariable String uuid){
+        LOGGER.info(" ClientController | getClient is started");
+        return clientService.getClientByUuid(uuid);
+
+    }
 //
 //    @PutMapping("/deleteClient/{uuid}")
 //    public String deleteClientByUuid(@PathVariable String uuid,@RequestBody VseClient vseClient){

@@ -15,8 +15,8 @@ public interface ClientService {
 
     List<ClientDto> getAllClient();
 
-//    ClientDto getClientByUuid (String uuid);
-//
+    ClientDto getClientByUuid (String uuid);
+
 //    String deleteClientByUuid(String uuid,VseClient vseClient);
 //
 //    String updateClientByUuid(String uuid,VseClient vseClient,String path,MultipartFile file)throws  IOException ;

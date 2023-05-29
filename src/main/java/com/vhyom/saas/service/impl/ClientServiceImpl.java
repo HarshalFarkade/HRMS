@@ -30,15 +30,15 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientDto> getAllClient() {
         return clientRepository.getAllClient();
     }
-//
-//    @Override
-//    public ClientDto getClientByUuid(String uuid) {
-//        ClientDto client =clientRepository.getClientByUuid(uuid);
-//        if(client==null){
-//            System.out.println("Client not found");
-//        }
-//        return client;
-//    }
+
+    @Override
+    public ClientDto getClientByUuid(String uuid) {
+        ClientDto client =clientRepository.getClientByUuid(uuid);
+        if(client==null){
+            System.out.println("Client not found");
+        }
+        return client;
+    }
 //
 //    @Override
 //    public String deleteClientByUuid(String uuid, VseClient vseClient) {
