@@ -7,10 +7,8 @@ import com.vhyom.saas.repository.IdentityDetailsRepository;
 import com.vhyom.saas.service.IdentityDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class IdentityDetailsServiceImpl implements IdentityDetailsService {
@@ -27,7 +25,6 @@ public class IdentityDetailsServiceImpl implements IdentityDetailsService {
                 vseIdentityDetail.getEsicNumber(),
                 vseIdentityDetail.getPassportNumber(),
                 vseIdentityDetail.getPassportValidThru(),
-               // vseIdentityDetail.getVisaStatus(),
                 vseIdentityDetail.getVisaValidThru(),
                 vseIdentityDetail.getDrivingLicenceNumber(),
                 vseIdentityDetail.getDrivingLicenceValidThru(),
@@ -47,7 +44,11 @@ public class IdentityDetailsServiceImpl implements IdentityDetailsService {
 
     @Override
     public IdentityDetailsDto getIdentityDetailsByuuid(String uuid) {
-        return identityDetailsRepository.getIdentityDetailsByuuid(uuid);
+        IdentityDetailsDto identityDetailsDto=identityDetailsRepository.getIdentityDetailsByuuid(uuid);
+        if (identityDetailsDto==null){
+              System.out.println("Identity Details is not Found");
+        }
+        return identityDetailsDto;
     }
 
     @Override
