@@ -34,12 +34,12 @@ public class OvertimeRequestServiceImpl  implements OvertimeRequestService {
         }
         return overtime;
     }
-//
-//    @Override
-//    public String deleteOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest) {
-//        this.overtimeRequestRepository.deleteOvertimeRequestByUuid(vseOvertimeRequest.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
-//        return "Delete OvertimeRequest Successfully";
-//    }
+
+    @Override
+    public String deleteOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest) {
+        this.overtimeRequestRepository.deleteOvertimeRequestByUuid(vseOvertimeRequest.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
+        return "Delete OvertimeRequest Successfully";
+    }
 //
 //    @Override
 //    public String updateOvertimeRequestByUuid(String uuid, VseOvertimeRequest vseOvertimeRequest, Integer category) {

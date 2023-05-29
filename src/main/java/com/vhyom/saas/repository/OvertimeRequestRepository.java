@@ -35,13 +35,13 @@ void createOvertimeRequest(@Param("user") Integer user,
     @Query("SELECT new com.vhyom.saas.dto.OvertimeRequestDto  (over.uuid,over.user.id,over.category.id,over.fromDate,over.toDate,over.notes,over.createdBy,over.createdOn,over.lastModifiedBy,over.lastModifiedOn,over.isActive) FROM VseOvertimeRequest over Where over.uuid=?1")
     OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid);
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE VseOvertimeRequest over SET over.lastModifiedBy=:lastModifiedBy, over.lastModifiedOn=:lastModifiedOn, over.isActive=:isActive Where over.uuid=:uuid ")
-//    void deleteOvertimeRequestByUuid(@Param("lastModifiedBy")Integer lastModifiedBy,
-//                                     @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
-//                                     @Param("isActive") boolean isActive,
-//                                     @Param("uuid")String uuid);
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VseOvertimeRequest over SET over.lastModifiedBy=:lastModifiedBy, over.lastModifiedOn=:lastModifiedOn, over.isActive=:isActive Where over.uuid=:uuid ")
+    void deleteOvertimeRequestByUuid(@Param("lastModifiedBy")Integer lastModifiedBy,
+                                     @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
+                                     @Param("isActive") boolean isActive,
+                                     @Param("uuid")String uuid);
 //    @Transactional
 //    @Modifying
 //    @Query(value = "UPDATE VseOvertimeRequest over SET over.category.id=:category, over.fromDate=:fromDate,over.toDate=:toDate,over.notes=:notes,over.lastModifiedBy=:lastModifiedBy,over.lastModifiedOn=:lastModifiedOn Where over.uuid=:uuid")
