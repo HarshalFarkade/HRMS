@@ -39,12 +39,12 @@ public class ClientServiceImpl implements ClientService {
         }
         return client;
     }
-//
-//    @Override
-//    public String deleteClientByUuid(String uuid, VseClient vseClient) {
-//        this.clientRepository.deleteClientByUuid(vseClient.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
-//        return "Client Delete Successfully";
-//    }
+
+    @Override
+    public String deleteClientByUuid(String uuid, VseClient vseClient) {
+        this.clientRepository.deleteClientByUuid(vseClient.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
+        return "Client Delete Successfully";
+    }
 //
 //    @Override
 //    public String updateClientByUuid(String uuid, VseClient vseClient, String path, MultipartFile file) throws IOException {

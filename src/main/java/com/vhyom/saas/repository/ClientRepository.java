@@ -40,14 +40,14 @@ public interface ClientRepository extends JpaRepository<VseClient,Integer> {
 
     @Query("select new com.vhyom.saas.dto.ClientDto(cli.uuid,cli.clientId,cli.company,cli.shortCode,cli.websiteUrl,cli.logo,cli.gstin,cli.pan,cli.firstName,cli.lastName,cli.emailId,cli.mobileNumber,cli.phoneNumber,cli.createdBy,cli.createdOn,cli.lastModifiedBy,cli.lastModifiedOn,cli.isActive) From VseClient cli Where cli.uuid=?1")
     ClientDto getClientByUuid(String uuid);
-//
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE VseClient cli SET cli.lastModifiedBy=:lastModifiedBy, cli.lastModifiedOn=:lastModifiedOn, cli.isActive=:isActive Where cli.uuid=:uuid")
-//    void deleteClientByUuid(@Param("lastModifiedBy")Integer lastModifiedBy,
-//                            @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
-//                            @Param("isActive")boolean isActive,
-//                            @Param("uuid")String uuid);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VseClient cli SET cli.lastModifiedBy=:lastModifiedBy, cli.lastModifiedOn=:lastModifiedOn, cli.isActive=:isActive Where cli.uuid=:uuid")
+    void deleteClientByUuid(@Param("lastModifiedBy")Integer lastModifiedBy,
+                            @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
+                            @Param("isActive")boolean isActive,
+                            @Param("uuid")String uuid);
 //
 //    @Transactional
 //    @Modifying

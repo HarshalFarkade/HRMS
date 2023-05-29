@@ -72,12 +72,12 @@ public class ClientController {
         return clientService.getClientByUuid(uuid);
 
     }
-//
-//    @PutMapping("/deleteClient/{uuid}")
-//    public String deleteClientByUuid(@PathVariable String uuid,@RequestBody VseClient vseClient){
-//        LOGGER.info(" ClientController | DeleteClient is started");
-//        return clientService.deleteClientByUuid(uuid, vseClient);
-//    }
+
+    @PutMapping("/deleteClient/{uuid}")
+    public String deleteClientByUuid(@PathVariable String uuid,@RequestBody VseClient vseClient){
+        LOGGER.info(" ClientController | DeleteClient is started");
+        return clientService.deleteClientByUuid(uuid, vseClient);
+    }
 //
 //    @PutMapping("/updateClient/{uuid}")
 //    public String updateClientByUuid( VseClient  vseClient,@PathVariable String uuid,@RequestPart("client")String client,@RequestPart ("logo")MultipartFile file) throws IOException {
