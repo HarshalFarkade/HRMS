@@ -27,8 +27,6 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
 
     boolean existsByPlanName(@Param("planName") String planName);
 
-    //@Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscription s WHERE s.planType = :planType")
-    //boolean existsByPlanType(@Param("planType") String planType);
 
    @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub")
    List<VssSubscriptiondto>getAllSubscription();

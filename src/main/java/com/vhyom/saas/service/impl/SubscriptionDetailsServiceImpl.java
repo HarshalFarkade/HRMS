@@ -30,7 +30,6 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
         return subscriptionDetailsRepository.getAllSubscriptionDetails();
     }
 
-
     @Override
     public SubscriptionDetailsDto getSubscriptionDetailsByUuid(String uuid) {
         return subscriptionDetailsRepository.getSubscriptionDetailsByUuid(uuid);
@@ -47,6 +46,5 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
         this.subscriptionDetailsRepository.updateSubscriptionDetails(company,subscription,vssSubscriptionDetails.getStartDate(),vssSubscriptionDetails.getEndDate(), vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getLastModifiedBy(),LocalDateTime.now(),uuid);
         return "SubscriptionDetails Updated Successfully";
     }
-
 
 }

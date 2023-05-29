@@ -48,12 +48,19 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
             "JOIN VssSubscription s ON sd.subscriptionId = s.id")
     List<SubscriptionDetailsDto> getAllSubscriptionDetails();
 
-    @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto (subD.uuid , subD.companyId.name, subD.companyId.websiteUrl, subD.companyId.logo, subD.companyId.firstName, subD.companyId.lastName, subD.companyId.emailId, subD.companyId.phoneNumber, "
-            + "subD.companyId.createdBy, subD.companyId.createdOn, subD.companyId.lastModifiedBy, subD.companyId.lastModifiedOn, subD.companyId.isActive, "
-            + "subD.subscriptionId.planName, subD.subscriptionId.description, subD.subscriptionId.totalUsers,"+
-           "(SELECT SUM(sub.totalUsers) FROM VssSubscription sub WHERE sub.isActive = true) AS totalActiveUsers, "
-            + "subD.startDate, subD.endDate, subD.status) FROM VssSubscriptionDetails subD WHERE subD.uuid=?1")
+    @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto(sd.uuid AS uuid, c.name AS name, c.websiteUrl AS websiteUrl, c.logo AS logo, " +
+            "c.firstName AS firstName, c.lastName AS lastName, c.emailId AS emailId, c.phoneNumber AS phoneNumber, " +
+            "c.createdBy AS createdBy, c.createdOn AS createdOn, c.lastModifiedBy AS lastModifiedBy, " +
+            "c.lastModifiedOn AS lastModifiedOn, c.isActive AS isActive, s.planName AS planName, " +
+            "s.description AS description, (SELECT CAST(SUM(su.totalUsers) AS INTEGER) FROM VssSubscription su) AS totalUsers, " +
+            "(SELECT CAST(SUM(sa.totalUsers) AS INTEGER) FROM VssSubscription sa WHERE sa.isActive = true) AS totalActiveUsers, " +
+            "sd.startDate AS startDate, sd.endDate AS endDate, sd.status AS status) " +
+            "FROM VssCompany c " +
+            "JOIN VssSubscriptionDetails sd ON c.id = sd.companyId " +
+            "JOIN VssSubscription s ON sd.subscriptionId = s.id " +
+            "WHERE sd.uuid = ?1")
     SubscriptionDetailsDto getSubscriptionDetailsByUuid(String uuid);
+
 
 
     @Transactional
