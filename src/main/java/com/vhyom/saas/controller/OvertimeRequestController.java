@@ -47,12 +47,11 @@ public class OvertimeRequestController {
         LOGGER.info("OvertimeRequestController: deleteOvertimeRequest is started");
         return overtimeRequestService.deleteOvertimeRequestByUuid(uuid, vseOvertimeRequest);
     }
-//
-//
-//    @PutMapping("/updateOvertimeRequest/{uuid}")
-//    public String updateOvertimeRequestByUuid(@PathVariable String uuid,@RequestBody VseOvertimeRequest vseOvertimeRequest,@RequestParam Integer category){
-//        LOGGER.info("OvertimeRequestController: updateOvertimeRequest is started");
-//        return overtimeRequestService.updateOvertimeRequestByUuid(uuid, vseOvertimeRequest, category);
-//    }
+
+    @PutMapping("/updateOvertimeRequest/{uuid}")
+    public String updateOvertimeRequestByUuid(@PathVariable String uuid,@RequestBody VseOvertimeRequest vseOvertimeRequest,@RequestParam Integer category){
+        LOGGER.info("OvertimeRequestController: updateOvertimeRequest is started");
+        return overtimeRequestService.updateOvertimeRequestByUuid(uuid, vseOvertimeRequest, category);
+    }
 
 }

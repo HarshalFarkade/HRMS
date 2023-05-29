@@ -42,14 +42,15 @@ void createOvertimeRequest(@Param("user") Integer user,
                                      @Param("lastModifiedOn")LocalDateTime lastModifiedOn,
                                      @Param("isActive") boolean isActive,
                                      @Param("uuid")String uuid);
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE VseOvertimeRequest over SET over.category.id=:category, over.fromDate=:fromDate,over.toDate=:toDate,over.notes=:notes,over.lastModifiedBy=:lastModifiedBy,over.lastModifiedOn=:lastModifiedOn Where over.uuid=:uuid")
-//    void updateOvertimeRequestByUuid(@Param("category") Integer category,
-//                                     @Param("fromDate") LocalDate fromDate,
-//                                     @Param("toDate") LocalDate toDate,
-//                                     @Param("notes")String notes,
-//                                     @Param("lastModifiedBy") Integer lastModifiedBy,
-//                                     @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
-//                                     @Param("uuid")String uuid);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VseOvertimeRequest over SET over.category.id=:category, over.fromDate=:fromDate,over.toDate=:toDate,over.notes=:notes,over.lastModifiedBy=:lastModifiedBy,over.lastModifiedOn=:lastModifiedOn Where over.uuid=:uuid")
+    void updateOvertimeRequestByUuid(@Param("category") Integer category,
+                                     @Param("fromDate") LocalDate fromDate,
+                                     @Param("toDate") LocalDate toDate,
+                                     @Param("notes")String notes,
+                                     @Param("lastModifiedBy") Integer lastModifiedBy,
+                                     @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                                     @Param("uuid")String uuid);
 }

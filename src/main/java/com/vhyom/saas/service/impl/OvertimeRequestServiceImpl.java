@@ -40,10 +40,10 @@ public class OvertimeRequestServiceImpl  implements OvertimeRequestService {
         this.overtimeRequestRepository.deleteOvertimeRequestByUuid(vseOvertimeRequest.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
         return "Delete OvertimeRequest Successfully";
     }
-//
-//    @Override
-//    public String updateOvertimeRequestByUuid(String uuid, VseOvertimeRequest vseOvertimeRequest, Integer category) {
-//        this.overtimeRequestRepository.updateOvertimeRequestByUuid(category,vseOvertimeRequest.getFromDate(),vseOvertimeRequest.getToDate(),vseOvertimeRequest.getNotes(),vseOvertimeRequest.getLastModifiedBy(),LocalDateTime.now(),uuid);
-//        return "Update OvertimeRequest Successfully";
-//    }
+
+    @Override
+    public String updateOvertimeRequestByUuid(String uuid, VseOvertimeRequest vseOvertimeRequest, Integer category) {
+        this.overtimeRequestRepository.updateOvertimeRequestByUuid(category,vseOvertimeRequest.getFromDate(),vseOvertimeRequest.getToDate(),vseOvertimeRequest.getNotes(),vseOvertimeRequest.getLastModifiedBy(),LocalDateTime.now(),uuid);
+        return "Update OvertimeRequest Successfully";
+    }
 }

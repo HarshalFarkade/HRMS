@@ -17,5 +17,5 @@ public interface OvertimeRequestService {
 
     String deleteOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest);
 
-//    String updateOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest,Integer category);
+    String updateOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest,Integer category);
 }
