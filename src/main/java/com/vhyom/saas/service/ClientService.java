@@ -13,8 +13,8 @@ public interface ClientService {
 
     String createClient(VseClient vseClient, MultipartFile file,String path)throws IOException;
 
-//    List<ClientDto> getAllClient();
-//
+    List<ClientDto> getAllClient();
+
 //    ClientDto getClientByUuid (String uuid);
 //
 //    String deleteClientByUuid(String uuid,VseClient vseClient);

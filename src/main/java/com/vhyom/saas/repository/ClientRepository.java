@@ -35,9 +35,9 @@ public interface ClientRepository extends JpaRepository<VseClient,Integer> {
                       @Param("isActive")boolean isActive);
 
 
-//    @Query("select new com.vhyom.saas.dto.ClientDto(cli.uuid,cli.clientId,cli.company,cli.shortCode,cli.websiteUrl,cli.logo,cli.gstin,cli.pan,cli.firstName,cli.lastName,cli.emailId,cli.mobileNumber,cli.phoneNumber,cli.createdBy,cli.createdOn,cli.lastModifiedBy,cli.lastModifiedOn,cli.isActive) From VseClient cli")
-//    List<ClientDto> getAllClient();
-//
+    @Query("select new com.vhyom.saas.dto.ClientDto(cli.uuid,cli.clientId,cli.company,cli.shortCode,cli.websiteUrl,cli.logo,cli.gstin,cli.pan,cli.firstName,cli.lastName,cli.emailId,cli.mobileNumber,cli.phoneNumber,cli.createdBy,cli.createdOn,cli.lastModifiedBy,cli.lastModifiedOn,cli.isActive) From VseClient cli")
+    List<ClientDto> getAllClient();
+
 //    @Query("select new com.vhyom.saas.dto.ClientDto(cli.uuid,cli.clientId,cli.company,cli.shortCode,cli.websiteUrl,cli.logo,cli.gstin,cli.pan,cli.firstName,cli.lastName,cli.emailId,cli.mobileNumber,cli.phoneNumber,cli.createdBy,cli.createdOn,cli.lastModifiedBy,cli.lastModifiedOn,cli.isActive) From VseClient cli Where cli.uuid=?1")
 //    ClientDto getClientByUuid(String uuid);
 //

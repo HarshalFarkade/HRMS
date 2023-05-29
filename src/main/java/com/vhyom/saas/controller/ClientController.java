@@ -59,11 +59,12 @@ public class ClientController {
             return "Client Created Successfully";
         }
     }
-//    @GetMapping("/AllClient")
-//    public List<ClientDto> getAllClient(){
-//        LOGGER.info(" ClientController | getClient is started");
-//        return clientService.getAllClient();
-//    }
+
+    @GetMapping("/AllClient")
+    public List<ClientDto> getAllClient(){
+        LOGGER.info(" ClientController | getClient is started");
+        return clientService.getAllClient();
+    }
 //
 //    @GetMapping("/getClient/{uuid}")
 //    public ClientDto getClientByUuid(@PathVariable String uuid){

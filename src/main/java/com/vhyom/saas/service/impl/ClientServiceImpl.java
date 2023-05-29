@@ -26,10 +26,10 @@ public class ClientServiceImpl implements ClientService {
         return "Client Created Successfully";
     }
 
-//    @Override
-//    public List<ClientDto> getAllClient() {
-//        return clientRepository.getAllClient();
-//    }
+    @Override
+    public List<ClientDto> getAllClient() {
+        return clientRepository.getAllClient();
+    }
 //
 //    @Override
 //    public ClientDto getClientByUuid(String uuid) {
