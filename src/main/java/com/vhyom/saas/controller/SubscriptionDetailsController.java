@@ -6,12 +6,9 @@ import com.vhyom.saas.entity.VssSubscription;
 import com.vhyom.saas.entity.VssSubscriptionDetails;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.service.SubscriptionDetailsService;
-import com.vhyom.saas.service.impl.SubscriptionDetailsServiceImpl;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Objects;
 
 @RequestMapping("api/v1/subscriptionDetails")
 @CrossOrigin(originPatterns = {"http://localhost:5173"}, allowCredentials = "true")

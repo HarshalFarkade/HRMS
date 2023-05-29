@@ -24,15 +24,16 @@ public class SubscriptionDetailsDto {
     private String lastName;
     private String emailId;
     private String phoneNumber;
-    private int createdBy;
-    private LocalDateTime createdOn;
+    private Integer createdBy;
+    private Date createdOn;
     private Integer lastModifiedBy;
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     private boolean isActive;
     private String planName;
     private String description;
     private Integer totalUsers;
+    private Integer totalActiveUsers ;
     private Date startDate;
     private Date endDate;
-    private int status;
+    private Integer status;
 }
