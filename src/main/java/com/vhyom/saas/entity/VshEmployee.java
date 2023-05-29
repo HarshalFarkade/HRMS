@@ -1,7 +1,6 @@
 package com.vhyom.saas.entity;
 
 import java.io.Serializable;
-
 import com.vhyom.saas.utils.UniqueName;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -16,7 +15,6 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import java.time.LocalDateTime;
 import java.util.Date;
-
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -113,5 +111,6 @@ public class VshEmployee implements Serializable {
     @Basic(optional = false)
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
+
 
 }
