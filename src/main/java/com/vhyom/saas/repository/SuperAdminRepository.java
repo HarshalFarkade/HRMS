@@ -70,7 +70,6 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
             "(SELECT SUM( s.totalUsers) FROM VssSubscription s), " +
             "(SELECT SUM( s.totalUsers) FROM VssSubscription s  WHERE s.isActive = true) " +
             ")FROM VssCompany c " )
-
     List<DashboardDto> getDashboardData();
 
 
