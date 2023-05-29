@@ -11,8 +11,8 @@ public interface OvertimeRequestService {
 
     String createOvertimeRequest(VseOvertimeRequest vseOvertimeRequest, Integer employee, Integer category);
 
-//    List<OvertimeRequestDto> getAllOvertimeRequest();
-//
+    List<OvertimeRequestDto> getAllOvertimeRequest();
+
 //    OvertimeRequestDto getAllOvertimeRequestByUuid(String uuid);
 //
 //    String deleteOvertimeRequestByUuid(String uuid ,VseOvertimeRequest vseOvertimeRequest);

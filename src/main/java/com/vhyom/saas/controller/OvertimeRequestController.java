@@ -30,11 +30,11 @@ public class OvertimeRequestController {
         return overtimeRequestService.createOvertimeRequest(vseOvertimeRequest, employee, category);
     }
 
-//    @GetMapping("/getAllOvertimeRequest")
-//    public List<OvertimeRequestDto> getAllOvertimeRequest(){
-//        LOGGER.info("OvertimeRequestController: getAllOvertimeRequest is started");
-//        return overtimeRequestService.getAllOvertimeRequest();
-//    }
+    @GetMapping("/getAllOvertimeRequest")
+    public List<OvertimeRequestDto> getAllOvertimeRequest(){
+        LOGGER.info("OvertimeRequestController: getAllOvertimeRequest is started");
+        return overtimeRequestService.getAllOvertimeRequest();
+    }
 //
 //    @GetMapping("/getOvertimeRequest/{uuid}")
 //    public OvertimeRequestDto getAllOvertimeRequestByUuid(@PathVariable String uuid){
