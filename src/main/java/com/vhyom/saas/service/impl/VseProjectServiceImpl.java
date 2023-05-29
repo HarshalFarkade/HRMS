@@ -40,10 +40,10 @@ public class VseProjectServiceImpl implements VseProjectService {
         this.vseProjectRepository.deleteProjectByUuid(vseProject.getLastModifiedBy(), LocalDateTime.now(),false,uuid);
         return "Delete VseProject Successfully";
     }
-//
-//    @Override
-//    public String updateProjectByUuid(String uuid, Integer projectManager, Integer teamLeader, VseProject vseProject) {
-//        this.vseProjectRepository.updateProjectByUuid(projectManager,teamLeader,vseProject.getStartDate(),vseProject.getEndDate(), vseProject.getLastModifiedBy(), LocalDateTime.now(),uuid);
-//        return "Update VseProject Successfully";
-//    }
+
+    @Override
+    public String updateProjectByUuid(String uuid, Integer projectManager, Integer teamLeader, VseProject vseProject) {
+        this.vseProjectRepository.updateProjectByUuid(projectManager,teamLeader,vseProject.getStartDate(),vseProject.getEndDate(), vseProject.getLastModifiedBy(), LocalDateTime.now(),uuid);
+        return "Update VseProject Successfully";
+    }
 }

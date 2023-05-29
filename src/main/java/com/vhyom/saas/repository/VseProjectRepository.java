@@ -49,16 +49,16 @@ public interface VseProjectRepository extends JpaRepository<VseProject ,Integer>
                              @Param("uuid")String uuid);
 
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE VseProject pro SET pro.projectManager.id=:projectManager,pro.teamLeader.id=:teamLeader,pro.startDate=:startDate,pro.endDate=:endDate,pro.lastModifiedBy=:lastModifiedBy,pro.lastModifiedOn=:lastModifiedOn Where pro.uuid=:uuid ")
-//    void updateProjectByUuid(@Param("projectManager")Integer projectManager,
-//                             @Param("teamLeader")Integer teamLeader,
-//                             @Param("startDate") LocalDate startDate,
-//                             @Param("endDate")LocalDate endDate,
-//                             @Param("lastModifiedBy")Integer lastModifiedBy,
-//                             @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
-//                             @Param("uuid")String uuid);
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE VseProject pro SET pro.projectManager.id=:projectManager,pro.teamLeader.id=:teamLeader,pro.startDate=:startDate,pro.endDate=:endDate,pro.lastModifiedBy=:lastModifiedBy,pro.lastModifiedOn=:lastModifiedOn Where pro.uuid=:uuid ")
+    void updateProjectByUuid(@Param("projectManager")Integer projectManager,
+                             @Param("teamLeader")Integer teamLeader,
+                             @Param("startDate") LocalDate startDate,
+                             @Param("endDate")LocalDate endDate,
+                             @Param("lastModifiedBy")Integer lastModifiedBy,
+                             @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                             @Param("uuid")String uuid);
 
 
 

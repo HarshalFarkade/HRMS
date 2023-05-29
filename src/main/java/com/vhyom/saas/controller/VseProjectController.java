@@ -43,11 +43,11 @@ public class VseProjectController {
         LOGGER.info("VseProjectController :Delete  Project is Started");
         return vseProjectService.deleteProjectByUuid(uuid, vseProject);
     }
-//
-//    @PutMapping("/updateProject/{uuid}") /*This API is For Updating Project */
-//    public String updateProjectByUuid(@PathVariable String uuid,@RequestBody VseProject vseProject, @RequestParam Integer projectManager,@RequestParam Integer teamLeader){
-//        LOGGER.info("VseProjectController :Update  Project is Started");
-//        return vseProjectService.updateProjectByUuid(uuid, projectManager, teamLeader, vseProject);
-//    }
+
+    @PutMapping("/updateProject/{uuid}") /*This API is For Updating Project */
+    public String updateProjectByUuid(@PathVariable String uuid,@RequestBody VseProject vseProject, @RequestParam Integer projectManager,@RequestParam Integer teamLeader){
+        LOGGER.info("VseProjectController :Update  Project is Started");
+        return vseProjectService.updateProjectByUuid(uuid, projectManager, teamLeader, vseProject);
+    }
 
 }
