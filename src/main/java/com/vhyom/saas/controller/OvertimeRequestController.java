@@ -2,8 +2,6 @@ package com.vhyom.saas.controller;
 
 import com.vhyom.saas.dto.OvertimeRequestDto;
 import com.vhyom.saas.entity.VseOvertimeRequest;
-import com.vhyom.saas.entity.VshEmployee;
-import com.vhyom.saas.entity.VshOvertimeCategory;
 import com.vhyom.saas.service.OvertimeRequestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
