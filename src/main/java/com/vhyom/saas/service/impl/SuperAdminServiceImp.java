@@ -22,7 +22,6 @@ public class SuperAdminServiceImp implements SuperAdminService {
     private SuperAdminRepository superAdminRepository;
     @Override
     public String createSuperAdmin( VssSuperAdmin vssSuperAdmin,String password, MultipartFile file, String path) throws IOException {
-
         this.superAdminRepository.createSuperAdmin(vssSuperAdmin.getEmailId(),password, path, vssSuperAdmin.getFirstName(), vssSuperAdmin.getLastName(), vssSuperAdmin.getMobileNumber(), vssSuperAdmin.getPhoneNumber(), vssSuperAdmin.getCreatedBy());
        return "SuperAdmin Created";
     }
