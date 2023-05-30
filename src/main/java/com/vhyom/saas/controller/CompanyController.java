@@ -6,12 +6,15 @@ import com.vhyom.saas.dto.VssCompanydto;
 import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.service.CompanyService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
@@ -35,19 +38,47 @@ public class CompanyController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
+//    @PostMapping("/create/company")
+//    public String creatCompany( @Valid VssCompany vssCompany, @RequestPart("name")String name,  @RequestPart ("company") String company, @RequestPart("logo") MultipartFile file) throws IOException {
+//        LOGGER.info("CompanyController | createCompany is started" + file.getOriginalFilename());
+//        //Convert the String to Json using ObjectMapper
+//
+//        if (file.isEmpty()){
+//            path=null;
+//            vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
+//            this.companyService.createCompany(name, vssCompany, file, path);
+//            return "Company Created Successfully";
+//        }else {
+//
+//            vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+//            String fileName = file.getOriginalFilename();
+//            if (!fileName.equalsIgnoreCase("")) {
+//                fileName = getCurrentTime() + "_" + fileName;
+//            }
+//            String filePath = path + File.separator + fileName;
+//            File f = new File(path);
+//            if (!f.exists()) {
+//                f.mkdir();
+//            }
+//            Files.copy(file.getInputStream(), Paths.get(filePath));
+//            vssCompany.setLogo(fileName);
+//            this.companyService.createCompany(name, vssCompany, file, path);
+//            return "Company Created Successfully";
+//
+//        }
+//    }
+
     @PostMapping("/create/company")
-    public String creatCompany(@Valid VssCompany vssCompany,@RequestPart("name")String name, @RequestPart ("company") String company, @RequestPart("logo") MultipartFile file) throws IOException {
+    public String createCompany(@Validated VssCompany vssCompany , @RequestParam("name") String name, @Validated @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}") @RequestPart("company") String company, @RequestPart("logo") MultipartFile file
+    ) throws IOException {
         LOGGER.info("CompanyController | createCompany is started" + file.getOriginalFilename());
-        //Convert the String to Json using ObjectMapper
-
-        if (file.isEmpty()){
-            path=null;
-            vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
-            this.companyService.createCompany(name,vssCompany, file, path);
+        // Convert the String to Json using ObjectMapper
+      vssCompany = new ObjectMapper().readValue( company, VssCompany.class);
+        if (file.isEmpty()) {
+            String path = null; // Initialize the path variable
+            this.companyService.createCompany(name, vssCompany, file, path);
             return "Company Created Successfully";
-        }else {
-
-            vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
+        } else {
             String fileName = file.getOriginalFilename();
             if (!fileName.equalsIgnoreCase("")) {
                 fileName = getCurrentTime() + "_" + fileName;
@@ -55,15 +86,15 @@ public class CompanyController {
             String filePath = path + File.separator + fileName;
             File f = new File(path);
             if (!f.exists()) {
-                f.mkdir();
+                f.mkdirs(); // Create parent directories if they don't exist
             }
             Files.copy(file.getInputStream(), Paths.get(filePath));
             vssCompany.setLogo(fileName);
             this.companyService.createCompany(name, vssCompany, file, path);
             return "Company Created Successfully";
-
         }
     }
+
     @GetMapping("/allCompany") /* This API will give all company*/
     public List<VssCompanydto>  getAllCompany() {
         LOGGER.info(" CompanyController | allCompany is started");
@@ -83,7 +114,7 @@ public class CompanyController {
     }
 
     @PutMapping("/update/{uuid}")/* This API will Update the Company*/
-    public String updateCompanyByUuid(@Valid VssCompany vssCompany,@RequestPart("name")String name,@PathVariable String uuid,@RequestPart("company") String company,@RequestPart("logo") MultipartFile file) throws IOException {
+    public String updateCompanyByUuid(@Valid VssCompany vssCompany,@RequestPart("name")String name,@PathVariable String uuid, @RequestPart("company") String company,@RequestPart("logo") MultipartFile file) throws IOException {
         LOGGER.info(" CompanyController | allCompany is started"+ file.getOriginalFilename());
 
         if (file.isEmpty()){
