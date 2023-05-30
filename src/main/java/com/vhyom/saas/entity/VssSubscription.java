@@ -2,7 +2,6 @@ package com.vhyom.saas.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import com.vhyom.saas.utils.UniqueName;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -19,12 +18,11 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.Date;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.aspectj.bridge.IMessage;
 
 /**
  *
@@ -66,8 +64,8 @@ public class VssSubscription implements Serializable {
     @Basic(optional = false)
     @Column(name = "plan_name", nullable = false, length = 50)
     @UniqueName(message = " planName must be different")
+    @NotNull (message ="Please provide Plan name ")
     private String planName;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "plan_price", precision = 18, scale = 2)
     private BigDecimal planPrice;
     @Column(name = "plan_type")
@@ -83,12 +81,12 @@ public class VssSubscription implements Serializable {
     @Basic(optional = false)
     @Column(name = "created_on", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdOn;
+    private Date createdOn;
     @Column(name = "last_modified_by")
     private Integer lastModifiedBy;
     @Column(name = "last_modified_on")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     @Basic(optional = false)
     @Column(name = "is_active", nullable = false)
     private boolean isActive;

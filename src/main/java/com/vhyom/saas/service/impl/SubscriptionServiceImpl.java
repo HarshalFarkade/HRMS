@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,16 +39,16 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public String deleteSubscription(String uuid,VssSubscription vssSubscription) {
-            this.subscriptionRepository.deleteSubscription(false, LocalDateTime.now(),vssSubscription.getLastModifiedBy(),uuid);
+            this.subscriptionRepository.deleteSubscription(false, new Date(),vssSubscription.getLastModifiedBy(),uuid);
             return "Subscription Delete Successfully";
 
     }
 
-    @Override
-    public String updateSubscriptionByUuid(String uuid, VssSubscription vssSubscription) {
-        this.subscriptionRepository.updateSubscriptionByUuid(vssSubscription.getPlanName(),vssSubscription.getPlanPrice(), vssSubscription.getPlanType(), vssSubscription.getTotalUsers(), vssSubscription.getDescription(), vssSubscription.getLastModifiedBy(), LocalDateTime.now(),uuid);
-        return " subscription Update Successfully";
-    }
+//    @Override
+//    public String updateSubscriptionByUuid(String uuid, VssSubscription vssSubscription) {
+//        this.subscriptionRepository.updateSubscriptionByUuid(vssSubscription.getPlanName(),vssSubscription.getPlanPrice(), vssSubscription.getPlanType(), vssSubscription.getTotalUsers(), vssSubscription.getDescription(), vssSubscription.getLastModifiedBy(), LocalDateTime.now(),uuid);
+//        return " subscription Update Successfully";
+//    }
 
 
 }

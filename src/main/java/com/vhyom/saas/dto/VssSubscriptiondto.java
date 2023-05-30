@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,8 +20,8 @@ public class VssSubscriptiondto {
     private Integer totalUsers;
     private String description;
     private int createdBy;
-    private LocalDateTime createdOn;
+    private Date createdOn;
     private Integer lastModifiedBy;
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     private boolean isActive;
 }

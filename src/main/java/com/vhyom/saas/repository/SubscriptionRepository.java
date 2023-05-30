@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -38,7 +39,7 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
     @Modifying
     @Query(value ="UPDATE VssSubscription sub SET sub.isActive=:isActive,sub.lastModifiedOn=:lastModifiedOn,sub.lastModifiedBy=:lastModifiedBy Where sub.uuid=:uuid")
     void deleteSubscription(@Param("isActive") boolean isActive,
-                            @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                            @Param("lastModifiedOn") Date lastModifiedOn,
                             @Param("lastModifiedBy") Integer lastModifiedBy,
                             @Param("uuid")String uuid);
     @Transactional
@@ -50,7 +51,7 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
                                   @Param("totalUsers") Integer totalUsers,
                                   @Param("description") String description,
                                   @Param("lastModifiedBy") Integer lastModifiedBy,
-                                  @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                                  @Param("lastModifiedOn") Date lastModifiedOn,
                                   @Param("uuid")String uuid);
 
     VssSubscription findByUuid(String uuid);
