@@ -13,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VssSubscriptiondto {
+    private Integer id;
     private String uuid;
     private String planName;
     private BigDecimal planPrice;

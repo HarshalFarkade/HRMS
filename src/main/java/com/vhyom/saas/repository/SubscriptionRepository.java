@@ -29,10 +29,10 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
     boolean existsByPlanName(@Param("planName") String planName);
 
 
-   @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub")
+   @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.id,sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub")
    List<VssSubscriptiondto>getAllSubscription();
 
-    @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub WHERE sub.uuid=?1")
+    @Query("SELECT new com.vhyom.saas.dto.VssSubscriptiondto (sub.id,sub.uuid,sub.planName,sub.planPrice,sub.planType,sub.totalUsers,sub.description,sub.createdBy,sub.createdOn,sub.lastModifiedBy,sub.lastModifiedOn,sub.isActive) FROM VssSubscription sub WHERE sub.uuid=?1")
     VssSubscriptiondto getSubscriptionByUuid(String uuid);
 
     @Transactional
