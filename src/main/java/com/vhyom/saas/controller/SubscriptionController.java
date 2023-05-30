@@ -73,9 +73,9 @@ public class SubscriptionController {
         return subscriptionServiceimpl.deleteSubscription(uuid,vssSubscription);
     }
 
-//    @PutMapping("subscription/updateSubscription/{uuid}")/*This APi is for Update Subscription by uuid */
-//    public String updateSubscriptionByUuid(@PathVariable String uuid ,  @Valid @RequestBody VssSubscription vssSubscription){
-//        LOGGER.info("SubScriptionController: UpdateSubscription is started");
-//        return subscriptionServiceimpl.updateSubscriptionByUuid(uuid,vssSubscription);
-//    }
+    @PutMapping("/subscription/updateSubscription/{uuid}")/*This APi is for Update Subscription by uuid */
+    public String updateSubscriptionByUuid(@PathVariable String uuid ,  @Valid @RequestBody VssSubscription vssSubscription){
+        LOGGER.info("SubScriptionController: UpdateSubscription is started");
+        return subscriptionServiceimpl.updateSubscriptionByUuid(uuid,vssSubscription);
+    }
 }
