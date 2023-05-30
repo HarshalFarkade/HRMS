@@ -22,8 +22,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private SubscriptionDetailsRepository subscriptionDetailRepository;
 
     @Override
-    public String createSubsciption(VssSubscription vssSubscription) {
-        this.subscriptionRepository.createSubsciption(vssSubscription.getPlanName(), vssSubscription.getPlanPrice(), vssSubscription.getPlanType(), vssSubscription.getTotalUsers(), vssSubscription.getDescription(), vssSubscription.getCreatedBy());
+    public String createSubscription(VssSubscription vssSubscription) {
+        this.subscriptionRepository.createSubscription(vssSubscription.getPlanName(), vssSubscription.getPlanPrice(), vssSubscription.getPlanType(), vssSubscription.getTotalUsers(), vssSubscription.getDescription(), vssSubscription.getCreatedBy());
         return "Created Successfully";
     }
 

@@ -19,12 +19,12 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
     @Transactional
     @Modifying
     @Query("INSERT INTO VssSubscription (planName,planPrice,planType,totalUsers,description,createdBy)VALUES(:planName,:planPrice,:planType,:totalUsers,:description,:createdBy)")
-    void createSubsciption(@Param("planName")String planName,
-                              @Param("planPrice") BigDecimal planPrice,
-                              @Param("planType")Integer planType,
-                              @Param("totalUsers")Integer totalUsers,
-                              @Param("description")String description,
-                              @Param("createdBy")Integer createdBy);
+    void createSubscription(@Param("planName")String planName,
+                           @Param("planPrice") BigDecimal planPrice,
+                           @Param("planType")Integer planType,
+                           @Param("totalUsers")Integer totalUsers,
+                           @Param("description")String description,
+                           @Param("createdBy")Integer createdBy);
 
     boolean existsByPlanName(@Param("planName") String planName);
 

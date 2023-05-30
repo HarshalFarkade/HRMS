@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SubscriptionService {
 
-    String createSubsciption(VssSubscription vssSubscription);
+    String createSubscription(VssSubscription vssSubscription);
 
     List<VssSubscriptiondto>getAllSubscription();
 

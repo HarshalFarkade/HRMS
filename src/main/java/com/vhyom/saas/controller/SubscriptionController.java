@@ -33,7 +33,7 @@ public class SubscriptionController {
     @PostMapping("/create")/* this Api is For  creating new Subscription*/
     public String createSubscription (@Valid @RequestBody VssSubscription vssSubscription){
         LOGGER.info("SubscriptionController: createSubscription is started");
-        return subscriptionServiceimpl.createSubsciption(vssSubscription);
+        return subscriptionServiceimpl.createSubscription(vssSubscription);
     }
 
     @GetMapping("subscription/AllSubscription")/* THis Api is for getting allSubscription Details*/
