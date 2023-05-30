@@ -38,36 +38,6 @@ public class CompanyController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-//    @PostMapping("/create/company")
-//    public String creatCompany( @Valid VssCompany vssCompany, @RequestPart("name")String name,  @RequestPart ("company") String company, @RequestPart("logo") MultipartFile file) throws IOException {
-//        LOGGER.info("CompanyController | createCompany is started" + file.getOriginalFilename());
-//        //Convert the String to Json using ObjectMapper
-//
-//        if (file.isEmpty()){
-//            path=null;
-//            vssCompany= new ObjectMapper().readValue(company, VssCompany.class);
-//            this.companyService.createCompany(name, vssCompany, file, path);
-//            return "Company Created Successfully";
-//        }else {
-//
-//            vssCompany = new ObjectMapper().readValue(company, VssCompany.class);
-//            String fileName = file.getOriginalFilename();
-//            if (!fileName.equalsIgnoreCase("")) {
-//                fileName = getCurrentTime() + "_" + fileName;
-//            }
-//            String filePath = path + File.separator + fileName;
-//            File f = new File(path);
-//            if (!f.exists()) {
-//                f.mkdir();
-//            }
-//            Files.copy(file.getInputStream(), Paths.get(filePath));
-//            vssCompany.setLogo(fileName);
-//            this.companyService.createCompany(name, vssCompany, file, path);
-//            return "Company Created Successfully";
-//
-//        }
-//    }
-
     @PostMapping("/create/company")
     public String createCompany(@Validated VssCompany vssCompany , @RequestParam("name") String name, @Validated @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}") @RequestPart("company") String company, @RequestPart("logo") MultipartFile file
     ) throws IOException {
