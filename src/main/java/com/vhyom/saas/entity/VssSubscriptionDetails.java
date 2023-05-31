@@ -1,6 +1,7 @@
 package com.vhyom.saas.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.vhyom.saas.utils.UniqueId;
@@ -79,12 +80,12 @@ public class VssSubscriptionDetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "created_on", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdOn;
+    private Date createdOn;
     @Column(name = "last_modified_by")
     private Integer lastModifiedBy;
     @Column(name = "last_modified_on")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastModifiedOn;
+    private Date lastModifiedOn;
     @Basic(optional = false)
     @Column(name = "is_active", nullable = false)
     private boolean isActive;

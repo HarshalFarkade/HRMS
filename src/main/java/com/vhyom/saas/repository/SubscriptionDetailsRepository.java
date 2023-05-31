@@ -10,13 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscriptionDetails ,Integer> {
-
 
     @Transactional
     @Modifying
@@ -31,11 +31,6 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
                                    @Param("status") int status,
                                    @Param("createdBy") int createdBy);
 
-    boolean existsByCompanyId(VssCompany value);
-    boolean existsBySubscriptionId(VssSubscription subscription);
-
-
-
     @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto(sd.uuid AS uuid, c.name AS name, c.websiteUrl AS websiteUrl, c.logo AS logo, " +
             "c.firstName AS firstName, c.lastName AS lastName, c.emailId AS emailId, c.phoneNumber AS phoneNumber, " +
             "c.createdBy AS createdBy, c.createdOn AS createdOn, c.lastModifiedBy AS lastModifiedBy, " +
@@ -47,6 +42,7 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
             "JOIN VssSubscriptionDetails sd ON c.id = sd.companyId " +
             "JOIN VssSubscription s ON sd.subscriptionId = s.id")
     List<SubscriptionDetailsDto> getAllSubscriptionDetails();
+
 
     @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto(sd.uuid AS uuid, c.name AS name, c.websiteUrl AS websiteUrl, c.logo AS logo, " +
             "c.firstName AS firstName, c.lastName AS lastName, c.emailId AS emailId, c.phoneNumber AS phoneNumber, " +
@@ -62,16 +58,14 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
     SubscriptionDetailsDto getSubscriptionDetailsByUuid(String uuid);
 
 
-
     @Transactional
     @Modifying
     @Query(value ="UPDATE VssSubscriptionDetails subD SET subD.lastModifiedOn=:lastModifiedOn,subD.lastModifiedBy=:lastModifiedBy,subD.isActive=:isActive Where subD.uuid=:uuid")
     void deleteSubscriptionDetailsBYUuid(
-                                @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                                @Param("lastModifiedOn") Date lastModifiedOn,
                                 @Param("lastModifiedBy") Integer lastModifiedBy,
                                 @Param("isActive") boolean isActive,
                                 @Param("uuid")String uuid);
-
 
     @Transactional
     @Modifying
@@ -82,10 +76,8 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
                                    @Param("endDate") Date endDate,
                                    @Param("status") int status,
                                    @Param("lastModifiedBy") Integer lastModifiedBy,
-                                   @Param("lastModifiedOn") LocalDateTime lastModifiedOn,
+                                   @Param("lastModifiedOn") Date lastModifiedOn,
                                    @Param("uuid") String uuid);
-
-
 
 
     @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM VssSubscriptionDetails s WHERE s.companyId.id = :value")
@@ -97,6 +89,7 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
     @Query("SELECT sd FROM VssSubscriptionDetails sd WHERE sd.subscriptionId = :subscriptionId")
     List<VssSubscriptionDetails> findBySubscriptionId(@Param("subscriptionId") Integer subscriptionId);
 
+    boolean existsByCompanyIdAndSubscriptionId(VssCompany company, VssSubscription subscription);
 }
 
 
