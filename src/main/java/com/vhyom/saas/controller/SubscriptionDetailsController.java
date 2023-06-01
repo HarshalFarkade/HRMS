@@ -50,10 +50,11 @@ public class SubscriptionDetailsController {
 
 
     @PutMapping("subscriptionDetails/updateSubscriptionDetails/{uuid}")/* This API is For updating Subscription Details*/
-    public String updateSubscriptionDetails(@RequestBody VssSubscriptionDetails vssSubscriptionDetails, @RequestParam VssCompany company,@RequestParam VssSubscription subscription,@PathVariable String uuid){if (subscriptionDetailsRepository.existsByCompanyIdAndSubscriptionId(company, subscription)) {
+    public String updateSubscriptionDetails(@RequestBody VssSubscriptionDetails vssSubscriptionDetails, @RequestParam VssCompany company,@RequestParam VssSubscription subscription,@PathVariable String uuid){
+        if (subscriptionDetailsRepository.existsByCompanyIdAndSubscriptionId(company, subscription)) {
         return "Subscription already available for the company";
     } else {
-        return subscriptionDetailsService.createSubscriptionDetails(vssSubscriptionDetails, company, subscription);
+        return subscriptionDetailsService.updateSubscriptionDetails(vssSubscriptionDetails, company, subscription,uuid);
     }
     }
 

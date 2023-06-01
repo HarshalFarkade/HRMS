@@ -1,4 +1,5 @@
 package com.vhyom.saas.repository;
+
 import com.vhyom.saas.dto.SubscriptionDetailsDto;
 import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.entity.VssSubscription;
@@ -9,9 +10,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +31,8 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
 
     @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto(sd.uuid AS uuid, c.name AS name, c.websiteUrl AS websiteUrl, c.logo AS logo, " +
             "c.firstName AS firstName, c.lastName AS lastName, c.emailId AS emailId, c.phoneNumber AS phoneNumber, " +
-            "c.createdBy AS createdBy, c.createdOn AS createdOn, c.lastModifiedBy AS lastModifiedBy, " +
-            "c.lastModifiedOn AS lastModifiedOn, c.isActive AS isActive, s.planName AS planName, " +
+            "sd.createdBy AS createdBy, sd.createdOn AS createdOn, sd.lastModifiedBy AS lastModifiedBy, " +
+            "sd.lastModifiedOn AS lastModifiedOn, sd.isActive AS isActive, s.planName AS planName, " +
             "s.description AS description, (SELECT CAST(SUM(s.totalUsers) AS INTEGER) FROM VssSubscription s) AS totalUsers, " +
             "(SELECT CAST(SUM(s.totalUsers) AS INTEGER) FROM VssSubscription s WHERE s.isActive = true) AS totalActiveUsers, " +
             "sd.startDate AS startDate, sd.endDate AS endDate, sd.status AS status) " +
@@ -42,7 +40,6 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
             "JOIN VssSubscriptionDetails sd ON c.id = sd.companyId " +
             "JOIN VssSubscription s ON sd.subscriptionId = s.id")
     List<SubscriptionDetailsDto> getAllSubscriptionDetails();
-
 
     @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto(sd.uuid AS uuid, c.name AS name, c.websiteUrl AS websiteUrl, c.logo AS logo, " +
             "c.firstName AS firstName, c.lastName AS lastName, c.emailId AS emailId, c.phoneNumber AS phoneNumber, " +
@@ -84,10 +81,6 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
     boolean existsByCompanyId(Integer value);
 
 
-    VssSubscription findByUuid(String uuid);
-
-    @Query("SELECT sd FROM VssSubscriptionDetails sd WHERE sd.subscriptionId = :subscriptionId")
-    List<VssSubscriptionDetails> findBySubscriptionId(@Param("subscriptionId") Integer subscriptionId);
 
     boolean existsByCompanyIdAndSubscriptionId(VssCompany company, VssSubscription subscription);
 }

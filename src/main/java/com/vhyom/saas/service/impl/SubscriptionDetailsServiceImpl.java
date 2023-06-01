@@ -8,7 +8,6 @@ import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.service.SubscriptionDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,26 +18,28 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
     @Autowired
     private SubscriptionDetailsRepository subscriptionDetailsRepository;
 
-@Transactional
-@Override
-public String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription) {
 
-    Date currentDate = new Date();
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(currentDate);
-    calendar.add(Calendar.YEAR, 1);
-    Date nextYearDate = calendar.getTime();
 
-    vssSubscriptionDetails.setStartDate(currentDate);
-    vssSubscriptionDetails.setEndDate(nextYearDate);
-    vssSubscriptionDetails.setStatus(vssSubscriptionDetails.getStatus());
-    vssSubscriptionDetails.setCreatedBy(vssSubscriptionDetails.getCreatedBy());
-    // Set other fields as needed
+    @Override
+    public String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription) {
+        String planType = String.valueOf(subscription.getPlanType());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(vssSubscriptionDetails.getStartDate());
+        if (planType.equals("1")) {
+            calendar.add(Calendar.MONTH, 1);
+        } else if (planType.equals("2")) {
+            calendar.add(Calendar.MONTH, 6);
+        } else if (planType.equals("3")) {
+            calendar.add(Calendar.YEAR, 1);
+        } else {
 
-    this.subscriptionDetailsRepository.createSubscriptionDetails(company.getId(),subscription.getId(),new Date(),nextYearDate, vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getCreatedBy());
-    return "Created Successfully";
-}
+            return "Invalid planType";
+        }
+        Date endDate = calendar.getTime();
 
+        this.subscriptionDetailsRepository.createSubscriptionDetails(company.getId(), subscription.getId(), vssSubscriptionDetails.getStartDate(), endDate, vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getCreatedBy());
+        return "Created Successfully";
+    }
 
     @Override
     public List<SubscriptionDetailsDto> getAllSubscriptionDetails() {
@@ -58,7 +59,23 @@ public String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDe
 
     @Override
     public String updateSubscriptionDetails( VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription,String uuid) {
-        this.subscriptionDetailsRepository.updateSubscriptionDetails(company,subscription,vssSubscriptionDetails.getStartDate(),vssSubscriptionDetails.getEndDate(), vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getLastModifiedBy(),new Date(),uuid);
+        String planType = String.valueOf(subscription.getPlanType());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(vssSubscriptionDetails.getStartDate());
+
+        if (planType.equals("1")) {
+            calendar.add(Calendar.MONTH, 1);
+        } else if (planType.equals("2")) {
+            calendar.add(Calendar.MONTH, 6);
+        } else if (planType.equals("3")) {
+            calendar.add(Calendar.YEAR, 1);
+        } else {
+
+            return "Invalid planType";
+        }
+
+        Date endDate = calendar.getTime();
+        this.subscriptionDetailsRepository.updateSubscriptionDetails(company,subscription,vssSubscriptionDetails.getStartDate(),endDate, vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getLastModifiedBy(),new Date(),uuid);
         return "SubscriptionDetails Updated Successfully";
     }
 
