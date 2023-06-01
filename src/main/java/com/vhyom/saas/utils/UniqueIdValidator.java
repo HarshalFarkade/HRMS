@@ -21,9 +21,7 @@ public class UniqueIdValidator implements ConstraintValidator <UniqueId ,Integer
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
         if(subscriptionDetailsRepository.existsByCompanyId((Integer) value)){
             return false;
-        }//else if(subscriptionDetailsRepository.existsBySubscriptionId((VssSubscription)value)){
-        //   return false;
-        //}
+        }
         return false;
     }
 }
