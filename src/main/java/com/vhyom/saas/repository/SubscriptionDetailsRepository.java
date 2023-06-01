@@ -43,8 +43,8 @@ public interface SubscriptionDetailsRepository extends JpaRepository<VssSubscrip
 
     @Query("SELECT new com.vhyom.saas.dto.SubscriptionDetailsDto(sd.uuid AS uuid, c.name AS name, c.websiteUrl AS websiteUrl, c.logo AS logo, " +
             "c.firstName AS firstName, c.lastName AS lastName, c.emailId AS emailId, c.phoneNumber AS phoneNumber, " +
-            "c.createdBy AS createdBy, c.createdOn AS createdOn, c.lastModifiedBy AS lastModifiedBy, " +
-            "c.lastModifiedOn AS lastModifiedOn, c.isActive AS isActive, s.planName AS planName, " +
+            "sd.createdBy AS createdBy, sd.createdOn AS createdOn, sd.lastModifiedBy AS lastModifiedBy, " +
+            "sd.lastModifiedOn AS lastModifiedOn, sd.isActive AS isActive, s.planName AS planName, " +
             "s.description AS description, (SELECT CAST(SUM(su.totalUsers) AS INTEGER) FROM VssSubscription su) AS totalUsers, " +
             "(SELECT CAST(SUM(sa.totalUsers) AS INTEGER) FROM VssSubscription sa WHERE sa.isActive = true) AS totalActiveUsers, " +
             "sd.startDate AS startDate, sd.endDate AS endDate, sd.status AS status) " +
