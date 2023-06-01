@@ -55,6 +55,8 @@ public interface SubscriptionRepository extends JpaRepository<VssSubscription,In
                                   @Param("uuid")String uuid);
 
     VssSubscription findByUuid(String uuid);
+
+    boolean existsByPlanNameAndPlanType(String planName, Integer planType);
 }
 
 

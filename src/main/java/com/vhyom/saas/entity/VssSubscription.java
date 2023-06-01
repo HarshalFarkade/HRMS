@@ -63,13 +63,12 @@ public class VssSubscription implements Serializable {
     private String uuid;
     @Basic(optional = false)
     @Column(name = "plan_name", nullable = false, length = 50)
-    @UniqueName(message = " planName must be different")
+   // @UniqueName(message = " planName must be different")
     @NotNull (message ="Please provide Plan name ")
     private String planName;
     @Column(name = "plan_price", precision = 18, scale = 2)
     private BigDecimal planPrice;
     @Column(name = "plan_type")
-    //@UniqueName(message = " plan type must be different")
     private Integer planType;
     @Column(name = "total_users")
     private Integer totalUsers;

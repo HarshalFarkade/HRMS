@@ -31,7 +31,7 @@ public class SubscriptionController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @PostMapping("/create")/* this Api is For  creating new Subscription*/
-    public String createSubscription (@Valid @RequestBody VssSubscription vssSubscription){
+    public String createSubscription ( @RequestBody VssSubscription vssSubscription){
         LOGGER.info("SubscriptionController: createSubscription is started");
         return subscriptionServiceimpl.createSubscription(vssSubscription);
     }
@@ -74,7 +74,7 @@ public class SubscriptionController {
     }
 
     @PutMapping("/subscription/updateSubscription/{uuid}")/*This APi is for Update Subscription by uuid */
-    public String updateSubscriptionByUuid(@PathVariable String uuid ,  @Valid @RequestBody VssSubscription vssSubscription){
+    public String updateSubscriptionByUuid(@PathVariable String uuid , @RequestBody VssSubscription vssSubscription){
         LOGGER.info("SubScriptionController: UpdateSubscription is started");
         return subscriptionServiceimpl.updateSubscriptionByUuid(uuid,vssSubscription);
     }
