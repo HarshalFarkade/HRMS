@@ -2,11 +2,10 @@ package com.vhyom.saas.controller;
 
 import com.vhyom.saas.dto.VssSubscriptiondto;
 import com.vhyom.saas.entity.VssSubscription;
-import com.vhyom.saas.entity.VssSubscriptionDetails;
+import com.vhyom.saas.entity.VssSubscriptionDetail;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.repository.SubscriptionRepository;
 import com.vhyom.saas.service.SubscriptionService;
-import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +55,10 @@ public class SubscriptionController {
         Integer subscriptionId=subscription.getId();
 
         // this will get all details from Subscription-details
-        List<VssSubscriptionDetails> subscriptionDetails= subscriptionDetailRepository.findAll();
+        List<VssSubscriptionDetail> subscriptionDetails= subscriptionDetailRepository.findAll();
 
         // in this line of code we store all VssSubscription data from vssSubscription details
-        List<VssSubscription> subscriptionDetailsIds = subscriptionDetails.stream().map(VssSubscriptionDetails::getSubscriptionId).collect(Collectors.toList());
+        List<VssSubscription> subscriptionDetailsIds = subscriptionDetails.stream().map(VssSubscriptionDetail::getSubscriptionId).collect(Collectors.toList());
 
         //this will store the all subscription_id from VssSubscription
         List<Integer> Id =subscriptionDetailsIds.stream().map(VssSubscription::getId).collect(Collectors.toList());
