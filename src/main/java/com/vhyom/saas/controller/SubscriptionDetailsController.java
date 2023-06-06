@@ -3,7 +3,7 @@ package com.vhyom.saas.controller;
 import com.vhyom.saas.dto.SubscriptionDetailsDto;
 import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.entity.VssSubscription;
-import com.vhyom.saas.entity.VssSubscriptionDetails;
+import com.vhyom.saas.entity.VssSubscriptionDetail;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.service.SubscriptionDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class SubscriptionDetailsController {
     private SubscriptionDetailsRepository subscriptionDetailsRepository;
 
     @PostMapping("/subscriptionDetails/create")
-    public String createSubscriptionDetails(@RequestBody VssSubscriptionDetails vssSubscriptionDetails,
+    public String createSubscriptionDetails(@RequestBody VssSubscriptionDetail vssSubscriptionDetails,
                                         @RequestParam VssCompany company,
                                         @RequestParam VssSubscription subscription) {
         if (subscriptionDetailsRepository.existsByCompanyIdAndSubscriptionId(company, subscription)) {
@@ -42,19 +42,19 @@ public class SubscriptionDetailsController {
         return subscriptionDetailsService.getSubscriptionDetailsByUuid(uuid);
     }
 
-
     @PutMapping("subscriptionDetails/deleteSubscriptionDetails/{uuid}")/*This API is for Deleting SubscriptionDetails By uuid */
-    public String deleteSubscriptionDetailsBYUuid(@PathVariable String uuid, @RequestBody VssSubscriptionDetails vssSubscriptionDetails){
+    public String deleteSubscriptionDetailsBYUuid(@PathVariable String uuid, @RequestBody VssSubscriptionDetail vssSubscriptionDetails){
         return subscriptionDetailsService.deleteSubscriptionDetailsBYUuid(uuid, vssSubscriptionDetails);
     }
 
-
     @PutMapping("subscriptionDetails/updateSubscriptionDetails/{uuid}")/* This API is For updating Subscription Details*/
-    public String updateSubscriptionDetails(@RequestBody VssSubscriptionDetails vssSubscriptionDetails, @RequestParam VssCompany company,@RequestParam VssSubscription subscription,@PathVariable String uuid){
+    public String updateSubscriptionDetails(@RequestBody VssSubscriptionDetail vssSubscriptionDetails,@RequestParam VssSubscription subscription,@PathVariable String uuid){
+       VssSubscriptionDetail subscriptionDetails =subscriptionDetailsRepository.findByUuid(uuid);
+        VssCompany company =subscriptionDetails.getCompanyId();
         if (subscriptionDetailsRepository.existsByCompanyIdAndSubscriptionId(company, subscription)) {
         return "Subscription already available for the company";
     } else {
-        return subscriptionDetailsService.updateSubscriptionDetails(vssSubscriptionDetails, company, subscription,uuid);
+        return subscriptionDetailsService.updateSubscriptionDetails(vssSubscriptionDetails,  company,subscription,uuid);
     }
     }
 

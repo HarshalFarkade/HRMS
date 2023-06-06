@@ -11,7 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class SubscriptionDetailsDto {
 
-
     private String uuid;
     private String name;
     private String websiteUrl;
@@ -31,5 +30,5 @@ public class SubscriptionDetailsDto {
     private Integer totalActiveUsers ;
     private Date startDate;
     private Date endDate;
-    private Integer status;
+    private int  status;
 }

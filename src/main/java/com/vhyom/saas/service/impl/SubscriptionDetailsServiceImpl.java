@@ -3,7 +3,7 @@ package com.vhyom.saas.service.impl;
 import com.vhyom.saas.dto.SubscriptionDetailsDto;
 import com.vhyom.saas.entity.VssCompany;
 import com.vhyom.saas.entity.VssSubscription;
-import com.vhyom.saas.entity.VssSubscriptionDetails;
+import com.vhyom.saas.entity.VssSubscriptionDetail;
 import com.vhyom.saas.repository.SubscriptionDetailsRepository;
 import com.vhyom.saas.service.SubscriptionDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
 
 
     @Override
-    public String createSubscriptionDetails(VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription) {
+    public String createSubscriptionDetails(VssSubscriptionDetail vssSubscriptionDetails, VssCompany company, VssSubscription subscription) {
         String planType = String.valueOf(subscription.getPlanType());
         Date currentDate = new Date();
         vssSubscriptionDetails.setStartDate(currentDate);
@@ -51,17 +51,16 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
     }
 
     @Override
-    public String deleteSubscriptionDetailsBYUuid(String uuid, VssSubscriptionDetails vssSubscriptionDetails) {
+    public String deleteSubscriptionDetailsBYUuid(String uuid, VssSubscriptionDetail vssSubscriptionDetails) {
         this.subscriptionDetailsRepository.deleteSubscriptionDetailsBYUuid(new Date(),vssSubscriptionDetails.getLastModifiedBy(),false,uuid);
         return "SubscriptionDetails Deleted Successfully";
     }
 
     @Override
-    public String updateSubscriptionDetails( VssSubscriptionDetails vssSubscriptionDetails, VssCompany company, VssSubscription subscription,String uuid) {
+    public String updateSubscriptionDetails( VssSubscriptionDetail vssSubscriptionDetails,  VssCompany company,VssSubscription subscription,String uuid) {
         String planType = String.valueOf(subscription.getPlanType());
         Date currentDate = new Date();
         vssSubscriptionDetails.setStartDate(currentDate);
-
         Calendar calendar = Calendar.getInstance();
         if (planType.equals("1")) {
             calendar.add(Calendar.MONTH, 1);
