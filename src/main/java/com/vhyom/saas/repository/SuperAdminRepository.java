@@ -65,13 +65,11 @@ public interface SuperAdminRepository extends JpaRepository<VssSuperAdmin, Integ
     @Query("SELECT new com.vhyom.saas.dto.DashboardDto(" +
             "COUNT(c.uuid), " +
             "COUNT(CASE WHEN c.isActive = true THEN 1 ELSE NULL END), " +
-            "(SELECT COUNT(s) FROM VssSubscription s ), " +
-            "(SELECT COUNT(s) FROM VssSubscription s Where s.isActive = true), " +
+            "(SELECT COUNT(s) FROM VssSubscriptionDetail s ), " +
+            "(SELECT COUNT(s) FROM VssSubscriptionDetail s Where s.isActive = true), " +
             "(SELECT SUM( s.totalUsers) FROM VssSubscription s), " +
             "(SELECT SUM( s.totalUsers) FROM VssSubscription s  WHERE s.isActive = true) " +
             ")FROM VssCompany c " )
     List<DashboardDto> getDashboardData();
-
-
 
 }

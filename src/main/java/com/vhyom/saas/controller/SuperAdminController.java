@@ -110,7 +110,7 @@ public class SuperAdminController {
         }
     }
 
-    @GetMapping("/superAdmin/login")/* This API is for  Login superAdmin */
+    @PostMapping("/superAdmin/login")/* This API is for  Login superAdmin */
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, String> request) {
         try {
             String emailId = request.get("emailId");
