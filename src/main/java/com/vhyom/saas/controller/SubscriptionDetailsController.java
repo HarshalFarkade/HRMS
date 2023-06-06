@@ -32,22 +32,22 @@ public class SubscriptionDetailsController {
             }
       }
 
-    @GetMapping("subscriptionDetails/getAllSubscriptionDetails") /* This API is for Getting All details of SubscriptionDetails */
+    @GetMapping("/subscriptionDetails/getAllSubscriptionDetails") /* This API is for Getting All details of SubscriptionDetails */
     public List<SubscriptionDetailsDto> getAllSubscriptionDetails(){
         return subscriptionDetailsService.getAllSubscriptionDetails();
     }
 
-    @GetMapping("subscriptionDetails/getSubscriptionDetails/{uuid}") /* THia API is FOr getting Details of SubscriptionDetails By uuid */
+    @GetMapping("/subscriptionDetails/getSubscriptionDetails/{uuid}") /* THia API is FOr getting Details of SubscriptionDetails By uuid */
     public  SubscriptionDetailsDto getSubscriptionDetailsByUuid(@PathVariable String uuid){
         return subscriptionDetailsService.getSubscriptionDetailsByUuid(uuid);
     }
 
-    @PutMapping("subscriptionDetails/deleteSubscriptionDetails/{uuid}")/*This API is for Deleting SubscriptionDetails By uuid */
+    @PutMapping("/subscriptionDetails/deleteSubscriptionDetails/{uuid}")/*This API is for Deleting SubscriptionDetails By uuid */
     public String deleteSubscriptionDetailsBYUuid(@PathVariable String uuid, @RequestBody VssSubscriptionDetail vssSubscriptionDetails){
         return subscriptionDetailsService.deleteSubscriptionDetailsBYUuid(uuid, vssSubscriptionDetails);
     }
 
-    @PutMapping("subscriptionDetails/updateSubscriptionDetails/{uuid}")/* This API is For updating Subscription Details*/
+    @PutMapping("/subscriptionDetails/updateSubscriptionDetails/{uuid}")/* This API is For updating Subscription Details*/
     public String updateSubscriptionDetails(@RequestBody VssSubscriptionDetail vssSubscriptionDetails,@RequestParam VssSubscription subscription,@PathVariable String uuid){
        VssSubscriptionDetail subscriptionDetails =subscriptionDetailsRepository.findByUuid(uuid);
         VssCompany company =subscriptionDetails.getCompanyId();
