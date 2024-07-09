@@ -1,12 +1,9 @@
 package com.vhyom.saas.entity;
-
 import com.vhyom.saas.utils.UniqueName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
-import org.hibernate.validator.constraints.Email;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -66,9 +63,7 @@ public class VssCompany implements Serializable {
     private String lastName;
     @Basic(optional = false)
     @Column(name = "email_id", nullable = false, length = 100)
-   // @Email(message = "Please provide a valid email address")
     @Pattern(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
-   // @NotNull(message = "Please Provide EmailId")
     private String emailId;
     @Column(name = "phone_number", length = 25)
     private String phoneNumber;
@@ -88,5 +83,5 @@ public class VssCompany implements Serializable {
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private Collection<VssSubscriptionDetails> vssSubscriptionDetailsCollection;
+    private Collection<VssSubscriptionDetail> vssSubscriptionDetailsCollection;
 }

@@ -31,8 +31,7 @@ public class ClientController {
     private String path;
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-
+    
     @PostMapping("/create/client")
     public String createClient( VseClient vseClient, @RequestPart("client")String client, @RequestPart("logo")MultipartFile file) throws IOException{
         LOGGER.info(" ClientController | createClient is started"+ file.getOriginalFilename());

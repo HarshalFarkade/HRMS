@@ -62,7 +62,7 @@ public class VshEmployee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(nullable = false)
-    private Integer id;
+    private Long id;
     @Basic(optional = false)
     @Column(nullable = false, length = 36)
     private String uuid;

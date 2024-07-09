@@ -19,7 +19,6 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
     private SubscriptionDetailsRepository subscriptionDetailsRepository;
 
 
-
     @Override
     public String createSubscriptionDetails(VssSubscriptionDetail vssSubscriptionDetails, VssCompany company, VssSubscription subscription) {
         String planType = String.valueOf(subscription.getPlanType());
@@ -62,6 +61,7 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
         Date currentDate = new Date();
         vssSubscriptionDetails.setStartDate(currentDate);
         Calendar calendar = Calendar.getInstance();
+
         if (planType.equals("1")) {
             calendar.add(Calendar.MONTH, 1);
         } else if (planType.equals("2")) {
@@ -69,10 +69,8 @@ public class SubscriptionDetailsServiceImpl implements SubscriptionDetailsServic
         } else if (planType.equals("3")) {
             calendar.add(Calendar.YEAR, 1);
         } else {
-
             return "Invalid planType";
         }
-
         Date endDate = calendar.getTime();
         this.subscriptionDetailsRepository.updateSubscriptionDetails(company,subscription,vssSubscriptionDetails.getStartDate(),endDate, vssSubscriptionDetails.getStatus(), vssSubscriptionDetails.getLastModifiedBy(),new Date(),uuid);
         return "SubscriptionDetails Updated Successfully";
